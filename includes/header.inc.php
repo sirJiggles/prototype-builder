@@ -15,7 +15,7 @@ $currentPage = str_replace('.php', '', end(explode('/', $_SERVER['SCRIPT_FILENAM
 <html lang="en" class="no-js">
     <head>
 
-    	<title>Basilisk</title>
+    	<title>Prototype builder</title>
             
         <!--[if lt IE 9]>
             <script src="assets/js/vendor/htmlshiv.min.js"></script>
@@ -55,36 +55,31 @@ $currentPage = str_replace('.php', '', end(explode('/', $_SERVER['SCRIPT_FILENAM
         
     </head>
     <body>
+        
+        
+        <!-- Pure awesome lurks -->
+        <a href="#" title="toggle tools" class="tools-link">&#9776;</a>
+        <aside id="tools">
+            <ul>
+                <li><a href="#" class="grid-link" id="">Full</a></li>
+                <li><a href="#" class="grid-link" id="half">Half</a></li>
+                <li><a href="#" class="grid-link" id="third">Third</a></li>
+                <li><a href="#" class="grid-link" id="quarter">Quarter</a></li>
+                <li><a href="#" class="grid-link" id="fith">Fith</a></li>
+                <li><a href="#" class="grid-link" id="sixth">Sixth</a></li>
+                <li><a href="#" class="grid-link" id="seventh">Seventh</a></li>
+            </ul>
+        </aside>
+        
+        
+        
 
         <!-- used for sticky footer -->
         <div id="site-wrapper">
+            
+            
 
             <header id="header" class="row" role="banner">
-                
-                <div class="col span-1 half">
-                    
-                    <h1>SITE TITLE</h1>
-                    
-                    <nav id="main-nav" role="navigation">
-
-                        <ul>
-                            <li><a href="index.php" title="Home" <?php echo ($currentPage == 'index') ? "class='active'" : ''; ?>>Home</a></li>
-                            <li><a href="article.php" title="Article" <?php echo ($currentPage == 'article') ? "class='active'" : ''; ?>>Article</a></li>
-                            <li><a href="gallery.php" title="Gallery" <?php echo ($currentPage == 'gallery') ? "class='active'" : ''; ?>>Gallery</a></li>
-                            <li><a href="news.php" title="News" <?php echo ($currentPage == 'news') ? "class='active'" : ''; ?>>News</a></li>
-                            <li><a href="accordion.php" title="Accordion" <?php echo ($currentPage == 'accordion') ? "class='active'" : ''; ?>>Accordion</a></li>
-                            <li><a href="contact.php" title="Contact" <?php echo ($currentPage == 'contact') ? "class='active'" : ''; ?>>Contact</a></li>
-                        </ul>
-                        
-                    </nav>
-                </div>
-                
-                
-                    
-                <div class="col span-1 half end">
-                    <p> This is another half ! </p>
-                </div>
-
                 
             </header>
             

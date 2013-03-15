@@ -4,13 +4,17 @@
 
 /* ================ MAIN LAYOUT ELEMENTS ================ */
 
+body{
+    overflow:hidden;
+}
+
 #site-wrapper{
     height:100%;
     min-height: 100%;
     height: auto;
     margin-bottom:-$footer-height+px;
     position:relative;
-    overflow:auto;
+    overflow:hidden;
 }
 
 *{
@@ -19,7 +23,6 @@
 
 .row {
     @include container;
-    @include susy-grid-background;
     
     .row{
         margin-left:-$grid-padding;
@@ -51,4 +54,112 @@
             }
         }
     }
+}
+
+.main{
+    background-color:$color5;
+    min-height:500px;
+}
+
+
+.tools-link{
+    @include em-font(20);
+    color:$color1;
+    font-weight:700;
+    text-decoration:none;
+    position:fixed;
+    left:46%;
+    padding:5px;
+    background-color:white;
+    border:2px solid $color1;
+    display:block;
+    top:-2px;
+    @include border-radius(3px); 
+    z-index:2;
+}
+
+
+#tools{
+    position:absolute;
+    width:200px;
+    right:-200px;
+    top:0;
+    height:100%;
+    background-color:$color2;
+    z-index:1;
+    padding:15px;
+    @include transition-property(all);
+    @include transition-duration(0.3s);
+    @include transition-timing-function(ease-in);
+}
+
+#tools.active{
+    right:0px;
+}
+
+#tools ul{
+    list-style-type:none;
+    @include reset-box;
+}
+
+#tools ul a{
+    color:$color4;
+    text-decoration:none;
+    outline:none;
+    font-weight:700;
+    display:block;
+}
+
+#tools ul a:hover{
+    color:white;
+}
+
+/* NEW GRID BOXES ADDED TO THE STAGE */
+
+.grid-box{
+    border:1px solid black;
+    min-height:100px;
+    min-width:100px;
+    @include block-left;
+    position:absolute;
+    top:50%;
+    left:50%;
+    background-color:white;
+}
+
+.grid-box:hover a.dragger,
+.grid-box:hover a.done,
+.grid-box:hover a.edit{
+    display:block;
+}
+    
+
+.grid-box a.dragger{
+    display:none;
+    top:0;
+    width:100%;
+    position:absolute;
+    height:20px;
+    padding-left:10px;
+    color:black;
+    cursor:move;
+    background-color:$color1;
+}
+
+.grid-box a.edit,
+.grid-box a.done{
+    position:absolute;
+    color:$color1;
+    font-weight:700;
+    @include em-font(14);
+    display:none;
+    bottom:0;
+}
+
+.grid-box a.edit{
+    left:0;
+} 
+
+.grid-box a.done{
+    right:0;
 }

@@ -5,7 +5,7 @@
  * 
  * @depends vendor/jquery-1.8.2.min.js
  * @depends vendor/hammer.min.js
- * @depends ../modules/coverflow-gallery/js/jquery.flexslider-min.js
+ * @depends ../modules/jquery-ui/js/script.js
  * 
  */
 
@@ -17,12 +17,60 @@ $(window).ready(function () {
     
     
     // Run our app javascript first
-
-
+    
+    $('.tools-link').click(function(e){
+        e.preventDefault();
+        $('#tools').toggleClass('active');
+    });
+    
+   
+    
+    
+    // click a grid link
+    
+    $('.grid-link').click(function(e){
+        e.preventDefault();
+        
+        var gridObject = $('<div class="grid-box col span-1"><a href="#" class="dragger"></a><a href="#" class="done">Done</a><a href="#" class="edit">Edit</a></div>');
+        
+        $(gridObject).addClass($(this).attr('id'));
+        
+        
+        $('#tools').toggleClass('active');
+        
+        if($('.prev-grid').length > 0){
+            $('.prev-grid').append(gridObject);
+        }else{
+            $('.main').append(gridObject);
+        }
+        
+        // remove all previous classes fomr gird boxes
+        $('.grid-box').removeClass('prev-grid');
+        $(gridObject).addClass('prev-grid');
+        
+        $(gridObject).draggable({
+            handle: '.dragger',
+            containment: "parent",
+            snap: true
+        });
+        
+        // add done and edit actions for new box
+        $(gridObject).find('.done').click(function(e){
+            e.preventDefault();
+            $(gridObject).draggable("disable");
+        });
+        
+        $(gridObject).find('.edit').click(function(e){
+            e.preventDefault();
+            $(gridObject).draggable("enable");
+        })
+        
+    });
+    
+    
+    
     /* Import module specific javscript using juicer
      * 
-     * @depends ../modules/coverflow-gallery/js/script.js
-     * @depends ../modules/accordion/js/script.js
      */
     
 });

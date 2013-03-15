@@ -18,16 +18,19 @@
         <div class="row">
             <footer id="site-footer">
                 <div class="col end">
-                    <p>This is our footer!</p>
                 </div>
             </footer>
         </div>
 
-            
         
+        <!-- Remove after develop -->
+        <script type="text/javascript" src="assets/js/vendor/jquery-1.8.2.min.js"></script>
+        <script type="text/javascript" src="assets/js/vendor/hammer.min.js"></script>
+        <script type="text/javascript" src="assets/modules/jquery-ui/js/script.js"></script>
+        <script type="text/javascript" src="assets/js/script.js"></script>
         
-        <!-- Load all JS last -->
-        <script type="text/javascript" src="assets/js/script.min.js"></script>
+        <!-- Load all JS last 
+        <script type="text/javascript" src="assets/js/script.min.js"></script>-->
         
 
     </body>
