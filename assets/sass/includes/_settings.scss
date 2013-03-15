@@ -1,0 +1,19 @@
+
+$mobile: 480px;
+$tablet: 678px;
+$desktop: 920px;
+
+$base-font: 16;
+$bodyFontSize: 16px;
+$base-font-size: $bodyFontSize;
+
+$total-columns: 12;
+$column-width: 60px;
+$gutter-width: 20px;
+$grid-padding: 10px;
+
+$footer-height: 357;
+
+$border-box-sizing: true;
+
+$gridGlobal: ("half" 2, "halves" 2, "third" 3, "thirds" 3, "quarter" 4, "quarters" 4, "fith" 5, "fiths" 5, "sixth" 6, "sixths" 6 );

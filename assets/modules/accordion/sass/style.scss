@@ -1,0 +1,69 @@
+
+.accordion a.accordion-link{
+    background-color: #222;
+    padding:10px;
+    width:100%;
+    @include block-left;
+    margin: 0 0 1px 0;
+    text-decoration:none;
+    @include transition-property(background-color);
+    @include transition-duration(0.3s);
+    @include transition-timing-function(linear);
+    color:#eee;
+}
+
+.accordion a.accordion-link:hover{
+    background-color: lighten(#222, 10%);
+}
+
+.accordion .accordion-slide{
+    @include block-left;
+    padding: 10px;
+    background: lighten(#888, 10%);
+    width: 100%;
+    position:relative;
+    z-index:1;
+    border-left: 1px solid #222;
+}
+
+.accordion a.accordion-link span{
+    float:right;
+    color:white;
+    @include rotate(270);
+    margin:1% 0 0 0;
+}
+
+.accordion a.accordion-link h3{
+    float:left;
+    display:inline-block;
+}
+
+.accordion a.open{
+    position:relative;
+    z-index:2;
+    margin:0;
+}
+
+.accordion a.open span{
+    @include rotate(0);
+    
+}
+
+/* TABLET UP */
+@media only screen and (min-width: $tablet){
+
+    .accordion .accordion-slide{
+        border-left:7px solid #222;
+    }
+    
+
+}
+
+/* DESKTOP UP */
+@media only screen and (min-width: $desktop){
+
+    .accordion .accordion-slide{
+        border-left:10px solid #222;
+    }
+   
+}

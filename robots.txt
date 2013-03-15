@@ -1,0 +1,14 @@
+Sitemap: http://www.
+
+User-agent: *
+Disallow /index.php
+Disallow /assets/temp/
+
+User-agent: Slurp
+Crawl-delay: 10
+
+User-agent: rogerbot
+Crawl-delay: 0
+
+User-Agent: MJ12bot
+Disallow:

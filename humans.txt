@@ -1,0 +1,17 @@
+/* TEAM */
+Web Developer: 
+Site: 
+Twitter: 
+Location: 
+
+/* CREDITS */
+Daniel Bruce & Andreas Blombäck - Entypo font stack (http://www.entypo.com/)
+
+/* SITE */
+Standards: 
+- HTML5
+- CSS3
+
+Components: 
+- jQuery http://jquery.com/
+- Entypo font stack (icon based font)

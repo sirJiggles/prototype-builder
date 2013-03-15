@@ -1,0 +1,42 @@
+
+@import "_settings";
+@import "_mixins";
+
+@mixin mobile-land-styles(){
+    
+    
+}
+
+@mixin tablet-styles(){
+    
+   
+
+}
+
+@mixin desktop-styles(){
+    
+    
+    // re-create grid
+    .row{
+        .col{
+
+            @each $section in $gridGlobal{
+                $name: nth($section, 1);
+                $number: nth($section, 2);
+
+                &.#{$name}{
+                    @for $i from 1 through $number{
+                        &.span-#{$i}{
+                            @include span-columns($total-columns * ($i/$number));
+
+                            &.end{
+                                @include omega;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+  
+}
