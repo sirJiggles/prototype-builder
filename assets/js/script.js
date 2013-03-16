@@ -24,45 +24,55 @@ $(window).ready(function () {
     });
     
    
-    
+    $('.main').nestedSortable({
+        forcePlaceholderSize: true,
+        placeholder: 'placeholder',
+        tabSize: 25,
+        tolerance: 'pointer',
+        opacity: .6
+    });
     
     // click a grid link
     
     $('.grid-link').click(function(e){
         e.preventDefault();
         
-        var gridObject = $('<div class="grid-box col span-1"><a href="#" class="dragger"></a><a href="#" class="done">Done</a><a href="#" class="edit">Edit</a></div>');
+        var gridObject = $('<li class="grid-box col span-1"><a href="#" class="dragger"></a></li>');
         
         $(gridObject).addClass($(this).attr('id'));
         
         
         $('#tools').toggleClass('active');
         
-        if($('.prev-grid').length > 0){
+        /*if($('.prev-grid').length > 0){
             $('.prev-grid').append(gridObject);
         }else{
             $('.main').append(gridObject);
-        }
-        
+        }*/
+        $('.main').append(gridObject);
         // remove all previous classes fomr gird boxes
         $('.grid-box').removeClass('prev-grid');
         $(gridObject).addClass('prev-grid');
         
-        $(gridObject).draggable({
+        /*$(gridObject).draggable({
             handle: '.dragger',
             containment: "parent",
             snap: true
-        });
+        });*/
+        
+        
         
         // add done and edit actions for new box
         $(gridObject).find('.done').click(function(e){
             e.preventDefault();
             $(gridObject).draggable("disable");
+            $(gridObject).addClass('flow');
         });
         
         $(gridObject).find('.edit').click(function(e){
             e.preventDefault();
             $(gridObject).draggable("enable");
+            $(gridObject).removeClass('flow');
         })
         
     });

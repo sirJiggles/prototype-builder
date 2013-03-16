@@ -83,7 +83,7 @@ $currentPage = str_replace('.php', '', end(explode('/', $_SERVER['SCRIPT_FILENAM
                 
             </header>
             
-            <div class="row main" role="main">
+            <ol class="row main" role="main">
 
 
                 

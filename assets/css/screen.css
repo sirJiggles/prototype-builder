@@ -155,6 +155,8 @@ body { overflow: hidden; }
 
 .main { background-color: #ddfffc; min-height: 500px; }
 
+.flow { position: relative !important; left: 0 !important; top: 0 !important; }
+
 .tools-link { font-size: 1.25em; color: #2c958d; font-weight: 700; text-decoration: none; position: fixed; left: 46%; padding: 5px; background-color: white; border: 2px solid #2c958d; display: block; top: -2px; -webkit-border-radius: 3px; -moz-border-radius: 3px; -ms-border-radius: 3px; -o-border-radius: 3px; border-radius: 3px; z-index: 2; }
 
 #tools { position: absolute; width: 200px; right: -200px; top: 0; height: 100%; background-color: #90b3b1; z-index: 1; padding: 15px; -webkit-transition-property: all; -moz-transition-property: all; -o-transition-property: all; transition-property: all; -webkit-transition-duration: 0.3s; -moz-transition-duration: 0.3s; -o-transition-duration: 0.3s; transition-duration: 0.3s; -webkit-transition-timing-function: ease-in; -moz-transition-timing-function: ease-in; -o-transition-timing-function: ease-in; transition-timing-function: ease-in; }
@@ -168,7 +170,7 @@ body { overflow: hidden; }
 #tools ul a:hover { color: white; }
 
 /* NEW GRID BOXES ADDED TO THE STAGE */
-.grid-box { border: 1px solid black; min-height: 100px; min-width: 100px; display: block; float: left; position: absolute; top: 50%; left: 50%; background-color: white; }
+.grid-box { border: 1px solid black; min-height: 100px; display: block; float: left; position: relative; background-color: white; }
 
 .grid-box:hover a.dragger, .grid-box:hover a.done, .grid-box:hover a.edit { display: block; }
 
@@ -179,6 +181,8 @@ body { overflow: hidden; }
 .grid-box a.edit { left: 0; }
 
 .grid-box a.done { right: 0; }
+
+.placeholder { outline: 1px dashed #4183C4; }
 
 /* Responsive styles 
 

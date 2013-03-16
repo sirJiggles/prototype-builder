@@ -61,6 +61,12 @@ body{
     min-height:500px;
 }
 
+.flow{
+    position:relative !important;
+    left:0 !important;
+    top:0 !important;
+}
+
 
 .tools-link{
     @include em-font(20);
@@ -119,11 +125,8 @@ body{
 .grid-box{
     border:1px solid black;
     min-height:100px;
-    min-width:100px;
     @include block-left;
-    position:absolute;
-    top:50%;
-    left:50%;
+    position:relative;
     background-color:white;
 }
 
@@ -162,4 +165,8 @@ body{
 
 .grid-box a.done{
     right:0;
+}
+
+.placeholder{
+    outline: 1px dashed #4183C4;
 }
