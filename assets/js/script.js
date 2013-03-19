@@ -37,43 +37,29 @@ $(window).ready(function () {
     $('.grid-link').click(function(e){
         e.preventDefault();
         
-        var gridObject = $('<li class="grid-box col span-1"><a href="#" class="dragger"></a></li>');
+        var gridObject = $('<li class="grid-box col span-1"><a href="#" class="dragger"></a><a class="end-toggle" href="" title="End class">End</a></li>');
         
+        // add the col class to the grid obj
         $(gridObject).addClass($(this).attr('id'));
         
-        
+        // remove active class
         $('#tools').toggleClass('active');
         
-        /*if($('.prev-grid').length > 0){
-            $('.prev-grid').append(gridObject);
-        }else{
-            $('.main').append(gridObject);
-        }*/
+        // add grid object to stage
         $('.main').append(gridObject);
+        
         // remove all previous classes fomr gird boxes
         $('.grid-box').removeClass('prev-grid');
         $(gridObject).addClass('prev-grid');
         
-        /*$(gridObject).draggable({
-            handle: '.dragger',
-            containment: "parent",
-            snap: true
-        });*/
         
-        
-        
-        // add done and edit actions for new box
-        $(gridObject).find('.done').click(function(e){
+        // adding end class to grid containers
+        $(gridObject).find('.end-toggle').click(function(e){
             e.preventDefault();
-            $(gridObject).draggable("disable");
-            $(gridObject).addClass('flow');
+            $(gridObject).toggleClass('end');
         });
         
-        $(gridObject).find('.edit').click(function(e){
-            e.preventDefault();
-            $(gridObject).draggable("enable");
-            $(gridObject).removeClass('flow');
-        })
+       
         
     });
     

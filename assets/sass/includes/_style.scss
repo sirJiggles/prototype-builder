@@ -5,7 +5,7 @@
 /* ================ MAIN LAYOUT ELEMENTS ================ */
 
 body{
-    overflow:hidden;
+    overflow-x:hidden;
 }
 
 #site-wrapper{
@@ -59,15 +59,9 @@ body{
 .main{
     background-color:$color5;
     min-height:500px;
+    padding-top:40px;
+    padding-bottom:40px;
 }
-
-.flow{
-    position:relative !important;
-    left:0 !important;
-    top:0 !important;
-}
-
-
 .tools-link{
     @include em-font(20);
     color:$color1;
@@ -128,45 +122,44 @@ body{
     @include block-left;
     position:relative;
     background-color:white;
+    padding:10px;
+   
+}
+
+.grid-box.end{
+   border:1px solid red; 
 }
 
 .grid-box:hover a.dragger,
-.grid-box:hover a.done,
-.grid-box:hover a.edit{
+.grid-box:hover a.end-toggle{
     display:block;
+    text-decoration:none;
+    outline:none;
 }
     
 
 .grid-box a.dragger{
     display:none;
-    top:0;
     width:100%;
-    position:absolute;
     height:20px;
-    padding-left:10px;
     color:black;
     cursor:move;
     background-color:$color1;
 }
 
-.grid-box a.edit,
-.grid-box a.done{
+.grid-box a.end-toggle{
     position:absolute;
+    left:10px;
+    bottom:10px;
     color:$color1;
     font-weight:700;
     @include em-font(14);
     display:none;
-    bottom:0;
-}
-
-.grid-box a.edit{
-    left:0;
 } 
-
-.grid-box a.done{
-    right:0;
-}
 
 .placeholder{
     outline: 1px dashed #4183C4;
+    margin:10px;
+    @include block-left;
+    padding:20px 0px;
 }

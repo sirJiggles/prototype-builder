@@ -67,7 +67,23 @@ $currentPage = str_replace('.php', '', end(explode('/', $_SERVER['SCRIPT_FILENAM
                 <li><a href="#" class="grid-link" id="quarter">Quarter</a></li>
                 <li><a href="#" class="grid-link" id="fith">Fith</a></li>
                 <li><a href="#" class="grid-link" id="sixth">Sixth</a></li>
-                <li><a href="#" class="grid-link" id="seventh">Seventh</a></li>
+            </ul>
+            <ul class="modules">
+                <?php 
+                $ignoreModules = array('jquery-ui', '..', '.');
+
+                if ($handle = opendir(realpath('assets/modules'))) {
+                    while (false !== ($entry = readdir($handle))) {
+                        if(!in_array($entry, $ignoreModules)):
+                        ?>
+                            <li><a href="#" title="Insert module <?php echo $entry; ?>"><?php echo $entry; ?></a></li>
+                            
+                        <?php 
+                        endif;
+                    }
+                    closedir($handle);
+                }
+                ?>
             </ul>
         </aside>
         
