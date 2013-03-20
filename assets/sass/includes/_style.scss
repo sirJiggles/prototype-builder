@@ -130,6 +130,10 @@ body{
    border:1px solid red; 
 }
 
+.grid-box.end a.end-toggle{
+    @include rotate(180deg);
+}
+
 .grid-box:hover a.dragger,
 .grid-box:hover a.end-toggle{
     display:block;
@@ -140,7 +144,7 @@ body{
 
 .grid-box a.dragger{
     display:none;
-    width:100%;
+    width:90%;
     height:20px;
     color:black;
     cursor:move;
@@ -149,13 +153,27 @@ body{
 
 .grid-box a.end-toggle{
     position:absolute;
-    left:10px;
-    bottom:10px;
-    color:$color1;
+    right:10px;
+    top:21px;
+    color:#555;
     font-weight:700;
-    @include em-font(14);
+    @include em-font(26);
+    @include icon-font;
+    text-decoration:none;
+    z-index:1;
     display:none;
 } 
+
+.grid-box a.end-toggle:after{
+    @include shape(20px, 20px);
+    @include border-radius(10px);
+    background-color:$color3;
+    @include bg-gradient($color5, $color2);
+    top:-12px;
+    left:-6px;
+    z-index:-1;
+    border:1px solid $color1;
+}
 
 .placeholder{
     outline: 1px dashed #4183C4;

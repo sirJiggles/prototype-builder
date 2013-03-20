@@ -19,7 +19,13 @@
 }
     
 @mixin custom-font(){
-    font-family: 'Montserrat', sans-serif;
+    //font-family: 'En', sans-serif;
+}
+
+@mixin icon-font(){
+    font-family: 'entypo';
+    line-height: 0;
+    vertical-align: -6px;
 }
 
 @mixin standard-font(){
@@ -83,3 +89,9 @@
     }
 }
 
+@mixin shape($width:10px,$height:10px){
+    position:absolute;
+    content:' ';
+    width:$width;
+    height:$height;
+}

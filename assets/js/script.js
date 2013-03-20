@@ -37,7 +37,7 @@ $(window).ready(function () {
     $('.grid-link').click(function(e){
         e.preventDefault();
         
-        var gridObject = $('<li class="grid-box col span-1"><a href="#" class="dragger"></a><a class="end-toggle" href="" title="End class">End</a></li>');
+        var gridObject = $('<li class="grid-box col span-1"><a href="#" class="dragger"></a><a class="end-toggle" href="" title="End class">&#58542;</a></li>');
         
         // add the col class to the grid obj
         $(gridObject).addClass($(this).attr('id'));
