@@ -58,8 +58,9 @@ $currentPage = str_replace('.php', '', end(explode('/', $_SERVER['SCRIPT_FILENAM
         
         
         <!-- Pure awesome lurks -->
-        <a href="#" title="toggle tools" class="tools-link">&#9776;</a>
+        
         <aside id="tools">
+            <a href="#" title="toggle tools" class="tools-link">&#9776;</a>
             <ul>
                 <li><a href="#" class="grid-link" id="">Full</a></li>
                 <li><a href="#" class="grid-link" id="half">Half</a></li>
@@ -75,10 +76,18 @@ $currentPage = str_replace('.php', '', end(explode('/', $_SERVER['SCRIPT_FILENAM
                 if ($handle = opendir(realpath('assets/modules'))) {
                     while (false !== ($entry = readdir($handle))) {
                         if(!in_array($entry, $ignoreModules)):
-                        ?>
-                            <li><a href="#" title="Insert module <?php echo $entry; ?>"><?php echo $entry; ?></a></li>
                             
-                        <?php 
+                            // get contents of markup file (if exists)
+                            if(file_exists(realpath('assets/modules/'.$entry.'/markup.html'))):
+                                $markup = file_get_contents(realpath('assets/modules/'.$entry.'/markup.html'));
+                                ?>
+                                    <li>
+                                        <a href="#" title="Insert module <?php echo $entry; ?>"><?php echo $entry; ?></a>
+                                        <code><?php echo $markup; ?></code>
+                                    </li>
+
+                                <?php 
+                            endif;
                         endif;
                     }
                     closedir($handle);

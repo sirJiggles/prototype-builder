@@ -59,11 +59,16 @@ $(window).ready(function () {
             $(gridObject).toggleClass('end');
         });
         
-       
-        
     });
     
     
+    // click to add a module 
+    $('.modules li a').click(function(e){
+        
+        var moduleObject = $('<li class="module-box"><a href="#" class="dragger"></a><div>'+$(this).parent().find('code').html()+'</div></li>');
+        $('.main').append(moduleObject);
+        
+    });
     
     /* Import module specific javscript using juicer
      * 
