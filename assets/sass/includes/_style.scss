@@ -3,6 +3,10 @@
 
 
 /* ================ MAIN LAYOUT ELEMENTS ================ */
+body,html{
+    height:100%;
+}
+
 
 body{
     overflow-x:hidden;
@@ -78,31 +82,30 @@ body{
     z-index:2;
 }
 
-
-#tools{
-    position:absolute;
-    width:200px;
-    right:-200px;
+.tools{
+    position:fixed;
+    width:300px;
+    right:-300px;
     top:0;
     height:100%;
     background-color:$color2;
-    z-index:1;
+    z-index:9998;
     padding:15px;
     @include transition-property(all);
     @include transition-duration(0.3s);
     @include transition-timing-function(ease-in);
 }
 
-#tools.active{
+.tools.active{
     right:0px;
 }
 
-#tools ul{
+.tools ul{
     list-style-type:none;
     @include reset-box;
 }
 
-#tools ul a{
+.tools ul a{
     color:$color4;
     text-decoration:none;
     outline:none;
@@ -110,65 +113,78 @@ body{
     display:block;
 }
 
-#tools ul a:hover{
+.tools ul a:hover{
     color:white;
 }
 
-#tools code{
+.tools code{
     display:none;
 }
 
 /* NEW GRID BOXES ADDED TO THE STAGE */
 
 .grid-box{
-    border:1px solid black;
     min-height:100px;
     @include block-left;
     position:relative;
-    background-color:white;
-    padding:10px;
-   
 }
 
-.grid-box.end{
+.grid-box.unlocked{
+    border:1px solid black;
+    background-color:white;
+    padding:10px;
+}
+
+
+.grid-box.end.unlocked{
    border:1px solid red; 
 }
 
 .grid-box.end a.end-toggle{
     @include rotate(180deg);
+    right: 63px;
+    top: 14px;
 }
 
-.grid-box:hover a.dragger,
-.grid-box:hover a.end-toggle{
+
+.grid-box:hover a.lock{
+    display:none;
+}
+
+.grid-box:hover a.unlock{
     display:block;
-    text-decoration:none;
-    outline:none;
+}
+
+
+.grid-box.unlocked:hover a.control{
+    display:block;
+}
+
+.grid-box.unlocked:hover a.unlock{
+    display:none;
 }
     
-
-.grid-box a.dragger{
-    display:none;
-    width:90%;
-    height:20px;
-    color:black;
-    cursor:move;
-    background-color:$color1;
-}
-
-.grid-box a.end-toggle{
+.grid-box a.control{
     position:absolute;
-    right:10px;
-    top:21px;
+    top:16px;
     color:#555;
     font-weight:700;
     @include em-font(26);
     @include icon-font;
     text-decoration:none;
-    z-index:1;
+    z-index:9999;
     display:none;
-} 
+    outline:none;
+    text-decoration:none;
+}
 
-.grid-box a.end-toggle:after{
+.grid-box a.control:hover{
+    outline:none;
+    text-decoration:none;
+}
+    
+
+.grid-box a.control:after{
     @include shape(20px, 20px);
     @include border-radius(10px);
     background-color:$color3;
@@ -179,9 +195,63 @@ body{
     border:1px solid $color1;
 }
 
+.grid-box a.end-toggle{
+    right:60px;
+} 
+
+.grid-box a.settings{
+    left:33px;
+}
+
+.grid-box a.settings:after{
+    left:-4px;
+}
+
+.grid-box a.remove{
+    right:37px;
+}
+
+.grid-box a.remove:after{
+    left:-7px;
+}
+
+.grid-box a.lock,
+.grid-box a.unlock{
+    right:10px;
+}
+
+.grid-box a.dragger{
+    left:10px;
+}
+    
+
 .placeholder{
     outline: 1px dashed #4183C4;
     margin:10px;
     @include block-left;
     padding:20px 0px;
+}
+
+/* POPUP FOR EDITING GRID ELEMENTS */
+
+
+.overlay{
+    position:fixed;
+    height:100%;
+    width:100%;
+    display:none;
+    z-index:9999;
+    background:url('../img/bg-overlay.png') 0 0 repeat;
+}
+
+.popup{
+    @include box;
+    display:none;   
+    position:fixed;
+    left:50%;
+    top:30%;
+    width:315px;
+    margin:0 0 0 -162px;
+    padding:10px;
+    z-index:99999;   
 }

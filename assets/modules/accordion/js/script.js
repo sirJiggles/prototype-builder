@@ -1,8 +1,9 @@
 if ($('.accordion').length > 0){
+    
     $('.accordion-slide').slideUp();
 
     $('.accordion-link').click(function(e){
-
+        
         e.preventDefault();
         if (!$(this).hasClass('open')){
 

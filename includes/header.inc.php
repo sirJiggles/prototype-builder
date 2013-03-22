@@ -59,41 +59,74 @@ $currentPage = str_replace('.php', '', end(explode('/', $_SERVER['SCRIPT_FILENAM
         
         <!-- Pure awesome lurks -->
         
-        <aside id="tools">
-            <a href="#" title="toggle tools" class="tools-link">&#9776;</a>
-            <ul>
-                <li><a href="#" class="grid-link" id="">Full</a></li>
-                <li><a href="#" class="grid-link" id="half">Half</a></li>
-                <li><a href="#" class="grid-link" id="third">Third</a></li>
-                <li><a href="#" class="grid-link" id="quarter">Quarter</a></li>
-                <li><a href="#" class="grid-link" id="fith">Fith</a></li>
-                <li><a href="#" class="grid-link" id="sixth">Sixth</a></li>
-            </ul>
-            <ul class="modules">
-                <?php 
-                $ignoreModules = array('jquery-ui', '..', '.');
+        <div class="overlay"></div>
+        
+        
+        <div class="popup">
+            <form method="post" action="">
+                <label for="size">Size:</label>
+                <select name="size" id="size">
+                    <option value="">Full</option>
+                    <option value="half">Half</option>
+                    <option value="third">Third</option>
+                    <option value="quarter">Quarter</option>
+                    <option value="fith">Fith</option>
+                    <option value="sixth">Sixth</option>
+                </select>
+                <label for="text">Title:</label>
+                <input type="text" name="text" id="text" value="" />
+                <label for="image">Image:</label>
+                <input type="file" name="image" id="image" />
+                
+            </form>
+        </div>
+        
+        <aside class="tools">
+            <div class="tools-wrapper">
+                <a href="#" title="toggle tools" class="tools-link">&#9776;</a>
+                <ul>
+                    <li><a href="#" class="grid-link" id="">Full</a></li>
+                    <li><a href="#" class="grid-link" id="half">Half</a></li>
+                    <li><a href="#" class="grid-link" id="third">Third</a></li>
+                    <li><a href="#" class="grid-link" id="quarter">Quarter</a></li>
+                    <li><a href="#" class="grid-link" id="fith">Fith</a></li>
+                    <li><a href="#" class="grid-link" id="sixth">Sixth</a></li>
+                </ul>
+                <ul class="modules">
+                    <?php 
 
-                if ($handle = opendir(realpath('assets/modules'))) {
-                    while (false !== ($entry = readdir($handle))) {
-                        if(!in_array($entry, $ignoreModules)):
-                            
-                            // get contents of markup file (if exists)
-                            if(file_exists(realpath('assets/modules/'.$entry.'/markup.html'))):
-                                $markup = file_get_contents(realpath('assets/modules/'.$entry.'/markup.html'));
-                                ?>
-                                    <li>
-                                        <a href="#" title="Insert module <?php echo $entry; ?>"><?php echo $entry; ?></a>
-                                        <code><?php echo $markup; ?></code>
-                                    </li>
-
-                                <?php 
-                            endif;
-                        endif;
+                    // work out modules to ignore
+                    if (file_exists(realpath('assets/modules/ignore.txt'))){
+                        $ignoreString = file_get_contents(realpath('assets/modules/ignore.txt'));
+                        $ignoreModules = explode(',', $ignoreString);
+                    }else{
+                        $ignoreModules = array('..', '.');
                     }
-                    closedir($handle);
-                }
-                ?>
-            </ul>
+
+                    if ($handle = opendir(realpath('assets/modules'))) {
+                        while (false !== ($entry = readdir($handle))) {
+                            if(!in_array($entry, $ignoreModules)):
+
+                                // get contents of markup file (if exists)
+                                if(file_exists(realpath('assets/modules/'.$entry.'/markup.html'))):
+                                    $markup = file_get_contents(realpath('assets/modules/'.$entry.'/markup.html'));
+                                    // clean up the name of the module for the list
+                                    $entry = ucwords(str_replace('-', ' ', $entry));
+                                    ?>
+                                        <li>
+                                            <a href="#" title="Insert module <?php echo $entry; ?>"><?php echo $entry; ?></a>
+                                            <code><?php echo $markup; ?></code>
+                                        </li>
+
+                                    <?php 
+                                endif;
+                            endif;
+                        }
+                        closedir($handle);
+                    }
+                    ?>
+                </ul>
+            </div>
         </aside>
         
         

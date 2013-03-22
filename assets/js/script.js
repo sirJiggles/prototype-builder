@@ -6,6 +6,8 @@
  * @depends vendor/jquery-1.8.2.min.js
  * @depends vendor/hammer.min.js
  * @depends ../modules/jquery-ui/js/script.js
+ * @depends vendor/nested-sortable.js
+ * 
  * 
  */
 
@@ -20,7 +22,7 @@ $(window).ready(function () {
     
     $('.tools-link').click(function(e){
         e.preventDefault();
-        $('#tools').toggleClass('active');
+        $('.tools').toggleClass('active');
     });
     
    
@@ -32,12 +34,23 @@ $(window).ready(function () {
         opacity: .6
     });
     
+    $('.overlay').click(function(){
+        $(this).hide();
+        $('.popup').hide();
+    })
+    
     // click a grid link
     
     $('.grid-link').click(function(e){
         e.preventDefault();
         
-        var gridObject = $('<li class="grid-box col span-1"><a href="#" class="dragger"></a><a class="end-toggle" href="" title="End class">&#58542;</a></li>');
+        var gridObject = $('<li class="grid-box col span-1 unlocked">'+
+                            '<a href="#" class="dragger control">&#9871;</a>'+
+                            '<a class="settings control" href="#" title="click here to edit this box">&#9881;</a>'+
+                            '<a class="lock control" href="#" title="click here to lock this box">&#128274;</a>'+
+                            '<a class="unlock control" href="#" title="click here to unclock this box">&#128275;</a>'+
+                            '<a class="end-toggle control" href="#" title="End class">&#58542;</a>'+
+                            '<a class="remove control" href="#" title="Remove Item">&#10060;</a></li>');
         
         // add the col class to the grid obj
         $(gridObject).addClass($(this).attr('id'));
@@ -59,23 +72,48 @@ $(window).ready(function () {
             $(gridObject).toggleClass('end');
         });
         
+        // removing the grid element from the stage
+        $(gridObject).find('.remove').click(function(e){
+            e.preventDefault();
+            $(gridObject).remove();
+        });
+        
+        //click to view the settings for the grid box
+        $(gridObject).find('.settings').click(function(e){
+            e.preventDefault();
+            $('.popup').show();
+            $('.overlay').show();
+            $(gridObject).addClass('editing');
+        });
+        
+        // lock / unlock button click
+        $(gridObject).find('.lock').click(function(e){
+            e.preventDefault();
+            $(gridObject).removeClass('unlocked');
+        });
+        
+        $(gridObject).find('.unlock').click(function(e){
+            e.preventDefault();
+            $(gridObject).addClass('unlocked');
+        });
+        
     });
     
     
     // click to add a module 
     $('.modules li a').click(function(e){
         
-        var moduleObject = $('<li class="module-box"><a href="#" class="dragger"></a><div>'+$(this).parent().find('code').html()+'</div></li>');
-        $('.main').append(moduleObject);
+        var moduleObject = $('<div class="module-box">'+$(this).parent().find('code').html()+'</div>');
+        
+        // put the module in the last grid class added to the page
+        
+        $('.grid-box').last().append(moduleObject);
         
     });
     
-    /* Import module specific javscript using juicer
-     * 
-     */
+    
     
 });
-
 
 
 /* Supports function for js fallback on css3 animations */
