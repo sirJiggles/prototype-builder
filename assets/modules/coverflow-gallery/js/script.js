@@ -30,16 +30,16 @@ if ($(galleryClass).length > 0){
     smallWebLeftSecondLast = $.extend({}, defaultLi, {'left':'160'}),
     noGalleryLi = {margin:'0', left:'auto', 'height':'300'};
 
-    var fancyGallery = true;
+    var fancyGallery = true, containerSize = $(siteWrapper).width();
 
     // Custom function to adjuest the slides
     function adjustSlides(slider){
-
+        
         //remove blur
         slider.slides.find('img').removeClass('blur');
-
+        
         if (fancyGallery){
-
+            
             var leftSlide = slider.animatingTo;
 
             // left slide blur
@@ -50,10 +50,6 @@ if ($(galleryClass).length > 0){
             if(slider.slides.eq(leftSlide +1)){
                 slider.slides.eq(leftSlide +1).find('img').addClass('blur');
             }
-
-            //slider.resize();
-
-            //console.log(slider);
 
             if (supports('transition')){
 
@@ -101,52 +97,54 @@ if ($(galleryClass).length > 0){
 
             }
         }
+        
+        slider.resize();
+        
 
+    }
+    
+    function checkForChange(slider){
+        
+        // if size has chnaged chnage the gallery
+        if ($(siteWrapper).width() != containerSize){
+            
+            containerSize = $(siteWrapper).width();
+            
+            if($(siteWrapper).width() <= 940){
+                fancyGallery = false;
+                $(galleryClass).addClass('not-so-fancy');
+
+                if(!supports('transition')){
+                    slider.slides.animate(noGalleryLi);
+                }else{
+                    slider.slides.removeClass('small-web-left small-web-right large-web large-web-last small-web-left-last css-slide');
+                }
+
+            }else{
+                fancyGallery = true;
+                if (!supports('transition')){
+                    slider.slides.animate(defaultLi);
+                }else{
+                    slider.slides.addClass('css-slide');
+                }
+                $(galleryClass).removeClass('not-so-fancy');
+            }
+            
+            slider.doMath();
+            slider.newSlides.width(slider.computedW);
+            slider.setProps(slider.computedW, "setTotal");
+        }
     }
 
     // This function sets up the slides and the resize event for the fancy slider 
     function setUpSlides(slider){
 
-        if($('#wrap').width() <= 940){
+        if($(siteWrapper).width() <= 940){
             fancyGallery = false;
             $(galleryClass).addClass('not-so-fancy');
         }else{
             $(galleryClass).removeClass('not-so-fancy');
         }
-
-        // add rezise event for fancy gallery booleanage
-        $(window).bind('resize', function(){
-
-            if(resizeDone !== false){clearTimeout(resizeDone)};
-
-            resizeDone = setTimeout(function(){
-
-                // reset the gallery
-                if($(siteWrapper).width() <= 940){
-                    fancyGallery = false;
-                    $(galleryClass).addClass('not-so-fancy');
-
-                    if(!supports('transition')){
-                        slider.slides.animate(noGalleryLi);
-                    }else{
-                        slider.slides.removeClass('small-web-left small-web-right large-web large-web-last small-web-left-last css-slide');
-                    }
-
-                }else{
-                    fancyGallery = true;
-                    if (!supports('transition')){
-                        slider.slides.animate(defaultLi);
-                    }else{
-                        slider.slides.addClass('css-slide');
-                    }
-                    $(galleryClass).removeClass('not-so-fancy');
-                }
-
-                adjustSlides(slider);
-
-            }, 1500);
-
-        });
 
         // only need to do anything for non js
         if (!supports('transition') && fancyGallery){
@@ -163,9 +161,10 @@ if ($(galleryClass).length > 0){
         selector:"ul li",
         itemWidth:517,
         itemHeight:410,
+        startAt:1,
         animationSpeed: isTouchDevice() ? 400 : 1000,
         start: function(slider){setUpSlides(slider);adjustSlides(slider);},
-        before: function(slider){adjustSlides(slider);}
+        before: function(slider){checkForChange(slider);adjustSlides(slider);}
     });
 
 

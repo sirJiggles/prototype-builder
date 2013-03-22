@@ -73,8 +73,9 @@ $currentPage = str_replace('.php', '', end(explode('/', $_SERVER['SCRIPT_FILENAM
                     <option value="fith">Fith</option>
                     <option value="sixth">Sixth</option>
                 </select>
-                <label for="text">Title:</label>
-                <input type="text" name="text" id="text" value="" />
+                <label for="title">Title:</label>
+                <input type="title" name="title" id="title" value="" />
+                <label for="blurb"
                 <label for="image">Image:</label>
                 <input type="file" name="image" id="image" />
                 
