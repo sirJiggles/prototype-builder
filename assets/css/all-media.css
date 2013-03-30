@@ -79,3 +79,7 @@
 .row .col.sixths.span-5.end { float: right; margin-right: 0; #margin-left: -20px; display: inline; }
 .row .col.sixths.span-6 { width: 100%; float: left; margin-right: 2.12766%; display: inline; }
 .row .col.sixths.span-6.end { float: right; margin-right: 0; #margin-left: -20px; display: inline; }
+
+form label { width: 40%; padding: 0; margin: 0; }
+
+form input, form select { width: 59%; padding: 0; margin: 0 0 15px 0; }

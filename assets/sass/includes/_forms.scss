@@ -21,55 +21,70 @@ form {
 }
 
 
-form fieldset {
-    @include block-left;
-    width: 96%;
-}
+form {
+    fieldset {
+        @include block-left;
+        width: 96%;
+    }
+    label,
+    input,
+    textarea,
+    select{
+        @include em-font(14);
+    }
 
-form label {
-    width:100%;
-    float: left;
-    padding: 0 0 2% 0;
-    line-height: 1.8em;
-}
+    label{
+        width:100%;
+        float: left;
+        padding: 0 0 2% 0;
+        line-height: 1.8em;
+    }
 
-form legend {
-    margin: 0 0 10px 0;
-    font-weight: 400;
-    float: left;
-    width: 96%;
-    padding: 10px 2% 10px 2%;
-    color: white;
-}
+    legend {
+        margin: 0 0 10px 0;
+        font-weight: 400;
+        float: left;
+        width: 96%;
+        padding: 10px 2% 10px 2%;
+        color: white;
+    }
 
-form input {
-    width: 92%;
-    padding:4%;
-    margin: 0 0 2% 0;
-}
+    input,
+    select {
+        width: 92%;
+        padding:4%;
+        margin: 0 0 2% 0;
+    }
 
-form input[type='search'] {
-    width:100%;
-    -moz-appearance:none;
-    -webkit-appearance:none;
-    -webkit-box-sizing: content-box;
-    -moz-box-sizing: content-box; 
-    box-sizing:content-box;
-    border:none;
-    @include border-radius(15px);
-    @include box-shadow(#222, 1px, 1px, 5px, false, inset); 
-}
+    input[type='search'] {
+        width:100%;
+        -moz-appearance:none;
+        -webkit-appearance:none;
+        -webkit-box-sizing: content-box;
+        -moz-box-sizing: content-box; 
+        box-sizing:content-box;
+        border:none;
+        @include border-radius(15px);
+        @include box-shadow(#222, 1px, 1px, 5px, false, inset); 
+    }
 
-form input[type='submit']{
-    border:none;
-    overflow:visible;
-    font-weight:400;
-}
+    input[type='submit']{
+        border:none;
+        overflow:visible;
+        font-weight:400;
+        padding:20px;
+        margin:10px 0 0 0;
+    }
 
-form input[type='submit']:hover,
-form input[type='submit']:active{
-    
-} 
+    input[type='submit']:hover,
+    input[type='submit']:active{
+        
+    }
+
+    input[type='checkbox']{
+        width:15px;
+    }
+}
 
 /* New input types */
 progress,

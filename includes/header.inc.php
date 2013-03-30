@@ -63,22 +63,23 @@ $currentPage = str_replace('.php', '', end(explode('/', $_SERVER['SCRIPT_FILENAM
         
         
         <div class="popup">
+            <h2>Edit grid box</h2>
+            <a class="close-button" title="Click here to cancel editing this grid box" href="#">Close</a>
             <form method="post" action="">
-                <label for="size">Size:</label>
-                <select name="size" id="size">
-                    <option value="">Full</option>
+                <label for="popup-grid-size">Size:</label>
+                <select name="popup-grid-size" id="popup-grid-size">
+                    <option value="full">Full</option>
                     <option value="half">Half</option>
                     <option value="third">Third</option>
                     <option value="quarter">Quarter</option>
                     <option value="fith">Fith</option>
                     <option value="sixth">Sixth</option>
                 </select>
-                <label for="title">Title:</label>
-                <input type="title" name="title" id="title" value="" />
-                <label for="blurb"
-                <label for="image">Image:</label>
-                <input type="file" name="image" id="image" />
-                
+                <label for="popup-grid-text">Text:</label>
+                <input type="popup-grid-text" name="popup-grid-text" id="popup-grid-text" value="" placeholder="some text for the box" />
+                <label for="popup-grid-end">End Class:</label>
+                <input type="checkbox" name="popup-grid-end" id="popup-grid-end" />
+                <input type="submit" name="sumit-grid-popup" id="save-grid-box" value="Save changes" />
             </form>
         </div>
         
@@ -86,7 +87,7 @@ $currentPage = str_replace('.php', '', end(explode('/', $_SERVER['SCRIPT_FILENAM
             <div class="tools-wrapper">
                 <a href="#" title="toggle tools" class="tools-link">&#9776;</a>
                 <ul>
-                    <li><a href="#" class="grid-link" id="">Full</a></li>
+                    <li><a href="#" class="grid-link" id="full">Full</a></li>
                     <li><a href="#" class="grid-link" id="half">Half</a></li>
                     <li><a href="#" class="grid-link" id="third">Third</a></li>
                     <li><a href="#" class="grid-link" id="quarter">Quarter</a></li>

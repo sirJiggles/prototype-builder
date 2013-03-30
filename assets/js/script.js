@@ -31,13 +31,19 @@ $(window).ready(function () {
         placeholder: 'placeholder',
         tabSize: 25,
         tolerance: 'pointer',
-        opacity: .6
+        opacity: .6,
+        handle: 'a.dragger'
     });
     
+    // close popup
     $('.overlay').click(function(){
-        $(this).hide();
-        $('.popup').hide();
-    })
+        hidePopup();
+    });
+
+    $('.popup a.close-button').click(function(e){
+        e.preventDefault();
+        hidePopup();
+    });
     
     // click a grid link
     
@@ -50,7 +56,8 @@ $(window).ready(function () {
                             '<a class="lock control" href="#" title="click here to lock this box">&#128274;</a>'+
                             '<a class="unlock control" href="#" title="click here to unclock this box">&#128275;</a>'+
                             '<a class="end-toggle control" href="#" title="End class">&#58542;</a>'+
-                            '<a class="remove control" href="#" title="Remove Item">&#10060;</a></li>');
+                            '<a class="remove control" href="#" title="Remove Item">&#10060;</a>'+
+                            '<div class="text-label-proto-builder"></div></li>');
         
         // add the col class to the grid obj
         $(gridObject).addClass($(this).attr('id'));
@@ -84,6 +91,22 @@ $(window).ready(function () {
             $('.popup').show();
             $('.overlay').show();
             $(gridObject).addClass('editing');
+
+            // set the values of the form based on the box we are editing
+            if($(gridObject).hasClass('end')){
+                $('#popup-grid-end').attr('checked', 'checked');
+            }else{
+                $('#popup-grid-end').attr('checked', false);
+            }
+
+            $('#popup-grid-text').val($(gridObject).find('.text-label-proto-builder').text());
+
+            $('#popup-grid-size option').each(function(key, val){
+                if($(gridObject).hasClass(this.value)){
+                    $('#popup-grid-size option[value="'+this.value+'"]').attr("selected", "selected");
+                }
+            });
+
         });
         
         // lock / unlock button click
@@ -110,11 +133,43 @@ $(window).ready(function () {
         $('.grid-box').last().append(moduleObject);
         
     });
+
+    // Click save on the grid popup box
+    $('#save-grid-box').click(function(e){
+
+        e.preventDefault();
+        // remove old grid size classes and add new ones
+        $('.grid-link').each(function(){
+            $('.editing').removeClass($(this).attr('id'));
+        });
+
+        //console.log($('#popup-grid-size option:selected')[0].value);
+
+        $('.editing').addClass($('#popup-grid-size option:selected')[0].value);
+
+        // set text for the 'editing box'
+        $('.editing .text-label-proto-builder').text($('#popup-grid-text').val());
+
+        // set end class if needed
+        if($('#popup-grid-end').checked){
+            $('.editing').addClass('end');
+        }else{
+            $('.editing').removeClass('end');
+        }
+        
+        hidePopup();
+    })
     
     
     
 });
 
+// Function to hide the popup (done in multiple places)
+function hidePopup(){
+    $('.popup').hide();
+    $('.overlay').hide();
+    $('.editing').removeClass('editing');
+}
 
 /* Supports function for js fallback on css3 animations */
 var supports = (function(prop) {  

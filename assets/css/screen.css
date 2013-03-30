@@ -44,16 +44,13 @@ strong { font-weight: 700; }
 
 /* CSS validation overrides */
 form fieldset { display: block; float: left; width: 96%; }
-
+form label, form input, form textarea, form select { font-size: 0.875em; }
 form label { width: 100%; float: left; padding: 0 0 2% 0; line-height: 1.8em; }
-
 form legend { margin: 0 0 10px 0; font-weight: 400; float: left; width: 96%; padding: 10px 2% 10px 2%; color: white; }
-
-form input { width: 92%; padding: 4%; margin: 0 0 2% 0; }
-
+form input, form select { width: 92%; padding: 4%; margin: 0 0 2% 0; }
 form input[type='search'] { width: 100%; -moz-appearance: none; -webkit-appearance: none; -webkit-box-sizing: content-box; -moz-box-sizing: content-box; box-sizing: content-box; border: none; -webkit-border-radius: 15px; -moz-border-radius: 15px; -ms-border-radius: 15px; -o-border-radius: 15px; border-radius: 15px; -webkit-box-shadow: #222222, 1px, 1px, 5px, inset; -moz-box-shadow: #222222, 1px, 1px, 5px, inset; box-shadow: #222222, 1px, 1px, 5px, inset; }
-
-form input[type='submit'] { border: none; overflow: visible; font-weight: 400; }
+form input[type='submit'] { border: none; overflow: visible; font-weight: 400; padding: 20px; margin: 10px 0 0 0; }
+form input[type='checkbox'] { width: 15px; }
 
 /* New input types */
 progress, meter { width: 100%; margin: 0 0 4% 0; display: block; float: left; }
@@ -215,7 +212,13 @@ body { overflow-x: hidden; }
 /* POPUP FOR EDITING GRID ELEMENTS */
 .overlay { position: fixed; height: 100%; width: 100%; display: none; z-index: 9999; background: url("../img/bg-overlay.png") 0 0 repeat; }
 
-.popup { background-color: white; -webkit-border-radius: 5px; -moz-border-radius: 5px; -ms-border-radius: 5px; -o-border-radius: 5px; border-radius: 5px; padding: 25px; display: none; position: fixed; left: 50%; top: 30%; width: 315px; margin: 0 0 0 -162px; padding: 10px; z-index: 99999; }
+.popup { background-color: white; -webkit-border-radius: 5px; -moz-border-radius: 5px; -ms-border-radius: 5px; -o-border-radius: 5px; border-radius: 5px; padding: 25px; display: none; position: fixed; left: 50%; top: 30%; width: 315px; margin: 0 0 0 -162px; padding: 30px; z-index: 99999; }
+
+.popup h2 { line-height: 1.0em; }
+
+.popup a.close-button { position: absolute; top: 0px; right: 0px; outline: none; text-decoration: none; height: 20px; width: 20px; }
+
+.text-label-proto-builder { text-align: center; width: 100%; font-size: 1em; line-height: 1.5em; }
 
 /* Responsive styles 
 
@@ -306,7 +309,9 @@ the mixins is where you want to put the styles, the mixins are both used here an
   .row .col.sixths.span-5 { width: 82.97872%; float: left; margin-right: 2.12766%; display: inline; }
   .row .col.sixths.span-5.end { float: right; margin-right: 0; #margin-left: -20px; display: inline; }
   .row .col.sixths.span-6 { width: 100%; float: left; margin-right: 2.12766%; display: inline; }
-  .row .col.sixths.span-6.end { float: right; margin-right: 0; #margin-left: -20px; display: inline; } }
+  .row .col.sixths.span-6.end { float: right; margin-right: 0; #margin-left: -20px; display: inline; }
+  form label { width: 40%; padding: 0; margin: 0; }
+  form input, form select { width: 59%; padding: 0; margin: 0 0 15px 0; } }
 /* jQuery UI - v1.10.2 - 2013-03-15
 * http://jqueryui.com
 * Includes: jquery.ui.core.css, jquery.ui.resizable.css, jquery.ui.selectable.css, jquery.ui.accordion.css, jquery.ui.autocomplete.css, jquery.ui.button.css, jquery.ui.datepicker.css, jquery.ui.dialog.css, jquery.ui.menu.css, jquery.ui.progressbar.css, jquery.ui.slider.css, jquery.ui.spinner.css, jquery.ui.tabs.css, jquery.ui.tooltip.css

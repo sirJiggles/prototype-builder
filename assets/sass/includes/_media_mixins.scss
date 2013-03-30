@@ -38,5 +38,18 @@
             }
         }
     }
+
+    // desktop forms
+    form label{
+        width:40%;
+        @include reset-box;
+    }
+
+    form input,
+    form select{
+        width:59%;
+        padding:0;
+        margin:0 0 15px 0;
+    }
   
 }
