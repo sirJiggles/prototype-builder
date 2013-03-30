@@ -62,8 +62,8 @@ $(window).ready(function () {
         // add the col class to the grid obj
         $(gridObject).addClass($(this).attr('id'));
         
-        // remove active class
-        $('#tools').toggleClass('active');
+        // hide the tools
+        $('.tools').toggleClass('active');
         
         // add grid object to stage
         $('.main').append(gridObject);
@@ -131,6 +131,9 @@ $(window).ready(function () {
         // put the module in the last grid class added to the page
         
         $('.grid-box').last().append(moduleObject);
+
+         // hide the tools
+        $('.tools').toggleClass('active');
         
     });
 
@@ -151,7 +154,7 @@ $(window).ready(function () {
         $('.editing .text-label-proto-builder').text($('#popup-grid-text').val());
 
         // set end class if needed
-        if($('#popup-grid-end').checked){
+        if($('#popup-grid-end').is(':checked')){
             $('.editing').addClass('end');
         }else{
             $('.editing').removeClass('end');

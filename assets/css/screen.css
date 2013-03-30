@@ -55,16 +55,16 @@ form input[type='checkbox'] { width: 15px; }
 /* New input types */
 progress, meter { width: 100%; margin: 0 0 4% 0; display: block; float: left; }
 
-.push { height: 357px; clear: left; }
+.push { height: 10px; clear: left; }
 
-#site-footer { height: 307px; display: block; float: left; }
+#site-footer { height: -40px; display: block; float: left; }
 
 /* ================ MAIN LAYOUT ELEMENTS ================ */
 body, html { height: 100%; }
 
 body { overflow-x: hidden; }
 
-#site-wrapper { height: 100%; min-height: 100%; height: auto; margin-bottom: -357px; position: relative; overflow: hidden; }
+#site-wrapper { height: 100%; min-height: 100%; height: auto; margin-bottom: -10px; position: relative; overflow: hidden; }
 
 * { -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; *behavior: url("/assets/js/vendor/border-box.htc"); }
 
@@ -154,17 +154,17 @@ body { overflow-x: hidden; }
 .row .col.sixths.span-6 { width: 100%; float: left; margin-right: 2.12766%; display: inline; }
 .row .col.sixths.span-6.end { float: right; margin-right: 0; #margin-left: -20px; display: inline; }
 
-.main { background-color: #ddfffc; min-height: 500px; padding-top: 40px; padding-bottom: 40px; }
+.main { background-color: #dddddd; min-height: 500px; padding-top: 40px; padding-bottom: 40px; }
 
-.tools-link { font-size: 1.25em; color: #2c958d; font-weight: 700; text-decoration: none; position: absolute; left: -31px; padding: 5px; background-color: white; border: 2px solid #2c958d; display: block; top: 20px; -webkit-border-radius: 3px; -moz-border-radius: 3px; -ms-border-radius: 3px; -o-border-radius: 3px; border-radius: 3px; z-index: 2; }
+.tools-link { font-size: 1.25em; color: #222222; font-weight: 700; text-decoration: none; position: absolute; left: -31px; padding: 5px; background-color: white; border: 2px solid #222222; display: block; top: 20px; -webkit-border-radius: 3px; -moz-border-radius: 3px; -ms-border-radius: 3px; -o-border-radius: 3px; border-radius: 3px; z-index: 2; }
 
-.tools { position: fixed; width: 300px; right: -300px; top: 0; height: 100%; background-color: #90b3b1; z-index: 9998; padding: 15px; -webkit-transition-property: all; -moz-transition-property: all; -o-transition-property: all; transition-property: all; -webkit-transition-duration: 0.3s; -moz-transition-duration: 0.3s; -o-transition-duration: 0.3s; transition-duration: 0.3s; -webkit-transition-timing-function: ease-in; -moz-transition-timing-function: ease-in; -o-transition-timing-function: ease-in; transition-timing-function: ease-in; }
+.tools { position: fixed; width: 300px; right: -300px; top: 0; height: 100%; background-color: #555555; z-index: 9998; padding: 15px; -webkit-transition-property: all; -moz-transition-property: all; -o-transition-property: all; transition-property: all; -webkit-transition-duration: 0.3s; -moz-transition-duration: 0.3s; -o-transition-duration: 0.3s; transition-duration: 0.3s; -webkit-transition-timing-function: ease-in; -moz-transition-timing-function: ease-in; -o-transition-timing-function: ease-in; transition-timing-function: ease-in; }
 
 .tools.active { right: 0px; }
 
 .tools ul { list-style-type: none; padding: 0; margin: 0; }
 
-.tools ul a { color: #ccfffb; text-decoration: none; outline: none; font-weight: 700; display: block; }
+.tools ul a { color: #aaaaaa; text-decoration: none; outline: none; font-weight: 700; display: block; }
 
 .tools ul a:hover { color: white; }
 
@@ -187,11 +187,11 @@ body { overflow-x: hidden; }
 
 .grid-box.unlocked:hover a.unlock { display: none; }
 
-.grid-box a.control { position: absolute; top: 16px; color: #555; font-weight: 700; font-size: 1.625em; font-family: 'entypo'; line-height: 0; vertical-align: -6px; text-decoration: none; z-index: 9999; display: none; outline: none; text-decoration: none; }
+.grid-box a.control { position: absolute; top: 16px; color: #555; font-weight: 700; font-size: 1.625em; font-family: 'entypo'; line-height: 0; vertical-align: -6px; text-decoration: none; z-index: 997; display: none; outline: none; text-decoration: none; }
 
 .grid-box a.control:hover { outline: none; text-decoration: none; }
 
-.grid-box a.control:after { position: absolute; content: ' '; width: 20px; height: 20px; -webkit-border-radius: 10px; -moz-border-radius: 10px; -ms-border-radius: 10px; -o-border-radius: 10px; border-radius: 10px; background-color: #b8fffa; background: -moz-linear-gradient(top, #ddfffc 0%, #90b3b1 100%); background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #ddfffc), color-stop(100%, #90b3b1)); background: -webkit-linear-gradient(top, #ddfffc 0%, #90b3b1 100%); background: -o-linear-gradient(top, #ddfffc 0%, #90b3b1 100%); background: -ms-linear-gradient(top, #ddfffc 0%, #90b3b1 100%); background: linear-gradient(to bottom, #ddfffc 0%, #90b3b1 100%); filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ddfffc', endColorstr='#90b3b1',GradientType=0); top: -12px; left: -6px; z-index: -1; border: 1px solid #2c958d; }
+.grid-box a.control:after { position: absolute; content: ' '; width: 20px; height: 20px; -webkit-border-radius: 10px; -moz-border-radius: 10px; -ms-border-radius: 10px; -o-border-radius: 10px; border-radius: 10px; background-color: #888888; background: -moz-linear-gradient(top, #dddddd 0%, #555555 100%); background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #dddddd), color-stop(100%, #555555)); background: -webkit-linear-gradient(top, #dddddd 0%, #555555 100%); background: -o-linear-gradient(top, #dddddd 0%, #555555 100%); background: -ms-linear-gradient(top, #dddddd 0%, #555555 100%); background: linear-gradient(to bottom, #dddddd 0%, #555555 100%); filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#dddddd', endColorstr='#555555',GradientType=0); top: -12px; left: -6px; z-index: -1; border: 1px solid #222222; }
 
 .grid-box a.end-toggle { right: 60px; }
 
@@ -212,7 +212,7 @@ body { overflow-x: hidden; }
 /* POPUP FOR EDITING GRID ELEMENTS */
 .overlay { position: fixed; height: 100%; width: 100%; display: none; z-index: 9999; background: url("../img/bg-overlay.png") 0 0 repeat; }
 
-.popup { background-color: white; -webkit-border-radius: 5px; -moz-border-radius: 5px; -ms-border-radius: 5px; -o-border-radius: 5px; border-radius: 5px; padding: 25px; display: none; position: fixed; left: 50%; top: 30%; width: 315px; margin: 0 0 0 -162px; padding: 30px; z-index: 99999; }
+.popup { background-color: white; -webkit-border-radius: 5px; -moz-border-radius: 5px; -ms-border-radius: 5px; -o-border-radius: 5px; border-radius: 5px; padding: 25px; display: none; position: fixed; left: 50%; top: 25%; width: 315px; margin: 0 0 0 -162px; padding: 30px; z-index: 99999; }
 
 .popup h2 { line-height: 1.0em; }
 

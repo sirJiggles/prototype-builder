@@ -86,6 +86,7 @@ $currentPage = str_replace('.php', '', end(explode('/', $_SERVER['SCRIPT_FILENAM
         <aside class="tools">
             <div class="tools-wrapper">
                 <a href="#" title="toggle tools" class="tools-link">&#9776;</a>
+                <h3>Grid boxes</h3>
                 <ul>
                     <li><a href="#" class="grid-link" id="full">Full</a></li>
                     <li><a href="#" class="grid-link" id="half">Half</a></li>
@@ -94,6 +95,7 @@ $currentPage = str_replace('.php', '', end(explode('/', $_SERVER['SCRIPT_FILENAM
                     <li><a href="#" class="grid-link" id="fith">Fith</a></li>
                     <li><a href="#" class="grid-link" id="sixth">Sixth</a></li>
                 </ul>
+                <h3>Modules</h3>
                 <ul class="modules">
                     <?php 
 
@@ -128,6 +130,13 @@ $currentPage = str_replace('.php', '', end(explode('/', $_SERVER['SCRIPT_FILENAM
                     }
                     ?>
                 </ul>
+                <h3>Project</h3>
+                <ul class="global-controls">
+                    <li><a href="#" title="Click here to save this template">Save Template</a></li>
+                    <li><a href="#" title="Click to open saved templates in this project">Open Template</a></li>
+                    <li><a href="#" title="Click to download project">Download Project</a></li>
+                </ul>
+
             </div>
         </aside>
         
