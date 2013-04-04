@@ -50,7 +50,55 @@ $currentPage = str_replace('.php', '', end(explode('/', $_SERVER['SCRIPT_FILENAM
         <!--[if lt IE 9]>
             <link rel="stylesheet" href="assets/css/all-media.css" media="screen" type="text/css"/>
         <![endif]-->
-              
+        
+        <script type="text/javascript" src="assets/js/vendor/jquery-1.8.2.min.js"></script>
+        <script type="text/javascript" src="assets/js/vendor/hammer.min.js"></script>
+        <script type="text/javascript" src="assets/modules/jquery-ui/js/script.js"></script>
+        
+        <?php 
+        
+        /*
+         * Load all files in module js directries that is not script.js and 
+         * has not been loaded before
+         */
+        
+        // work out modules to ignore
+        if (file_exists(realpath('assets/modules/ignore.txt'))){
+            $ignoreString = file_get_contents(realpath('assets/modules/ignore.txt'));
+            $ignoreModules = explode(',', $ignoreString);
+        }else{
+            $ignoreModules = array('..', '.');
+        }
+        
+        
+        if ($handle = opendir(realpath('assets/modules'))) {
+            while (false !== ($entry = readdir($handle))) {
+                if(!in_array($entry, $ignoreModules)):
+                    
+                    // get all js files other script js and ones that have been included
+                    $jsPluginsIncluded = array();
+                    if ($jsHandle = opendir(realpath('assets/modules/'.$entry.'/js'))) {
+                        while (false !== ($jsEntry = readdir($jsHandle))) {
+                            // if not already included 
+                            if(!in_array($jsEntry, $jsPluginsIncluded) && $jsEntry !== 'script.js' && $jsEntry != '..' && $jsEntry != '.'){
+                                echo '<script type="text/javascript" src="/assets/modules/'.$entry.'/js/'.$jsEntry.'"></script>';
+                                $jsPluginsIncluded[] = $jsEntry;
+                            }
+                            
+                        }
+                    }
+
+                endif;
+            }
+            closedir($handle);
+        }
+        
+        
+        ?>
+
+        
+        <script type="text/javascript" src="assets/js/vendor/nested-sortable.js"></script>
+        <script type="text/javascript" src="assets/js/script.js"></script> 
         
         
     </head>
@@ -98,14 +146,6 @@ $currentPage = str_replace('.php', '', end(explode('/', $_SERVER['SCRIPT_FILENAM
                 <h3>Modules</h3>
                 <ul class="modules">
                     <?php 
-
-                    // work out modules to ignore
-                    if (file_exists(realpath('assets/modules/ignore.txt'))){
-                        $ignoreString = file_get_contents(realpath('assets/modules/ignore.txt'));
-                        $ignoreModules = explode(',', $ignoreString);
-                    }else{
-                        $ignoreModules = array('..', '.');
-                    }
 
                     if ($handle = opendir(realpath('assets/modules'))) {
                         while (false !== ($entry = readdir($handle))) {
