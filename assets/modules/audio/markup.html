@@ -1,0 +1,27 @@
+<script type="text/javascript" src="/assets/modules/audio/js/media-element.js"></script>
+<script type="text/javascript" src="/assets/modules/audio/js/script.js"></script>
+
+<div class="attachment audio">
+    <p><a href="/assets/modules/audio/audio/test.mp3">Test Audio</a></p>
+
+    <div class="media-player"> 
+        <audio preload="metadata" controls="controls"> 
+            <source src="/assets/modules/audio/audio/test.ogg" type="audio/ogg">
+            <source src="/assets/modules/audio/audio/test.mp3" type="audio/mpeg">
+            <source src="/assets/modules/audio/audio/test.wma" type="audio/wma"> 
+            <source src="/assets/modules/audio/audio/test.wav" type="audio/wav"> 
+        </audio>
+        
+        <!-- HTML FALLBACK -->
+        <div class="media-controls">
+            <a class="play-pause" href="/assets/modules/audio/audio/test.mp3"><span class="ui-icon"> </span><span class="button-text">play / pause</span></a>
+            <div class="timeline-slider">
+                <span class="handle-label">play position</span>
+                <div class="progressbar"></div>
+            </div>
+            <span class="current-time player-display">00:00</span> / 
+            <span class="duration player-display">00:00</span>
+        </div>
+    </div>
+
+</div>
