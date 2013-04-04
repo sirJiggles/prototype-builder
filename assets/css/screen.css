@@ -175,7 +175,11 @@ body { overflow-x: hidden; }
 
 .grid-box.unlocked { border: 1px solid black; background-color: white; padding: 10px; }
 
+.grid-box.grid-active { border: 3px solid blue; }
+
 .grid-box.end.unlocked { border: 1px solid red; }
+
+.grid-box.grid-active.end { border: 3px solid red; }
 
 .grid-box.end a.end-toggle { -webkit-transform: rotate(180deg); -moz-transform: rotate(180deg); -ms-transform: rotate(180deg); -o-transform: rotate(180deg); transform: rotate(180deg); right: 63px; top: 14px; }
 

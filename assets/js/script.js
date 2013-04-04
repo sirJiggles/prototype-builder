@@ -8,12 +8,13 @@
  * @depends ../modules/jquery-ui/js/script.js
  * @depends vendor/nested-sortable.js
  * 
- * 
  */
 
 var global = {
-        'fileSystem':''
-    };
+        gridIdent:0,
+        grid:{},
+        positions:[]
+}, fileSystem = '';
 
 
 $(window).ready(function () {
@@ -23,6 +24,17 @@ $(window).ready(function () {
     
     
     // Run our app javascript first
+    
+    
+    // ask for permission to store data on the file system (5MB)
+    window.requestFileSystem  = window.requestFileSystem || window.webkitRequestFileSystem;
+    window.webkitStorageInfo.requestQuota(PERSISTENT, 5*1024*1024, function(grantedBytes) {
+        
+        window.requestFileSystem(PERSISTENT, grantedBytes, initFileSystem, fileSystemErrorHandler);
+    }, function(e) {
+        console.log('Error', e);
+    });
+    
     
     $('.tools-link').click(function(e){
         e.preventDefault();
@@ -36,7 +48,11 @@ $(window).ready(function () {
         tabSize: 25,
         tolerance: 'pointer',
         opacity: .6,
-        handle: 'a.dragger'
+        handle: 'a.dragger',
+        maxLevels:1,
+        update: function(){
+            updatePosition();
+        }
     });
     
     // close popup
@@ -49,97 +65,53 @@ $(window).ready(function () {
         hidePopup();
     });
     
-    // click a grid link
-    
+    // click a grid button click
     $('.grid-link').click(function(e){
+        
         e.preventDefault();
         
-        var gridObject = $('<li class="grid-box col span-1 unlocked">'+
-                            '<a href="#" class="dragger control">&#9871;</a>'+
-                            '<a class="settings control" href="#" title="click here to edit this box">&#9881;</a>'+
-                            '<a class="lock control" href="#" title="click here to lock this box">&#128274;</a>'+
-                            '<a class="unlock control" href="#" title="click here to unclock this box">&#128275;</a>'+
-                            '<a class="end-toggle control" href="#" title="End class">&#58542;</a>'+
-                            '<a class="remove control" href="#" title="Remove Item">&#10060;</a>'+
-                            '<div class="text-label-proto-builder"></div></li>');
+        $('.grid-box').removeClass('grid-active');
         
-        // add the col class to the grid obj
-        $(gridObject).addClass($(this).attr('id'));
+        addGridObjectToStage($(this).attr('id'), global.gridIdent);
         
         // hide the tools
         $('.tools').toggleClass('active');
         
-        // add grid object to stage
-        $('.main').append(gridObject);
         
-        // remove all previous classes fomr gird boxes
-        $('.grid-box').removeClass('prev-grid');
-        $(gridObject).addClass('prev-grid');
+        // add item to grid store
+        global.grid[global.gridIdent] = {
+                                            size:$(this).attr('id'),
+                                            end:false,
+                                            text:'',
+                                            module:''
+                                        };
+                                        
+        global.positions.push(global.gridIdent);
         
+        //increment the grid ref var
+        global.gridIdent ++;
         
-        // adding end class to grid containers
-        $(gridObject).find('.end-toggle').click(function(e){
-            e.preventDefault();
-            $(gridObject).toggleClass('end');
-        });
-        
-        // removing the grid element from the stage
-        $(gridObject).find('.remove').click(function(e){
-            e.preventDefault();
-            $(gridObject).remove();
-        });
-        
-        //click to view the settings for the grid box
-        $(gridObject).find('.settings').click(function(e){
-            e.preventDefault();
-            $('.popup').show();
-            $('.overlay').show();
-            $(gridObject).addClass('editing');
-
-            // set the values of the form based on the box we are editing
-            if($(gridObject).hasClass('end')){
-                $('#popup-grid-end').attr('checked', 'checked');
-            }else{
-                $('#popup-grid-end').attr('checked', false);
-            }
-
-            $('#popup-grid-text').val($(gridObject).find('.text-label-proto-builder').text());
-
-            $('#popup-grid-size option').each(function(key, val){
-                if($(gridObject).hasClass(this.value)){
-                    $('#popup-grid-size option[value="'+this.value+'"]').attr("selected", "selected");
-                }
-            });
-
-        });
-        
-        // lock / unlock button click
-        $(gridObject).find('.lock').click(function(e){
-            e.preventDefault();
-            $(gridObject).removeClass('unlocked');
-        });
-        
-        $(gridObject).find('.unlock').click(function(e){
-            e.preventDefault();
-            $(gridObject).addClass('unlocked');
-        });
-        
-        writeToStore($('.main').html);
+        updateStore();
         
     });
-    
     
     // click to add a module 
     $('.modules li a').click(function(e){
         
+        e.preventDefault();
+        
         var moduleObject = $('<div class="module-box">'+$(this).parent().find('code').html()+'</div>');
         
-        // put the module in the last grid class added to the page
         
-        $('.grid-box').last().append(moduleObject);
+        // put the module in the last grid class added to the page
+        $('.grid-active').append(moduleObject);
+        
+        //set the module name in the global data store
+        global.grid[getGridId($('.grid-active'))].module = $(this).text;
 
          // hide the tools
         $('.tools').toggleClass('active');
+
         
     });
 
@@ -151,44 +123,130 @@ $(window).ready(function () {
         $('.grid-link').each(function(){
             $('.editing').removeClass($(this).attr('id'));
         });
+        
+        var thisID = getGridId($('.editing')),
+            selectedSize = $('#popup-grid-size option:selected')[0].value;
 
-        //console.log($('#popup-grid-size option:selected')[0].value);
-
-        $('.editing').addClass($('#popup-grid-size option:selected')[0].value);
-
+        $('.editing').addClass(selectedSize);
+        
+        global.grid[thisID].size = selectedSize;
+        
         // set text for the 'editing box'
         $('.editing .text-label-proto-builder').text($('#popup-grid-text').val());
+        global.grid[thisID].text = $('#popup-grid-text').val();
 
         // set end class if needed
         if($('#popup-grid-end').is(':checked')){
             $('.editing').addClass('end');
+            global.grid[thisID].end = true;
         }else{
             $('.editing').removeClass('end');
+            global.grid[thisID].end = false;
         }
-        
+
         hidePopup();
     });
     
-    
-    // create temp storage on the file system of 5MB errorHandler 
-    // is error callback and initFs is sucess callback
-    //window.requestFileSystem  = window.requestFileSystem || window.webkitRequestFileSystem;
-    //window.requestFileSystem(window.TEMPORARY, 5*1024*1024, initFileSystem, fileSystemErrorHandler);
-    
-    // ask for permission to store data on the file system (1MB)
-    window.requestFileSystem  = window.requestFileSystem || window.webkitRequestFileSystem;
-    window.webkitStorageInfo.requestQuota(PERSISTENT, 1024*1024, function(grantedBytes) {
-        
-        window.requestFileSystem(PERSISTENT, grantedBytes, initFileSystem, fileSystemErrorHandler);
-    }, function(e) {
-        console.log('Error', e);
-    });
-    
-    //PERSISTENT
-    //TEMPORARY
-    
-    
 });
+
+// This function adds grid objects to the stage
+function addGridObjectToStage(type, id){
+    
+    var gridObject = $('<li class="grid-box grid-active col span-1 unlocked" id="grid-ident-'+id+'">'+
+                        '<a href="#" class="dragger control">&#9871;</a>'+
+                        '<a class="settings control" href="#" title="click here to edit this box">&#9881;</a>'+
+                        '<a class="lock control" href="#" title="click here to lock this box">&#128274;</a>'+
+                        '<a class="unlock control" href="#" title="click here to unclock this box">&#128275;</a>'+
+                        '<a class="end-toggle control" href="#" title="End class">&#58542;</a>'+
+                        '<a class="remove control" href="#" title="Remove Item">&#10060;</a>'+
+                        '<div class="text-label-proto-builder"></div></li>');
+
+    // add the col class to the grid obj
+    $(gridObject).addClass(type);
+
+    // add grid object to stage
+    $('.main').append(gridObject);
+
+    // remove all previous classes fomr gird boxes
+    $('.grid-box').removeClass('prev-grid');
+    $(gridObject).addClass('prev-grid');
+
+
+    // adding end class to grid containers
+    $(gridObject).find('.end-toggle').click(function(e){
+        e.preventDefault();
+        $(gridObject).toggleClass('end');
+        var id = getGridId($(gridObject));
+        if($(gridObject).hasClass('end')){
+            global.grid[id].end = true;
+        }else{
+            global.grid[id].end = false;
+        }
+    });
+
+    // removing the grid element from the stage
+    $(gridObject).find('.remove').click(function(e){
+        e.preventDefault();
+        //remove from the global store
+        var id = getGridId($(gridObject));
+        delete global.grid[id];
+        $.each(global.positions, function(key, val){
+            if (val == id){
+                delete global.positions[key];
+            }
+        });
+
+        $(gridObject).remove();
+
+        updateStore();
+    });
+
+    //click to view the settings for the grid box
+    $(gridObject).find('.settings').click(function(e){
+        e.preventDefault();
+        $('.popup').show();
+        $('.overlay').show();
+        $(gridObject).addClass('editing');
+
+        // set the values of the form based on the box we are editing
+        if($(gridObject).hasClass('end')){
+            $('#popup-grid-end').attr('checked', 'checked');
+        }else{
+            $('#popup-grid-end').attr('checked', false);
+        }
+
+        $('#popup-grid-text').val($(gridObject).find('.text-label-proto-builder').text());
+
+        $('#popup-grid-size option').each(function(key, val){
+            if($(gridObject).hasClass(this.value)){
+                $('#popup-grid-size option[value="'+this.value+'"]').attr("selected", "selected");
+            }
+        });
+
+        updateStore();
+
+    });
+
+    // lock / unlock button click
+    $(gridObject).find('.lock').click(function(e){
+        e.preventDefault();
+        $(gridObject).removeClass('unlocked');
+    });
+
+    $(gridObject).find('.unlock').click(function(e){
+        e.preventDefault();
+        $(gridObject).addClass('unlocked');
+    });
+
+    //making the grid object the 'active' item
+    $(gridObject).click(function(e){
+        if($(this).hasClass('unlocked')){
+            $('.grid-box').removeClass('grid-active');
+            $(this).addClass('grid-active');
+        }
+    });
+}
+
 
 /*
  * attach file system events to elements on page
@@ -196,37 +254,75 @@ $(window).ready(function () {
 function initFileSystem(fs){
     
     // store the file system in the global object
-    global.fileSystem = fs;
+    fileSystem = fs;
+    
+    // get data from the store 
+    loadFromStore();
    
 }
 
-function writeToStore(string){
+// This is where we update the local file with the details of the grid
+function updateStore(){
+    
+    var string = JSON.stringify(global);
     
     // attempt to get the file, if not found create it
-    global.fileSystem.root.getFile('prototype-builder.txt', {}, function(fileEntry) {
+    fileSystem.root.getFile('prototype-builder.json', {}, function(fileEntry) {
       
-        
         fileEntry.createWriter(function(fileWriter) {
             
-            // append to file
-            fileWriter.seek(fileWriter.length); // Start write position at EOF.
-            var blob = new Blob([string], {type: 'text/plain'});
+            // overide file
+            //fileWriter.seek(fileWriter.length); // Start write position at EOF.
+            var blob = new Blob([string], {type: 'text/json'});
             fileWriter.write(blob);
 
         }, fileSystemErrorHandler);
+        
+
+    }, fileSystemErrorHandler);
+}
+
+function loadFromStore(){
+    
+    fileSystem.root.getFile('prototype-builder.json', {}, function(fileEntry) {
+
+        // Get a File object representing the file,
+        // then use FileReader to read its contents.
+        fileEntry.file(function(file) {
+           var reader = new FileReader();
+
+           reader.onloadend = function(e) {
+             var txtArea = document.createElement('textarea');
+             txtArea.value = this.result;
+             document.body.appendChild(txtArea);
+             
+             
+             // using the data provided create the grid and the global store
+             global = JSON.parse(this.result);
+             
+             
+             $.each(global.positions, function(key, gridId){
+
+                 // add grid objects to the stage
+                 addGridObjectToStage(global.grid[gridId].size, gridId);
+             });
+
+             
+           };
+
+           reader.readAsText(file);
+        }, fileSystemErrorHandler);
 
     }, function(){
-        global.fileSystem.root.getFile('prototype-builder.txt', {create: true, exclusive: true}, function(fileEntry) {
-            fileEntry.createWriter(function(fileWriter) {
-                
-                //write to new file
-                var blob = new Blob([string], {type: 'text/plain'});
-                fileWriter.write(blob);
-                
-            }, fileSystemErrorHandler);
+        
+        // create the file if not exists
+        fileSystem.root.getFile('prototype-builder.json', {create: true, exclusive: true}, function(fileEntry) {
+           // do nothing for now
         }, fileSystemErrorHandler);
+        
+        
     });
-    
+
 }
 
 /* 
@@ -259,6 +355,24 @@ function fileSystemErrorHandler(e){
  
     console.log(msg);
 };
+
+// utils function to update the position of elements on the page
+function updatePosition(){
+    
+    var id = '', currentPositions = [];
+    $.each($('.main li'), function(key, val){
+        id = getGridId($(this));
+        currentPositions.push(id);
+    });
+    
+    global.positions = currentPositions;
+
+}
+
+// utils function to  get the grid box id 
+function getGridId(obj){
+    return parseInt(obj.attr('id').replace('grid-ident-', ''));
+}
 
 
 // Function to hide the popup (done in multiple places)
