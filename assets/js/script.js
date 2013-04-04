@@ -11,6 +11,10 @@
  * 
  */
 
+var global = {
+        'fileSystem':''
+    };
+
 
 $(window).ready(function () {
     
@@ -120,6 +124,8 @@ $(window).ready(function () {
             $(gridObject).addClass('unlocked');
         });
         
+        writeToStore($('.main').html);
+        
     });
     
     
@@ -161,11 +167,99 @@ $(window).ready(function () {
         }
         
         hidePopup();
-    })
+    });
     
+    
+    // create temp storage on the file system of 5MB errorHandler 
+    // is error callback and initFs is sucess callback
+    //window.requestFileSystem  = window.requestFileSystem || window.webkitRequestFileSystem;
+    //window.requestFileSystem(window.TEMPORARY, 5*1024*1024, initFileSystem, fileSystemErrorHandler);
+    
+    // ask for permission to store data on the file system (1MB)
+    window.requestFileSystem  = window.requestFileSystem || window.webkitRequestFileSystem;
+    window.webkitStorageInfo.requestQuota(PERSISTENT, 1024*1024, function(grantedBytes) {
+        
+        window.requestFileSystem(PERSISTENT, grantedBytes, initFileSystem, fileSystemErrorHandler);
+    }, function(e) {
+        console.log('Error', e);
+    });
+    
+    //PERSISTENT
+    //TEMPORARY
     
     
 });
+
+/*
+ * attach file system events to elements on page
+ */
+function initFileSystem(fs){
+    
+    // store the file system in the global object
+    global.fileSystem = fs;
+   
+}
+
+function writeToStore(string){
+    
+    // attempt to get the file, if not found create it
+    global.fileSystem.root.getFile('prototype-builder.txt', {}, function(fileEntry) {
+      
+        
+        fileEntry.createWriter(function(fileWriter) {
+            
+            // append to file
+            fileWriter.seek(fileWriter.length); // Start write position at EOF.
+            var blob = new Blob([string], {type: 'text/plain'});
+            fileWriter.write(blob);
+
+        }, fileSystemErrorHandler);
+
+    }, function(){
+        global.fileSystem.root.getFile('prototype-builder.txt', {create: true, exclusive: true}, function(fileEntry) {
+            fileEntry.createWriter(function(fileWriter) {
+                
+                //write to new file
+                var blob = new Blob([string], {type: 'text/plain'});
+                fileWriter.write(blob);
+                
+            }, fileSystemErrorHandler);
+        }, fileSystemErrorHandler);
+    });
+    
+}
+
+/* 
+ * File system error handling
+ */
+function fileSystemErrorHandler(e){
+    var msg = 'An file system error occured: ';
+ 
+    switch (e.code) {
+      case FileError.QUOTA_EXCEEDED_ERR:
+        msg += 'QUOTA_EXCEEDED_ERR';
+        break;
+      case FileError.NOT_FOUND_ERR:
+        msg += 'NOT_FOUND_ERR';
+        break;
+      case FileError.SECURITY_ERR:
+        msg += 'SECURITY_ERR';
+        break;
+      case FileError.INVALID_MODIFICATION_ERR:
+        msg += 'INVALID_MODIFICATION_ERR';
+        break;
+      case FileError.INVALID_STATE_ERR:
+        msg += 'INVALID_STATE_ERR';
+        break;
+      default:
+        msg += 'Unknown Error';
+        break;
+    };
+
+ 
+    console.log(msg);
+};
+
 
 // Function to hide the popup (done in multiple places)
 function hidePopup(){
