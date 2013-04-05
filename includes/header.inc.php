@@ -175,6 +175,7 @@ $currentPage = str_replace('.php', '', end(explode('/', $_SERVER['SCRIPT_FILENAM
                     <li><a href="#" title="Click here to save this template">Save Template</a></li>
                     <li><a href="#" title="Click to open saved templates in this project">Open Template</a></li>
                     <li><a href="#" title="Click to download project">Download Project</a></li>
+                    <li><a href="#" title="Clear local storage" id="clear-store">Clear storage</a></li>
                 </ul>
 
             </div>

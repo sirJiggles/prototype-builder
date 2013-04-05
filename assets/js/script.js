@@ -41,6 +41,11 @@ $(window).ready(function () {
         $('.tools').toggleClass('active');
     });
     
+    $('#clear-store').click(function(e){
+        e.preventDefault();
+        wipeStore();
+    })
+    
    
     $('.main').nestedSortable({
         forcePlaceholderSize: true,
@@ -81,7 +86,7 @@ $(window).ready(function () {
         // add item to grid store
         global.grid[global.gridIdent] = {
                                             size:$(this).attr('id'),
-                                            end:false,
+                                            end:0,
                                             text:'',
                                             module:''
                                         };
@@ -101,7 +106,6 @@ $(window).ready(function () {
         e.preventDefault();
         
         var moduleObject = $('<div class="module-box">'+$(this).parent().find('code').html()+'</div>');
-        
         
         // put the module in the last grid class added to the page
         $('.grid-active').append(moduleObject);
@@ -145,6 +149,8 @@ $(window).ready(function () {
         }
 
         hidePopup();
+        
+        updateStore();
     });
     
 });
@@ -178,10 +184,12 @@ function addGridObjectToStage(type, id){
         $(gridObject).toggleClass('end');
         var id = getGridId($(gridObject));
         if($(gridObject).hasClass('end')){
-            global.grid[id].end = true;
+            global.grid[id].end = 1;
         }else{
-            global.grid[id].end = false;
+            global.grid[id].end = 0;
         }
+        
+        updateStore();
     });
 
     // removing the grid element from the stage
@@ -190,15 +198,8 @@ function addGridObjectToStage(type, id){
         //remove from the global store
         var id = getGridId($(gridObject));
         delete global.grid[id];
-        $.each(global.positions, function(key, val){
-            if (val == id){
-                delete global.positions[key];
-            }
-        });
-
         $(gridObject).remove();
-
-        updateStore();
+        updatePosition();
     });
 
     //click to view the settings for the grid box
@@ -222,8 +223,6 @@ function addGridObjectToStage(type, id){
                 $('#popup-grid-size option[value="'+this.value+'"]').attr("selected", "selected");
             }
         });
-
-        updateStore();
 
     });
 
@@ -261,25 +260,44 @@ function initFileSystem(fs){
    
 }
 
+// Function used in testing to remove the contents of the store
+function wipeStore(){
+    
+    // attempt to get the file, if not found create it
+    fileSystem.root.getFile('prototype-builder.json', {}, function(fileEntry) {
+        
+        fileEntry.remove(function() {
+            
+        }, fileSystemErrorHandler);
+        
+    }, function(){
+        alert('cannot wipe');
+    });
+     
+    
+}
+
 // This is where we update the local file with the details of the grid
 function updateStore(){
     
     var string = JSON.stringify(global);
     
-    // attempt to get the file, if not found create it
-    fileSystem.root.getFile('prototype-builder.json', {}, function(fileEntry) {
-      
+    // wipe the file
+    wipeStore();
+    
+    //create the file again
+    fileSystem.root.getFile('prototype-builder.json', {create: true, exclusive: true}, function(fileEntry) {
+        
         fileEntry.createWriter(function(fileWriter) {
-            
-            // overide file
-            //fileWriter.seek(fileWriter.length); // Start write position at EOF.
+
             var blob = new Blob([string], {type: 'text/json'});
             fileWriter.write(blob);
 
         }, fileSystemErrorHandler);
-        
 
-    }, fileSystemErrorHandler);
+
+     }, fileSystemErrorHandler);
+    
 }
 
 function loadFromStore(){
@@ -289,39 +307,39 @@ function loadFromStore(){
         // Get a File object representing the file,
         // then use FileReader to read its contents.
         fileEntry.file(function(file) {
-           var reader = new FileReader();
+            var reader = new FileReader();
 
-           reader.onloadend = function(e) {
-             var txtArea = document.createElement('textarea');
-             txtArea.value = this.result;
-             document.body.appendChild(txtArea);
-             
-             
-             // using the data provided create the grid and the global store
-             global = JSON.parse(this.result);
-             
-             
-             $.each(global.positions, function(key, gridId){
+            reader.onloadend = function(e) {
+                
+                // add to document for now (DEBUG)
+                var txtArea = document.createElement('textarea');
+                txtArea.value = this.result;
+                document.body.appendChild(txtArea);
 
-                 // add grid objects to the stage
-                 addGridObjectToStage(global.grid[gridId].size, gridId);
-             });
+                if (this.result && this.result != ''){
+                   // using the data provided create the grid and the global store
+                   global = JSON.parse(this.result);
 
+
+                   $.each(global.positions, function(key, gridId){
+                      // add grid objects to the stage
+                      addGridObjectToStage(global.grid[gridId].size, gridId);
+                      if(global.grid[gridId].end){
+                          $('#grid-ident-'+gridId).addClass('end');
+                      }
+                  });
+
+                  // set active item
+                  $('.grid-box').removeClass('grid-active');
+                  $('.grid-box').eq(0).addClass('grid-active');
+                }
              
            };
 
            reader.readAsText(file);
         }, fileSystemErrorHandler);
 
-    }, function(){
-        
-        // create the file if not exists
-        fileSystem.root.getFile('prototype-builder.json', {create: true, exclusive: true}, function(fileEntry) {
-           // do nothing for now
-        }, fileSystemErrorHandler);
-        
-        
-    });
+    } );
 
 }
 
@@ -366,6 +384,8 @@ function updatePosition(){
     });
     
     global.positions = currentPositions;
+    
+    updateStore();
 
 }
 
