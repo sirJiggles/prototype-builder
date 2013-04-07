@@ -10,10 +10,11 @@
  * 
  */
 
+// Global variables
 var global = {
         gridIdent:0,
-        grid:{},
-        positions:[]
+        templates:{},
+        currentTemplate:''
 }, fileSystem = '';
 
 
@@ -29,24 +30,38 @@ $(window).ready(function () {
     // ask for permission to store data on the file system (5MB)
     window.requestFileSystem  = window.requestFileSystem || window.webkitRequestFileSystem;
     window.webkitStorageInfo.requestQuota(PERSISTENT, 5*1024*1024, function(grantedBytes) {
-        
         window.requestFileSystem(PERSISTENT, grantedBytes, initFileSystem, fileSystemErrorHandler);
     }, function(e) {
         console.log('Error', e);
     });
-    
-    
+
+     // if there is no template name set create the frst one using the default template name
+    var hasTemplate = false;
+    for(var prop in global.templates){
+        if(global.templates.hasOwnProperty(prop)){
+            hasTemplate = true;
+            break;
+        }
+    }
+
+    if(!hasTemplate){
+        global.templates = {'template-one' : {grid:{}, positions:[]}};
+        global.currentTemplate = 'template-one';
+    }
+
+    // clicking on tools link 
     $('.tools-link').click(function(e){
         e.preventDefault();
         $('.tools').toggleClass('active');
     });
     
-    $('#clear-store').click(function(e){
+    //clearing the local file on file system HTML5
+    $('.clear-store').click(function(e){
         e.preventDefault();
         wipeStore();
     })
     
-   
+    // create nested sortables, on chnage we call the update store function
     $('.main').nestedSortable({
         forcePlaceholderSize: true,
         placeholder: 'placeholder',
@@ -60,7 +75,7 @@ $(window).ready(function () {
         }
     });
     
-    // close popup
+    // close popups
     $('.overlay').click(function(){
         hidePopup();
     });
@@ -84,19 +99,21 @@ $(window).ready(function () {
         
         
         // add item to grid store
-        global.grid[global.gridIdent] = {
+        global.templates[global.currentTemplate].grid[global.gridIdent] = {
                                             size:$(this).attr('id'),
                                             end:0,
                                             text:'',
                                             module:''
                                         };
                                         
-        global.positions.push(global.gridIdent);
+        global.templates[global.currentTemplate].positions.push(global.gridIdent);
         
         //increment the grid ref var
         global.gridIdent ++;
         
         updateStore();
+
+        console.log(global);
         
     });
     
@@ -105,15 +122,19 @@ $(window).ready(function () {
         
         e.preventDefault();
         
-        var moduleObject = $('<div class="module-box">'+$(this).parent().find('code').html()+'</div>');
+        var moduleObject = $('<div class="module-box">'+$(this).parent().find('code').html()+'</div>'),
+            moduleName = $(this).text().replace(' ', '-').toLowerCase();
         
         // put the module in the last grid class added to the page
         $('.grid-active').append(moduleObject);
+
         
         //set the module name in the global data store
-        global.grid[getGridId($('.grid-active'))].module = $(this).text;
+        global.templates[global.currentTemplate].grid[getGridId($('.grid-active'))].module = moduleName;
 
-         // hide the tools
+        updateStore();
+
+        // hide the tools
         $('.tools').toggleClass('active');
 
         
@@ -133,25 +154,56 @@ $(window).ready(function () {
 
         $('.editing').addClass(selectedSize);
         
-        global.grid[thisID].size = selectedSize;
+        global.templates[global.currentTemplate].grid[thisID].size = selectedSize;
         
         // set text for the 'editing box'
         $('.editing .text-label-proto-builder').text($('#popup-grid-text').val());
-        global.grid[thisID].text = $('#popup-grid-text').val();
+        global.templates[global.currentTemplate].grid[thisID].text = $('#popup-grid-text').val();
 
         // set end class if needed
         if($('#popup-grid-end').is(':checked')){
             $('.editing').addClass('end');
-            global.grid[thisID].end = true;
+            global.templates[global.currentTemplate].grid[thisID].end = true;
         }else{
             $('.editing').removeClass('end');
-            global.grid[thisID].end = false;
+            global.templates[global.currentTemplate].grid[thisID].end = false;
         }
 
         hidePopup();
         
         updateStore();
     });
+
+    // Edit template functionality
+
+    // save form click (edit template)
+    $('#edit-template-button').click(function(e){
+        e.preventDefault();
+
+        var newTemplateName = $('#popup-template-name').val();
+
+        if (newTemplateName != global.currentTemplate){
+            //create vopy of template
+            global.templates[newTemplateName] = global.templates[global.currentTemplate];
+            delete global.templates[global.currentTemplate];
+            global.currentTemplate = newTemplateName;
+
+            updateStore();
+        }
+
+        hidePopup();
+
+    });
+
+    // click to view the popup for saving template
+    $('.edit-template').click(function(e){
+        e.preventDefault();
+        // populate the text input with the name of the template
+        $('#popup-template-name').val(global.currentTemplate);
+        $('.popup.template-edit').show();
+        $('.overlay').show();
+        $('.tools').toggleClass('active');
+    })
     
 });
 
@@ -184,9 +236,9 @@ function addGridObjectToStage(type, id){
         $(gridObject).toggleClass('end');
         var id = getGridId($(gridObject));
         if($(gridObject).hasClass('end')){
-            global.grid[id].end = 1;
+            global.templates[global.currentTemplate].grid[id].end = 1;
         }else{
-            global.grid[id].end = 0;
+            global.templates[global.currentTemplate].grid[id].end = 0;
         }
         
         updateStore();
@@ -197,7 +249,7 @@ function addGridObjectToStage(type, id){
         e.preventDefault();
         //remove from the global store
         var id = getGridId($(gridObject));
-        delete global.grid[id];
+        delete global.templates[global.currentTemplate].grid[id];
         $(gridObject).remove();
         updatePosition();
     });
@@ -205,7 +257,7 @@ function addGridObjectToStage(type, id){
     //click to view the settings for the grid box
     $(gridObject).find('.settings').click(function(e){
         e.preventDefault();
-        $('.popup').show();
+        $('.popup.grid-edit').show();
         $('.overlay').show();
         $(gridObject).addClass('editing');
 
@@ -260,19 +312,17 @@ function initFileSystem(fs){
    
 }
 
-// Function used in testing to remove the contents of the store
+// Function to remove the contents of the store
 function wipeStore(){
     
-    // attempt to get the file, if not found create it
+    // get the file and truncate the contents of it 
     fileSystem.root.getFile('prototype-builder.json', {}, function(fileEntry) {
         
-        fileEntry.remove(function() {
-            
+        fileEntry.createWriter(function(fileWriter) {
+            fileWriter.truncate(0);
         }, fileSystemErrorHandler);
         
-    }, function(){
-        alert('cannot wipe');
-    });
+    }, fileSystemErrorHandler);
      
     
 }
@@ -282,11 +332,11 @@ function updateStore(){
     
     var string = JSON.stringify(global);
     
-    // wipe the file
+    // wipe the contents of the file
     wipeStore();
     
-    //create the file again
-    fileSystem.root.getFile('prototype-builder.json', {create: true, exclusive: true}, function(fileEntry) {
+    // add global vars to the file
+    fileSystem.root.getFile('prototype-builder.json', {}, function(fileEntry) {
         
         fileEntry.createWriter(function(fileWriter) {
 
@@ -320,13 +370,25 @@ function loadFromStore(){
                    // using the data provided create the grid and the global store
                    global = JSON.parse(this.result);
 
+                   $.each(global.templates[global.currentTemplate].positions, function(key, gridId){
+                        // add grid objects to the stage
+                        addGridObjectToStage(global.templates[global.currentTemplate].grid[gridId].size, gridId);
 
-                   $.each(global.positions, function(key, gridId){
-                      // add grid objects to the stage
-                      addGridObjectToStage(global.grid[gridId].size, gridId);
-                      if(global.grid[gridId].end){
-                          $('#grid-ident-'+gridId).addClass('end');
-                      }
+                        // end classes
+                        if(global.templates[global.currentTemplate].grid[gridId].end){
+                            $('#grid-ident-'+gridId).addClass('end');
+                        }
+
+                        // adding modules to the grid items
+                        if(global.templates[global.currentTemplate].grid[gridId].module != ''){
+                            // if the module is availible
+                            if ($('#'+global.templates[global.currentTemplate].grid[gridId].module).length > 0){
+                                var moduleObject = $('<div class="module-box">'+$('#'+global.templates[global.currentTemplate].grid[gridId].module).find('code').html()+'</div>');
+                                $('#grid-ident-'+gridId).append(moduleObject);
+                            }
+                            
+                        }
+
                   });
 
                   // set active item
@@ -339,8 +401,11 @@ function loadFromStore(){
            reader.readAsText(file);
         }, fileSystemErrorHandler);
 
-    } );
-
+    }, function(){
+        // file must not exist, create it here
+        fileSystem.root.getFile('prototype-builder.json', {create:true}, function(fileEntry) {
+        });
+    });
 }
 
 /* 
@@ -378,13 +443,19 @@ function fileSystemErrorHandler(e){
 function updatePosition(){
     
     var id = '', currentPositions = [];
-    $.each($('.main li'), function(key, val){
+    $.each($('.main li.grid-box'), function(key, val){
         id = getGridId($(this));
         currentPositions.push(id);
     });
     
-    global.positions = currentPositions;
+    global.templates[global.currentTemplate].positions = currentPositions;
     
+    // if all grid elements have been removed from this template
+    // set the grid ident back to 0
+    if(typeof global.templates[global.currentTemplate].positions[0] === 'undefined'){
+        global.gridIdent = 0;
+    }
+
     updateStore();
 
 }
@@ -399,7 +470,9 @@ function getGridId(obj){
 function hidePopup(){
     $('.popup').hide();
     $('.overlay').hide();
-    $('.editing').removeClass('editing');
+    if($('.editing').length > 0){
+        $('.editing').removeClass('editing');
+    }
 }
 
 /* Supports function for js fallback on css3 animations */

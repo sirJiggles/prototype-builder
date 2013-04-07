@@ -109,8 +109,8 @@ $currentPage = str_replace('.php', '', end(explode('/', $_SERVER['SCRIPT_FILENAM
         
         <div class="overlay"></div>
         
-        
-        <div class="popup">
+        <!-- popup for editing the grid container -->
+        <div class="popup grid-edit">
             <h2>Edit grid box</h2>
             <a class="close-button" title="Click here to cancel editing this grid box" href="#">Close</a>
             <form method="post" action="">
@@ -124,10 +124,21 @@ $currentPage = str_replace('.php', '', end(explode('/', $_SERVER['SCRIPT_FILENAM
                     <option value="sixth">Sixth</option>
                 </select>
                 <label for="popup-grid-text">Text:</label>
-                <input type="popup-grid-text" name="popup-grid-text" id="popup-grid-text" value="" placeholder="some text for the box" />
+                <input type="text" name="popup-grid-text" id="popup-grid-text" value="" placeholder="some text for the box" />
                 <label for="popup-grid-end">End Class:</label>
                 <input type="checkbox" name="popup-grid-end" id="popup-grid-end" />
                 <input type="submit" name="sumit-grid-popup" id="save-grid-box" value="Save changes" />
+            </form>
+        </div>
+
+        <!-- popup for editing the template -->
+        <div class="popup template-edit">
+            <h2>Save template</h2>
+            <a class="close-button" title="Click here to cancel editing this template" href="#">Close</a>
+            <form method="post" action="">
+                <label for="popup-template-name">Name:</label>
+                <input type="text" name="popup-template-name" id="popup-template-name" value="" placeholder="Name of the template" />
+                <input type="submit" name="sumit-template-popup" id="edit-template-button" value="Save Template" />
             </form>
         </div>
         
@@ -155,9 +166,10 @@ $currentPage = str_replace('.php', '', end(explode('/', $_SERVER['SCRIPT_FILENAM
                                 if(file_exists(realpath('assets/modules/'.$entry.'/markup.html'))):
                                     $markup = file_get_contents(realpath('assets/modules/'.$entry.'/markup.html'));
                                     // clean up the name of the module for the list
+                                    $entryRaw = $entry;
                                     $entry = ucwords(str_replace('-', ' ', $entry));
                                     ?>
-                                        <li>
+                                        <li id="<?php echo $entryRaw; ?>">
                                             <a href="#" title="Insert module <?php echo $entry; ?>"><?php echo $entry; ?></a>
                                             <code><?php echo $markup; ?></code>
                                         </li>
@@ -172,10 +184,10 @@ $currentPage = str_replace('.php', '', end(explode('/', $_SERVER['SCRIPT_FILENAM
                 </ul>
                 <h3>Project</h3>
                 <ul class="global-controls">
-                    <li><a href="#" title="Click here to save this template">Save Template</a></li>
+                    <li><a href="#" title="Click here to edit the name of this template" class="edit-template">Edit Template</a></li>
                     <li><a href="#" title="Click to open saved templates in this project">Open Template</a></li>
                     <li><a href="#" title="Click to download project">Download Project</a></li>
-                    <li><a href="#" title="Clear local storage" id="clear-store">Clear storage</a></li>
+                    <li><a href="#" title="Clear local storage" class="clear-store">Clear storage</a></li>
                 </ul>
 
             </div>

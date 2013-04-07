@@ -215,7 +215,7 @@ body { overflow-x: hidden; }
 
 .placeholder { outline: 1px dashed #4183C4; margin: 10px; display: block; float: left; padding: 20px 0px; }
 
-/* POPUP FOR EDITING GRID ELEMENTS */
+/* POPUP STYES ELEMENTS */
 .overlay { position: fixed; height: 100%; width: 100%; display: none; z-index: 9999; background: url("../img/bg-overlay.png") 0 0 repeat; }
 
 .popup { background-color: white; -webkit-border-radius: 5px; -moz-border-radius: 5px; -ms-border-radius: 5px; -o-border-radius: 5px; border-radius: 5px; padding: 25px; display: none; position: fixed; left: 50%; top: 25%; width: 315px; margin: 0 0 0 -162px; padding: 30px; z-index: 99999; }
