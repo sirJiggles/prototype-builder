@@ -185,7 +185,14 @@ $currentPage = str_replace('.php', '', end(explode('/', $_SERVER['SCRIPT_FILENAM
                 <h3>Project</h3>
                 <ul class="global-controls">
                     <li><a href="#" title="Click here to edit the name of this template" class="edit-template">Edit Template</a></li>
-                    <li><a href="#" title="Click to open saved templates in this project">Open Template</a></li>
+                    <li><a href="#" title="Click to create a new template" class="new-template">New Template</a></li>
+                    <li><a href="#" title="Click to delete current template" class="delete-template">Delete Template</a></li>
+                    <li>
+                        <label for="select-template">Open template</label>
+                        <select name="select-template" id="select-template">
+
+                        </select>
+                    </li>
                     <li><a href="#" title="Click to download project">Download Project</a></li>
                     <li><a href="#" title="Clear local storage" class="clear-store">Clear storage</a></li>
                 </ul>
