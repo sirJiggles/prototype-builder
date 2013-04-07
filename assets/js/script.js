@@ -240,15 +240,29 @@ $(window).ready(function () {
     $('.delete-template').click(function(e){
         e.preventDefault();
         // can only apply this if this is not the only template, sanity check first
-        var templateCount = 0;
+        var templates = [], currentIndex = 0, i = 0;
         for(var prop in global.templates){
             if(global.templates.hasOwnProperty(prop)){
-                templateCount ++;
+                templates.push(prop);
+                if(prop == global.currentTemplate){
+                    currentIndex = i;
+                }
+                i ++;
             }
         }
-        if(templateCount > 1){
-            // @TODO 1) check for template above if exists use it else use one below
-            // then change currentTemplate and run loadTemplate function ... fun times
+        if(templates.length > 1){
+
+            if(typeof templates[currentIndex -1] !== 'undefined'){
+                global.currentTemplate = templates[currentIndex -1];
+            }else{
+                // use the next template
+                global.currentTemplate = templates[currentIndex ++];
+            }
+
+            delete global.templates[global.currentTemplate];
+
+            loadTemplate();
+
         }else{
             alert ('Cannot remove the only template you have!');
         }
