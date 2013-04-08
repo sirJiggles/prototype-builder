@@ -108,30 +108,29 @@ $(window).ready(function () {
         //increment the grid ref var
         global.gridIdent ++;
         
-        updateStore();
+        updateStore(false);
         
     });
     
     // click to add a module 
-    $('.modules li a').click(function(e){
+    $('#module-select').change(function(e){
         
         e.preventDefault();
         
-        var moduleObject = $('<div class="module-box">'+$(this).parent().find('code').html()+'</div>'),
-            moduleName = $(this).text().replace(' ', '-').toLowerCase();
-        
-        // put the module in the last grid class added to the page
-        $('.grid-active').append(moduleObject);
+        // make sure its not the default one (should never happen)
+        if($(this).val() != 'select-module'){
 
-        
-        //set the module name in the global data store
-        global.templates[global.currentTemplate].grid[getGridId($('.grid-active'))].modules.push(moduleName);
+            var moduleName = $(this).val();
+            var moduleObject = $('<div class="module-box">'+$('#code-'+moduleName).html()+'</div>');
+            
+            // put the module in the last grid class added to the page
+            $('.grid-active').append(moduleObject);
+            
+            //set the module name in the global data store
+            global.templates[global.currentTemplate].grid[getGridId($('.grid-active'))].modules.push(moduleName);
 
-        updateStore();
-
-        // reload the page
-        location.reload();
-
+            updateStore(true);
+        }
         
     });
 
@@ -166,7 +165,7 @@ $(window).ready(function () {
 
         hidePopup();
         
-        updateStore();
+        updateStore(false);
     });
 
     // Template crud operations baby!
@@ -183,7 +182,7 @@ $(window).ready(function () {
             delete global.templates[global.currentTemplate];
             global.currentTemplate = newTemplateName;
 
-            updateStore();
+            updateStore(false);
         }
 
         hidePopup();
@@ -215,20 +214,16 @@ $(window).ready(function () {
         $('.main').html('');
 
         // update local data
-        updateStore();
-        updateTemplateList();
-
-        // show the edit template popup (makes sense)
-        $('.edit-template').click();
+        updateStore(true);
+       
     })
 
     // Change template functionality
     $('#select-template').change(function(e){
         e.preventDefault();
         global.currentTemplate = $(this).val();
-        $('.tools').toggleClass('active');
-        loadTemplate();
-        updateStore();
+        // update and reload page
+        updateStore(true);
     });
 
     // Delete template functionality
@@ -256,8 +251,7 @@ $(window).ready(function () {
                 global.currentTemplate = templates[currentIndex +1];
             }
 
-            loadTemplate();
-            updateStore();
+            updateStore(true);
 
         }else{
             alert ('Cannot remove the only template you have!');
@@ -314,7 +308,7 @@ function loadTemplate(){
             $.each(global.templates[global.currentTemplate].grid[gridId].modules, function(moduleKey, moduleName){
                 // if the module is availible
                 if ($('#'+moduleName).length > 0){
-                    var moduleObject = $('<div class="module-box">'+$('#'+moduleName).find('code').html()+'</div>');
+                    var moduleObject = $('<div class="module-box">'+$('#code-'+moduleName).html()+'</div>');
                     $('#grid-ident-'+gridId).append(moduleObject);
                     if( $.inArray(moduleName, allModules)){
                         allModules.push(moduleName);
@@ -378,7 +372,7 @@ function addGridObjectToStage(type, id){
             global.templates[global.currentTemplate].grid[id].end = 0;
         }
         
-        updateStore();
+        updateStore(false);
     });
 
     // removing the grid element from the stage
@@ -449,7 +443,7 @@ function initFileSystem(fs){
    
 }
 
-// Function to remove the contents of the store
+// REMOVE THIS AFTER TESTING
 function wipeStore(){
     
     // get the file and truncate the contents of it 
@@ -465,25 +459,39 @@ function wipeStore(){
 }
 
 // This is where we update the local file with the details of the grid
-function updateStore(){
+function updateStore(reload){
     
+    if(typeof reload === 'undefined') var reload = false;
     var string = JSON.stringify(global);
-    
-    // wipe the contents of the file
-    wipeStore();
-    
-    // add global vars to the file
+
+    // get the file and truncate the contents of it (effectively wipe contents of file) 
     fileSystem.root.getFile('prototype-builder.json', {}, function(fileEntry) {
         
-        fileEntry.createWriter(function(fileWriter) {
+        fileEntry.createWriter(function(fileWiper) {
+            fileWiper.truncate(0);
 
-            var blob = new Blob([string], {type: 'text/json'});
-            fileWriter.write(blob);
+            // once we are finished we will add new data to file
+            fileWiper.onwriteend = function(e) {
+
+                fileEntry.createWriter(function(fileWriter) {
+
+                    var blob = new Blob([string], {type: 'text/json'});
+                    fileWriter.write(blob);
+
+                    // if we need to reload the page after the store has been updated 
+                    if(reload){
+                        fileWriter.onwriteend = function(e) {
+                            location.reload();
+                        };
+                    }
+
+                }, fileSystemErrorHandler);
+
+            };
 
         }, fileSystemErrorHandler);
-
-
-     }, fileSystemErrorHandler);
+        
+    }, fileSystemErrorHandler);
     
 }
 

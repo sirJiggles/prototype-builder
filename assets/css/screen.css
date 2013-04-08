@@ -215,6 +215,9 @@ body { overflow-x: hidden; }
 
 .placeholder { outline: 1px dashed #4183C4; margin: 10px; display: block; float: left; padding: 20px 0px; }
 
+/* MODULE BOXES */
+.module-box { clear: left; }
+
 /* POPUP STYES ELEMENTS */
 .overlay { position: fixed; height: 100%; width: 100%; display: none; z-index: 9999; background: url("../img/bg-overlay.png") 0 0 repeat; }
 

@@ -155,9 +155,11 @@ $currentPage = str_replace('.php', '', end(explode('/', $_SERVER['SCRIPT_FILENAM
                     <li><a href="#" class="grid-link" id="sixth">Sixth</a></li>
                 </ul>
                 <h3>Modules</h3>
-                <ul class="modules">
+                <label for="module-select">Insert</label>
+                <select name="module-select" id="module-select">
+                    <option id="default-module-select" value="select-module">Select Module</option>
                     <?php 
-
+                    $modules = array();
                     if ($handle = opendir(realpath('assets/modules'))) {
                         while (false !== ($entry = readdir($handle))) {
                             if(!in_array($entry, $ignoreModules)):
@@ -168,12 +170,10 @@ $currentPage = str_replace('.php', '', end(explode('/', $_SERVER['SCRIPT_FILENAM
                                     // clean up the name of the module for the list
                                     $entryRaw = $entry;
                                     $entry = ucwords(str_replace('-', ' ', $entry));
+                                    $modules[$entryRaw] = $markup;
                                     ?>
-                                        <li id="<?php echo $entryRaw; ?>">
-                                            <a href="#" title="Insert module <?php echo $entry; ?>"><?php echo $entry; ?></a>
-                                            <code><?php echo $markup; ?></code>
-                                        </li>
-
+                                        <option id="<?php echo $entryRaw; ?>" value="<?php echo $entryRaw; ?>"><?php echo $entry; ?></option>
+                                        
                                     <?php 
                                 endif;
                             endif;
@@ -181,7 +181,12 @@ $currentPage = str_replace('.php', '', end(explode('/', $_SERVER['SCRIPT_FILENAM
                         closedir($handle);
                     }
                     ?>
-                </ul>
+                </select>
+
+                <?php foreach ($modules as $entryRaw => $markup): ?>
+                    <code id="code-<?php echo $entryRaw; ?>"><?php echo $markup; ?></code>
+                <?php endforeach; ?>
+
                 <h3>Project</h3>
                 <ul class="global-controls">
                     <li><a href="#" title="Click here to edit the name of this template" class="edit-template">Edit Template</a></li>
