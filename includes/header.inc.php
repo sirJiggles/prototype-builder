@@ -133,12 +133,12 @@ $currentPage = str_replace('.php', '', end(explode('/', $_SERVER['SCRIPT_FILENAM
 
         <!-- popup for editing the template -->
         <div class="popup template-edit">
-            <h2>Save template</h2>
-            <a class="close-button" title="Click here to cancel editing this template" href="#">Close</a>
+            <h2>Template</h2>
+            <a class="close-button" title="Click here to cancel nameing this template" href="#">Close</a>
             <form method="post" action="">
                 <label for="popup-template-name">Name:</label>
                 <input type="text" name="popup-template-name" id="popup-template-name" value="" placeholder="Name of the template" />
-                <input type="submit" name="sumit-template-popup" id="edit-template-button" value="Save Template" />
+                <input type="submit" name="submit-template-popup" id="edit-template-button" value="Save" />
             </form>
         </div>
         

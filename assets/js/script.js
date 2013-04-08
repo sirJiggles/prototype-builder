@@ -26,7 +26,6 @@ $(window).ready(function () {
     
     // Run our app javascript first
     
-    
     // ask for permission to store data on the file system (5MB)
     window.requestFileSystem  = window.requestFileSystem || window.webkitRequestFileSystem;
     window.webkitStorageInfo.requestQuota(PERSISTENT, 5*1024*1024, function(grantedBytes) {
@@ -95,17 +94,13 @@ $(window).ready(function () {
         $('.grid-box').removeClass('grid-active');
         
         addGridObjectToStage($(this).attr('id'), global.gridIdent);
-        
-        // hide the tools
-        $('.tools').toggleClass('active');
-        
-        
+    
         // add item to grid store
         global.templates[global.currentTemplate].grid[global.gridIdent] = {
                                             size:$(this).attr('id'),
                                             end:0,
                                             text:'',
-                                            module:''
+                                            modules:[]
                                         };
                                         
         global.templates[global.currentTemplate].positions.push(global.gridIdent);
@@ -130,12 +125,12 @@ $(window).ready(function () {
 
         
         //set the module name in the global data store
-        global.templates[global.currentTemplate].grid[getGridId($('.grid-active'))].module = moduleName;
+        global.templates[global.currentTemplate].grid[getGridId($('.grid-active'))].modules.push(moduleName);
 
         updateStore();
 
-        // hide the tools
-        $('.tools').toggleClass('active');
+        // reload the page
+        location.reload();
 
         
     });
@@ -210,9 +205,6 @@ $(window).ready(function () {
     $('.new-template').click(function(e){
         e.preventDefault();
 
-        // close tools
-        $('.tools').toggleClass('active');
-
         // create the new template name based on the size of the templates array
         var newTemplateName = 'template-' + (Object.keys(global.templates).length + 1);
         global.templates[newTemplateName] = {grid:{}, positions:[]};
@@ -224,8 +216,10 @@ $(window).ready(function () {
 
         // update local data
         updateStore();
-
         updateTemplateList();
+
+        // show the edit template popup (makes sense)
+        $('.edit-template').click();
     })
 
     // Change template functionality
@@ -234,6 +228,7 @@ $(window).ready(function () {
         global.currentTemplate = $(this).val();
         $('.tools').toggleClass('active');
         loadTemplate();
+        updateStore();
     });
 
     // Delete template functionality
@@ -252,21 +247,24 @@ $(window).ready(function () {
         }
         if(templates.length > 1){
 
+            delete global.templates[global.currentTemplate];
+
             if(typeof templates[currentIndex -1] !== 'undefined'){
                 global.currentTemplate = templates[currentIndex -1];
             }else{
                 // use the next template
-                global.currentTemplate = templates[currentIndex ++];
+                global.currentTemplate = templates[currentIndex +1];
             }
 
-            delete global.templates[global.currentTemplate];
-
             loadTemplate();
+            updateStore();
 
         }else{
             alert ('Cannot remove the only template you have!');
         }
-    })
+
+        $('.tools').toggleClass('active');
+    });
 
 });
 
@@ -292,13 +290,14 @@ function loadTemplate(){
     $('.main').html('');
 
     // re-calculate the value of gird ident
-    var gridCount = 0;
+    var gridCount = 0, allModules = [];
     for(var prop in global.templates[global.currentTemplate].grid){
         if (global.templates[global.currentTemplate].grid.hasOwnProperty(prop)){
             gridCount ++;
         }
     }
     global.gridIdent = gridCount;
+
 
     $.each(global.templates[global.currentTemplate].positions, function(key, gridId){
         // add grid objects to the stage
@@ -310,20 +309,36 @@ function loadTemplate(){
         }
 
         // adding modules to the grid items
-        if(global.templates[global.currentTemplate].grid[gridId].module != ''){
-            // if the module is availible
-            if ($('#'+global.templates[global.currentTemplate].grid[gridId].module).length > 0){
-                var moduleObject = $('<div class="module-box">'+$('#'+global.templates[global.currentTemplate].grid[gridId].module).find('code').html()+'</div>');
-                $('#grid-ident-'+gridId).append(moduleObject);
-            }
-            
+        if(global.templates[global.currentTemplate].grid[gridId].modules.length > 0){
+            // loop through all the modules in this grid object and add them
+            $.each(global.templates[global.currentTemplate].grid[gridId].modules, function(moduleKey, moduleName){
+                // if the module is availible
+                if ($('#'+moduleName).length > 0){
+                    var moduleObject = $('<div class="module-box">'+$('#'+moduleName).find('code').html()+'</div>');
+                    $('#grid-ident-'+gridId).append(moduleObject);
+                    if( $.inArray(moduleName, allModules)){
+                        allModules.push(moduleName);
+                    }
+                }
+            });
         }
 
-  });
+    });
 
-  // set active item
-  $('.grid-box').removeClass('grid-active');
-  $('.grid-box').eq(0).addClass('grid-active');
+    // now we have a list of all modules we get the js files for the modules we need it for
+    $.each(allModules, function(key, val){
+
+        // insert the js for the moudles into the page (if there is a script file that is)
+        $.ajax({
+            url: "/assets/modules/"+val+"/js/script.js",
+            type: "GET",
+            dataType: "script"
+        }); 
+    });
+
+    // set active item
+    $('.grid-box').removeClass('grid-active');
+    $('.grid-box').eq(0).addClass('grid-active');
 
     // load up all the templates on the list
     updateTemplateList();
