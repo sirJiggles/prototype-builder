@@ -104,7 +104,7 @@ foreach($usedModules as $moduleKey => $moduleVal){
 
 	// append to the string used later for the script.js file
 	if(file_exists($rootDir.'/assets/modules/'.$moduleKey.'/js/script.js')){
-		$jsModules .= '@depends ../modules/'.$moduleKey.'/js/script.js'."\n";
+		$jsModules .= '* @depends ../modules/'.$moduleKey.'/js/script.js'."\n";
 	}
 
 	// append to the string later used for the js plugins of there are any
@@ -112,7 +112,7 @@ foreach($usedModules as $moduleKey => $moduleVal){
 		while (false !== ($file = readdir($handleJsDir))){
         	if ($file != "." && $file != ".." && strtolower(substr($file, strrpos($file, '.') + 1)) == 'js' && $file != 'script.js'){
 	            if(!in_array($file, $jsPlugins)){
-	            	$jsPlugins .= $file ."\n";
+	            	$jsPlugins .= "* @depends ../modules/".$moduleKey."/js/".$file ."\n";
 	            }
 	        }
 	    }
@@ -154,10 +154,8 @@ if (file_exists($downloadFile)) {
     
 
     //clean up 
-    rrmdir($rootDir.'/tmp/'.$hash);
+    delTree($rootDir.'/tmp/'.$hash);
     unlink($rootDir.'/tmp/'.$hash.'.zip');
-
-    exit();
 }
 
 
@@ -166,7 +164,7 @@ function recurse_copy($src,$dst) {
     $dir = opendir($src); 
     @mkdir($dst); 
     while(false !== ( $file = readdir($dir)) ) { 
-        if (( $file != '.' ) && ( $file != '..' )) { 
+        if ( ( $file != '.' ) && ( $file != '..' ) ) { 
             if ( is_dir($src . '/' . $file) ) { 
                 recurse_copy($src . '/' . $file,$dst . '/' . $file); 
             } 
@@ -178,12 +176,10 @@ function recurse_copy($src,$dst) {
     closedir($dir); 
 }
 
-function rrmdir($dir) {
-    foreach(glob($dir . '/*') as $file) {
-        if(is_dir($file))
-            rrmdir($file);
-        else
-            unlink($file);
-    }
-    rmdir($dir);
-}
+function delTree($dir) { 
+   $files = array_diff(scandir($dir), array('.','..')); 
+    foreach ($files as $file) { 
+      (is_dir("$dir/$file")) ? delTree("$dir/$file") : unlink("$dir/$file"); 
+    } 
+    return rmdir($dir); 
+} 

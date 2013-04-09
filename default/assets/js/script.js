@@ -5,7 +5,7 @@
  * 
  * @depends vendor/jquery-1.8.2.min.js
  * @depends vendor/hammer.min.js
- * INCLUDE PLUGINS
+ INCLUDE PLUGINS
  * 
  */
 
@@ -21,7 +21,7 @@ $(window).ready(function () {
 
     /* Import module specific javscript using juicer
      * 
-     * INCLUDE MODULES
+     INCLUDE MODULES
      */
     
 });
