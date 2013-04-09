@@ -282,6 +282,12 @@ body{
     width:20px;
 }
 
+// form for posting download data
+#data-form{
+    display:none;
+}
+
+/* Debugging text area */
 .text-label-proto-builder{
     text-align: center;
     width:100%;

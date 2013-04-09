@@ -1,0 +1,53 @@
+@import "_settings";
+@import "_mixins";
+
+
+/* ================ MAIN LAYOUT ELEMENTS ================ */
+
+#site-wrapper{
+    height:100%;
+    min-height: 100%;
+    height: auto;
+    margin-bottom:-$footer-height+px;
+    position:relative;
+    overflow:auto;
+}
+
+*{
+    @include border-box('/assets/js/vendor/border-box.htc');
+}
+
+.row {
+    @include container;
+    
+    .row{
+        margin-left:-$grid-padding;
+        margin-right:-$grid-padding;
+        
+    } // Nudge back nested rows
+    
+    .col {
+        @include span-columns($total-columns);
+        
+        &.end{
+            @include omega;
+        }
+        
+        @each $section in $gridGlobal{
+            $name: nth($section, 1);
+            $number: nth($section, 2);
+
+            &.#{$name}{
+                @for $i from 1 through $number{
+                    &.span-#{$i}{
+                        @include span-columns($total-columns);
+                        
+                        &.end{
+                            @include omega;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

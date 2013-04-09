@@ -1,0 +1,12 @@
+@import "_settings";
+@import "_mixins";
+
+.push {
+    height: $footer-height+px;
+    clear:left;
+}
+
+#site-footer{
+    height:($footer-height - 50)+px;
+    @include block-left;;
+}

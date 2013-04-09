@@ -1,0 +1,12 @@
+/* ======== FIXED WIDTH CHANGES ======== */
+
+@import "compass/css3";
+@import "susy";
+
+@import "includes/_settings";
+@import "includes/_mixins";
+
+#site-wrapper{
+    min-width:1024px;
+    overflow:visible;
+}

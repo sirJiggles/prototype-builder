@@ -1,0 +1,33 @@
+/* Responsive styles 
+
+Mobile first css,
+
+the mixins is where you want to put the styles, the mixins are both used here and in IE stylesheet 
+
+*/
+@import "_settings";
+@import "_mixins";
+@import "_media_mixins";
+
+
+/* MOBILE LANDSCAPE UP */
+@media only screen and (min-width: $mobile){
+
+    @include mobile-land-styles();
+
+}
+
+/* TABLET UP */
+@media only screen and (min-width: $tablet){
+
+    @include tablet-styles();
+
+}
+
+/* DESKTOP UP */
+@media only screen and (min-width: $desktop){
+
+    @include desktop-styles();
+
+}
+

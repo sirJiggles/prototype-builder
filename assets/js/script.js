@@ -59,7 +59,7 @@ $(window).ready(function () {
     //clearing the local file on file system HTML5
     $('.clear-store').click(function(e){
         e.preventDefault();
-        wipeStore();
+        updateStore(true, false);
     })
     
     // create nested sortables, on chnage we call the update store function
@@ -120,16 +120,20 @@ $(window).ready(function () {
         // make sure its not the default one (should never happen)
         if($(this).val() != 'select-module'){
 
-            var moduleName = $(this).val();
-            var moduleObject = $('<div class="module-box">'+$('#code-'+moduleName).html()+'</div>');
-            
-            // put the module in the last grid class added to the page
-            $('.grid-active').append(moduleObject);
-            
-            //set the module name in the global data store
-            global.templates[global.currentTemplate].grid[getGridId($('.grid-active'))].modules.push(moduleName);
+            // if we have an acrive grid element on the page
+            if ($('.grid-active').length > 0){
 
-            updateStore(true);
+                var moduleName = $(this).val();
+                var moduleObject = $('<div class="module-box">'+$('#code-'+moduleName).html()+'</div>');
+                
+                // put the module in the last grid class added to the page
+                $('.grid-active').append(moduleObject);
+                
+                //set the module name in the global data store
+                global.templates[global.currentTemplate].grid[getGridId($('.grid-active'))].modules.push(moduleName);
+
+                updateStore(true);
+            }
         }
         
     });
@@ -259,6 +263,25 @@ $(window).ready(function () {
 
         $('.tools').toggleClass('active');
     });
+
+    // Download project functionality
+    $('.download-project').click(function(e){
+        e.preventDefault();
+
+        // post the hidden form with the json data in it
+        $('#data').val(JSON.stringify(global));
+        $('#data-form').submit();
+
+        // submit the post data to the download file
+        /*$.ajax({  
+            type: "POST",  
+            url: "includes/download.inc.php",  
+            data: 'data='+JSON.stringify(global),  
+            success: function() {  
+                
+            }  
+        });*/  
+    })
 
 });
 
@@ -443,25 +466,12 @@ function initFileSystem(fs){
    
 }
 
-// REMOVE THIS AFTER TESTING
-function wipeStore(){
-    
-    // get the file and truncate the contents of it 
-    fileSystem.root.getFile('prototype-builder.json', {}, function(fileEntry) {
-        
-        fileEntry.createWriter(function(fileWriter) {
-            fileWriter.truncate(0);
-        }, fileSystemErrorHandler);
-        
-    }, fileSystemErrorHandler);
-     
-    
-}
-
 // This is where we update the local file with the details of the grid
-function updateStore(reload){
+function updateStore(reload, write){
     
     if(typeof reload === 'undefined') var reload = false;
+    if(typeof write === 'undefined') var write = true;
+
     var string = JSON.stringify(global);
 
     // get the file and truncate the contents of it (effectively wipe contents of file) 
@@ -473,19 +483,26 @@ function updateStore(reload){
             // once we are finished we will add new data to file
             fileWiper.onwriteend = function(e) {
 
-                fileEntry.createWriter(function(fileWriter) {
+                // if we want to write to the file again
+                if(write){
+                    fileEntry.createWriter(function(fileWriter) {
 
-                    var blob = new Blob([string], {type: 'text/json'});
-                    fileWriter.write(blob);
+                        var blob = new Blob([string], {type: 'text/json'});
+                        fileWriter.write(blob);
 
-                    // if we need to reload the page after the store has been updated 
+                        // if we need to reload the page after the store has been updated 
+                        if(reload){
+                            fileWriter.onwriteend = function(e) {
+                                location.reload();
+                            };
+                        }
+
+                    }, fileSystemErrorHandler);
+                }else{
                     if(reload){
-                        fileWriter.onwriteend = function(e) {
-                            location.reload();
-                        };
+                        location.reload();
                     }
-
-                }, fileSystemErrorHandler);
+                }
 
             };
 

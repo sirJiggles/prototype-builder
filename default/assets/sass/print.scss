@@ -1,0 +1,34 @@
+/*
+    Print stylesheet
+*/
+@import "includes/_typography";
+
+a{
+    text-decoration:underline;
+    margin-bottom:10px;
+    display:block;
+}
+
+img{
+    display:none;
+}
+
+ul{
+    margin:20px 0 20px 0;
+    padding:0 0 0 30px;
+}
+
+h1,h2,h3,h4{
+    width:100%;
+    display:block;
+    color:black;
+    margin:10px 0 10px 0;
+}
+
+body a:link:after, body a:visited:after {
+    content: " (" attr(href) ") ";
+}
+
+body{
+    color:black;
+}

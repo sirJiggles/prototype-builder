@@ -141,6 +141,11 @@ $currentPage = str_replace('.php', '', end(explode('/', $_SERVER['SCRIPT_FILENAM
                 <input type="submit" name="submit-template-popup" id="edit-template-button" value="Save" />
             </form>
         </div>
+
+        <!-- Hidden form that contains the json data for downloading the project -->
+        <form action="/includes/download.inc.php" method="post" id="data-form">
+            <input type="hidden" name="data" id="data" value="" />
+        </form>
         
         <aside class="tools">
             <div class="tools-wrapper">
@@ -198,7 +203,7 @@ $currentPage = str_replace('.php', '', end(explode('/', $_SERVER['SCRIPT_FILENAM
 
                         </select>
                     </li>
-                    <li><a href="#" title="Click to download project">Download Project</a></li>
+                    <li><a href="#" title="Click to download project" class="download-project">Download Project</a></li>
                     <li><a href="#" title="Clear local storage" class="clear-store">Clear storage</a></li>
                 </ul>
 
