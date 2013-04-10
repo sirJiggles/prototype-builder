@@ -56,11 +56,24 @@ $(window).ready(function () {
         $('.tools').toggleClass('active');
     });
     
-    //clearing the local file on file system HTML5
+    // Removing the project
     $('.clear-store').click(function(e){
         e.preventDefault();
+        $('.project-delete').show();
+        $('.overlay').show();
+    });
+
+    $('.delete-project').click(function(e){
+        e.preventDefault();
         updateStore(true, false);
-    })
+        hidePopup();
+    });
+
+    $('.cancel-delete').click(function(e){
+        e.preventDefault();
+        hidePopup();
+    });
+
     
     // create nested sortables, on chnage we call the update store function
     $('.main').nestedSortable({
@@ -201,7 +214,6 @@ $(window).ready(function () {
         $('#popup-template-name').val(global.currentTemplate);
         $('.popup.template-edit').show();
         $('.overlay').show();
-        $('.tools').toggleClass('active');
     });
 
     // New template functionality
@@ -210,7 +222,7 @@ $(window).ready(function () {
 
         // create the new template name based on the size of the templates array
         var newTemplateName = 'template-' + (Object.keys(global.templates).length + 1);
-        global.templates[newTemplateName] = {grid:{}, positions:[]};
+        global.templates[newTemplateName] = {grid:{}, positions:[], locked:false};
         global.gridIdent = 0;
         global.currentTemplate = newTemplateName;
 
@@ -261,7 +273,6 @@ $(window).ready(function () {
             alert ('Cannot remove the only template you have!');
         }
 
-        $('.tools').toggleClass('active');
     });
 
     // Download project functionality
@@ -271,16 +282,17 @@ $(window).ready(function () {
         // post the hidden form with the json data in it
         $('#data').val(JSON.stringify(global));
         $('#data-form').submit();
+    });
 
-        // submit the post data to the download file
-        /*$.ajax({  
-            type: "POST",  
-            url: "includes/download.inc.php",  
-            data: 'data='+JSON.stringify(global),  
-            success: function() {  
-                
-            }  
-        });*/  
+    // lock / unlocking the template
+    $('.lock-template').click(function(e){
+        $('.main').toggleClass('lock');
+        if ($('.main').hasClass('lock')){
+            global.templates[global.currentTemplate].lock = true;
+        }else{
+            global.templates[global.currentTemplate].lock = false;
+        }
+        updateStore(false);
     })
 
 });
@@ -315,6 +327,9 @@ function loadTemplate(){
     }
     global.gridIdent = gridCount;
 
+    if(global.templates[global.currentTemplate].lock){
+        $('.main').addClass('lock');
+    }
 
     $.each(global.templates[global.currentTemplate].positions, function(key, gridId){
         // add grid objects to the stage
@@ -367,8 +382,6 @@ function addGridObjectToStage(type, id){
     var gridObject = $('<li class="grid-box grid-active col span-1 unlocked" id="grid-ident-'+id+'">'+
                         '<a href="#" class="dragger control">&#9871;</a>'+
                         '<a class="settings control" href="#" title="click here to edit this box">&#9881;</a>'+
-                        '<a class="lock control" href="#" title="click here to lock this box">&#128274;</a>'+
-                        '<a class="unlock control" href="#" title="click here to unclock this box">&#128275;</a>'+
                         '<a class="end-toggle control" href="#" title="End class">&#58542;</a>'+
                         '<a class="remove control" href="#" title="Remove Item">&#10060;</a>'+
                         '<div class="text-label-proto-builder"></div></li>');
@@ -430,17 +443,6 @@ function addGridObjectToStage(type, id){
             }
         });
 
-    });
-
-    // lock / unlock button click
-    $(gridObject).find('.lock').click(function(e){
-        e.preventDefault();
-        $(gridObject).removeClass('unlocked');
-    });
-
-    $(gridObject).find('.unlock').click(function(e){
-        e.preventDefault();
-        $(gridObject).addClass('unlocked');
     });
 
     //making the grid object the 'active' item

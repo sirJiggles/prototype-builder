@@ -66,6 +66,8 @@ body{
     padding-top:40px;
     padding-bottom:40px;
 }
+
+// TOOLS FOR THE BUILDER
 .tools-link{
     @include em-font(20);
     color:$color1;
@@ -84,8 +86,8 @@ body{
 
 .tools{
     position:fixed;
-    width:300px;
-    right:-300px;
+    width:230px;
+    right:-230px;
     top:0;
     height:100%;
     background-color:$color2;
@@ -127,20 +129,17 @@ body{
     min-height:100px;
     @include block-left;
     position:relative;
+    padding:10px;
+    background-color:white;
+    border:1px solid black;
 }
 
-.grid-box.unlocked{
-    border:1px solid black;
-    background-color:white;
-    padding:10px;
-}
 
 .grid-box.grid-active{
     border:3px solid blue;
 }
 
-
-.grid-box.end.unlocked{
+.grid-box.end{
     border:1px solid red; 
 }
 
@@ -154,23 +153,10 @@ body{
     top: 14px;
 }
 
-
-.grid-box:hover a.lock{
-    display:none;
-}
-
-.grid-box:hover a.unlock{
+.grid-box:hover a.control{
     display:block;
 }
 
-
-.grid-box.unlocked:hover a.control{
-    display:block;
-}
-
-.grid-box.unlocked:hover a.unlock{
-    display:none;
-}
     
 .grid-box a.control{
     position:absolute;
@@ -203,6 +189,17 @@ body{
     border:1px solid $color1;
 }
 
+// when the page is locked
+.main.lock .grid-box{
+    padding:0px;
+    background:none;
+    border:none;
+}
+
+.main.lock .grid-box:hover a.control{
+    display:none;
+}
+
 .grid-box a.end-toggle{
     right:60px;
 } 
@@ -221,11 +218,6 @@ body{
 
 .grid-box a.remove:after{
     left:-7px;
-}
-
-.grid-box a.lock,
-.grid-box a.unlock{
-    right:10px;
 }
 
 .grid-box a.dragger{
@@ -270,6 +262,21 @@ body{
 
 .popup h2{
     line-height:1.0em;
+    width:100%;
+}
+
+.popup ul{
+    list-style-type: none;
+    @include reset-box;
+}
+
+.popup ul li{
+    @include block-left;
+    margin:0 20px 0 0;
+}
+
+.popup ul li a{
+    text-decoration: none;
 }
 
 .popup a.close-button{

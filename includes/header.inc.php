@@ -1,16 +1,3 @@
-<?php
-
-/*
- * Header file that is included on all pages 
- * 
- * @author Gareth Fuller
- * 
- */
-
-$currentPage = str_replace('.php', '', end(explode('/', $_SERVER['SCRIPT_FILENAME'])));
-
-?>
-
 <!DOCTYPE html>
 <html lang="en" class="no-js">
     <head>
@@ -142,12 +129,24 @@ $currentPage = str_replace('.php', '', end(explode('/', $_SERVER['SCRIPT_FILENAM
             </form>
         </div>
 
+        <!-- popup for confirmation of deleting project -->
+        <div class="popup project-delete">
+            <h2>Delete project</h2>
+            <a class="close-button" title="Click here to cancel deleting the project" href="#">Close</a>
+            <p>Are you sure you wish to delete the project?</p>
+            <ul>
+                <li><a href="#" title="Click here to delete the project" class="delete-project">Yes, remove</a></li>
+                <li><a href="#" title="click here to cacel deleting the project" class="cancel-delete">No, what was I thiking</a></li>
+           </ul>
+        </div>
+
+
         <!-- Hidden form that contains the json data for downloading the project -->
         <form action="/includes/download.inc.php" method="post" id="data-form">
             <input type="hidden" name="data" id="data" value="" />
         </form>
         
-        <aside class="tools">
+        <aside class="tools active">
             <div class="tools-wrapper">
                 <a href="#" title="toggle tools" class="tools-link">&#9776;</a>
                 <h3>Grid boxes</h3>
@@ -192,19 +191,24 @@ $currentPage = str_replace('.php', '', end(explode('/', $_SERVER['SCRIPT_FILENAM
                     <code id="code-<?php echo $entryRaw; ?>"><?php echo $markup; ?></code>
                 <?php endforeach; ?>
 
-                <h3>Project</h3>
-                <ul class="global-controls">
+                <h3>Template</h3>
+                <ul class="template-controls">
                     <li><a href="#" title="Click here to edit the name of this template" class="edit-template">Edit Template</a></li>
                     <li><a href="#" title="Click to create a new template" class="new-template">New Template</a></li>
                     <li><a href="#" title="Click to delete current template" class="delete-template">Delete Template</a></li>
+                    <li><a href="#" title="Click to lock / unclock the template" class="lock-template">Lock / Unlock grid</a></li>
                     <li>
                         <label for="select-template">Open template</label>
                         <select name="select-template" id="select-template">
 
                         </select>
                     </li>
+                </ul>
+
+                <h3>Project</h3>
+                <ul>
                     <li><a href="#" title="Click to download project" class="download-project">Download Project</a></li>
-                    <li><a href="#" title="Clear local storage" class="clear-store">Clear storage</a></li>
+                    <li><a href="#" title="Delete the project" class="clear-store">Delete Project</a></li>
                 </ul>
 
             </div>

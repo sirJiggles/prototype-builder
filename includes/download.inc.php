@@ -4,6 +4,9 @@
  * This is where the project download is handled, this is hit via AJAX
  */
 
+// Turn off all error reporting
+error_reporting(0);
+
 require_once('HZip.php');
 
 // variable  for holding all the used modules for this project
