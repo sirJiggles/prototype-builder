@@ -148,7 +148,12 @@
 
 
         <header id="header" role="banner">
-                
+            <h1>Prototype Builder</h1>
+
+            <ul class="template-tabs">
+
+            </ul>
+
         </header>
 
 
@@ -230,16 +235,10 @@
 
                 <h3>Templates</h3>
                 <ul class="template-controls">
-                    <li><a href="#" title="Click here to edit the name of this template" class="edit-template">Edit Template</a></li>
+                    <li><a href="#" title="Click here to edit the name of this template" class="edit-template">Rename Template</a></li>
                     <li><a href="#" title="Click to create a new template" class="new-template">New Template</a></li>
                     <li><a href="#" title="Click to delete current template" class="delete-template">Delete Template</a></li>
                     <li><a href="#" title="Click to lock / unclock the template" class="lock-template">Lock / Unlock grid</a></li>
-                    <li>
-                        <label for="select-template">Open template</label>
-                        <select name="select-template" id="select-template">
-
-                        </select>
-                    </li>
                 </ul>
 
                 <h3>Project</h3>

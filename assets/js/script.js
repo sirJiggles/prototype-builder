@@ -15,7 +15,7 @@ var global = {
         gridIdent:0,
         templates:{},
         currentTemplate:'',
-        navigation:'facebook'
+        navigation:'standard'
 }, fileSystem = '';
 
 
@@ -215,11 +215,8 @@ $(window).ready(function () {
             delete global.templates[global.currentTemplate];
             global.currentTemplate = newTemplateName;
 
-            updateStore(false);
+            updateStore(true);
         }
-
-        hidePopup();
-        updateTemplateList();
 
     });
 
@@ -249,14 +246,6 @@ $(window).ready(function () {
         updateStore(true);
        
     })
-
-    // Change template functionality
-    $('#select-template').change(function(e){
-        e.preventDefault();
-        global.currentTemplate = $(this).val();
-        // update and reload page
-        updateStore(true);
-    });
 
     // Delete template functionality
     $('.delete-template').click(function(e){
@@ -315,17 +304,18 @@ $(window).ready(function () {
 
 // Function to update the lost of templates the user can choose
 function updateTemplateList(){
-    var optionString = '';
+    var templateListString = '';
     for(var template in global.templates){
         if (global.templates.hasOwnProperty(template)){
-            optionString += '<option value="' + template + '"';
+            templateListString += '<li' ;
             if(template == global.currentTemplate){
-                optionString += ' selected="selected" ';
+                templateListString += ' class="active"';
             }
-            optionString += '>' + template + '</option>';
+
+            templateListString += '><a class="template-item" href="#" title="Click here to select the template">'+template+'</a></li>';
         }
     }
-    $('#select-template').html(optionString);
+    $('.template-tabs').html(templateListString);
 }
 
 // Function to apply the global.currentTemplate to stage
@@ -336,11 +326,14 @@ function loadTemplate(){
 
     // re-calculate the value of gird ident
     var gridCount = 0, allModules = [];
+    console.log(global.currentTemplate);
+
     for(var prop in global.templates[global.currentTemplate].grid){
         if (global.templates[global.currentTemplate].grid.hasOwnProperty(prop)){
             gridCount ++;
         }
     }
+    
     global.gridIdent = gridCount;
 
     if(global.templates[global.currentTemplate].lock){
@@ -400,6 +393,15 @@ function loadTemplate(){
 
     // load up all the templates on the list
     updateTemplateList();
+
+    // Change template functionality
+    $('.template-item').click(function(e){
+        e.preventDefault();
+        global.currentTemplate = $(this).text();
+        // update and reload page
+        updateStore(true);
+    });
+
 }
 
 // This function adds grid objects to the stage
@@ -554,13 +556,6 @@ function loadFromStore(){
 
             reader.onloadend = function(e) {
                 
-                // add to document for now (DEBUG)
-                var txtArea = document.createElement('textarea');
-                txtArea.value = this.result;
-                document.body.appendChild(txtArea);
-
-
-
                 if (this.result && this.result != ''){
                    // using the data provided create the grid and the global store
                    global = JSON.parse(this.result);
