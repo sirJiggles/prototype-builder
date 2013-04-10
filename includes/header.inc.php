@@ -200,6 +200,7 @@
                 <h3>Navigation</h3>
                 <label for="nav-select">Use</label>
                 <select name="nav-select" id="nav-select">
+                    <option id="default-nav-select" value="select-nav">Select Navigation</option>
                     <?php 
                     $navigations = array();
                     if ($handle = opendir(realpath('assets/navigation'))) {
@@ -254,8 +255,7 @@
         <div id="site-wrapper">
             
             <header id="nav-header" role="banner">
-                <!-- HERE WE LOAD THE CONTENTS OF THE STANDARD NAV BY DEFAULT -->
-                <?php echo $navigations['standard']; ?>
+                
             </header>
             
             <ol class="row main" role="main">

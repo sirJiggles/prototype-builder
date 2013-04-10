@@ -1,0 +1,101 @@
+
+// Facebook mobile navigation
+.main-nav-facebook{
+
+    background-color: $color5;
+    display:block;
+    height:60px;
+
+    ul{
+        @include reset-box;
+        width:100%;
+        position:fixed;
+        left:-100%;
+        height:100%;
+        background-color:$color5;
+        margin:60px 0 -60px 0;
+        z-index:999;
+
+        @include transition-property(all);
+        @include transition-duration(0.5s);
+
+        li{
+            @include block-left;
+            margin:0;
+            border-bottom:1px solid white;
+            width:100%;
+
+            a{
+                text-decoration: none;
+                color:$color1;
+                @include em-font(16);
+                @include em-line-height(16);
+                width:100%;
+                background-color:$color5;
+                padding:20px;
+                text-align: center;
+                @include block-left;
+            }
+
+            a:hover{
+                background-color:$color4;
+            }
+        }
+
+        li.last{
+            border:none;
+        }
+    }
+
+    .nav-controls{
+        @include block-left;
+        padding:10px 0;
+        width:100%;
+
+        a{
+            text-decoration: none;
+            outline:none;
+            width:40px;
+            height:40px;
+            background-color: $color2;
+            border:1px solid black;
+            @include block-left;
+            text-indent: 9999px;
+        }
+    }
+
+    ul.active{
+        left:0%;
+    }
+
+    .nav-controls.active{
+        position:fixed;
+        background-color:$color5;
+        z-index:999;
+
+    }
+
+}
+
+// Change the nav at various break points
+
+/* TABLET UP */
+@media only screen and (min-width: $tablet){
+    .main-nav-facebook{
+        ul{
+            position:relative;
+            left:0% !important;
+            margin:10px 0 10px 0;
+            @include block-left;
+
+            li{
+                border:none;
+                width:auto;
+            }
+        }
+
+        .nav-controls{
+            display:none;
+        }
+    }
+}

@@ -15,7 +15,7 @@ var global = {
         gridIdent:0,
         templates:{},
         currentTemplate:'',
-        navigation:'standard'
+        navigation:'facebook'
 }, fileSystem = '';
 
 
@@ -154,6 +154,18 @@ $(window).ready(function () {
         }
         
     });
+
+    // Select a new navigation style
+    $('#nav-select').change(function(e){
+        e.preventDefault();
+        // if the user wishes to use a different nav
+        if ($(this).val() != global.navigation && $(this).val() != 'select-nav'){
+            global.navigation = $(this).val();
+            updateStore(true);
+        }
+
+    })
+
 
     // Click save on the grid popup box
     $('#save-grid-box').click(function(e){
@@ -377,7 +389,10 @@ function loadTemplate(){
         url: "/assets/navigation/"+global.navigation+"/js/script.js",
         type: "GET",
         dataType: "script"
-    }); 
+    });
+
+    // add the navigation HTML to the page
+    $('#nav-header').html($('#code-'+global.navigation).html()); 
 
     // set active item
     $('.grid-box').removeClass('grid-active');
