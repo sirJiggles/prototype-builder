@@ -14,7 +14,8 @@
 var global = {
         gridIdent:0,
         templates:{},
-        currentTemplate:''
+        currentTemplate:'',
+        navigation:'standard'
 }, fileSystem = '';
 
 
@@ -370,6 +371,13 @@ function loadTemplate(){
             dataType: "script"
         }); 
     });
+
+    // get the js for the navigation for the project
+    $.ajax({
+        url: "/assets/navigation/"+global.navigation+"/js/script.js",
+        type: "GET",
+        dataType: "script"
+    }); 
 
     // set active item
     $('.grid-box').removeClass('grid-active');

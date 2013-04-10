@@ -51,5 +51,19 @@
         padding:0;
         margin:0 0 15px 0;
     }
-  
+
+}
+
+@mixin desktop-styles-large(){
+    #site-wrapper{
+        margin:100px 0 0 240px;
+    }
+
+    .tools{
+        left:0px;
+    }
+
+    #header{
+        display:block;
+    }
 }

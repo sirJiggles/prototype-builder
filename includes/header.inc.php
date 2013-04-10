@@ -145,10 +145,16 @@
         <form action="/includes/download.inc.php" method="post" id="data-form">
             <input type="hidden" name="data" id="data" value="" />
         </form>
-        
-        <aside class="tools active">
+
+
+        <header id="header" role="banner">
+                
+        </header>
+
+
+        <aside class="tools">
             <div class="tools-wrapper">
-                <a href="#" title="toggle tools" class="tools-link">&#9776;</a>
+                
                 <h3>Grid boxes</h3>
                 <ul>
                     <li><a href="#" class="grid-link" id="full">Full</a></li>
@@ -191,7 +197,37 @@
                     <code id="code-<?php echo $entryRaw; ?>"><?php echo $markup; ?></code>
                 <?php endforeach; ?>
 
-                <h3>Template</h3>
+                <h3>Navigation</h3>
+                <label for="nav-select">Use</label>
+                <select name="nav-select" id="nav-select">
+                    <?php 
+                    $navigations = array();
+                    if ($handle = opendir(realpath('assets/navigation'))) {
+                        while (false !== ($entry = readdir($handle))) {
+                          
+                            // get contents of markup file (if exists)
+                            if(file_exists(realpath('assets/navigation/'.$entry.'/markup.html'))):
+                                $markup = file_get_contents(realpath('assets/navigation/'.$entry.'/markup.html'));
+                                // clean up the name of the module for the list
+                                $entryRaw = $entry;
+                                $entry = ucwords(str_replace('-', ' ', $entry));
+                                $navigations[$entryRaw] = $markup;
+                                ?>
+                                    <option id="<?php echo $entryRaw; ?>" value="<?php echo $entryRaw; ?>"><?php echo $entry; ?></option>
+                                    
+                                <?php 
+                            endif;
+                        }
+                        closedir($handle);
+                    }
+                    ?>
+                </select>
+
+                <?php foreach ($navigations as $entryRaw => $markup): ?>
+                    <code id="code-<?php echo $entryRaw; ?>"><?php echo $markup; ?></code>
+                <?php endforeach; ?>
+
+                <h3>Templates</h3>
                 <ul class="template-controls">
                     <li><a href="#" title="Click here to edit the name of this template" class="edit-template">Edit Template</a></li>
                     <li><a href="#" title="Click to create a new template" class="new-template">New Template</a></li>
@@ -214,16 +250,12 @@
             </div>
         </aside>
         
-        
-        
-
         <!-- used for sticky footer -->
         <div id="site-wrapper">
             
-            
-
-            <header id="header" class="row" role="banner">
-                
+            <header id="nav-header" role="banner">
+                <!-- HERE WE LOAD THE CONTENTS OF THE STANDARD NAV BY DEFAULT -->
+                <?php echo $navigations['standard']; ?>
             </header>
             
             <ol class="row main" role="main">

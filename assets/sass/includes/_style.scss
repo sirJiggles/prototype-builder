@@ -19,6 +19,7 @@ body{
     margin-bottom:-$footer-height+px;
     position:relative;
     overflow:hidden;
+    margin:0;
 }
 
 *{
@@ -64,39 +65,19 @@ body{
     background-color:$color5;
 }
 
+
 // TOOLS FOR THE BUILDER
-.tools-link{
-    @include em-font(20);
-    color:$color1;
-    font-weight:700;
-    text-decoration:none;
-    position:absolute;
-    left:-31px;
-    padding:5px;
-    background-color:white;
-    border:2px solid $color1;
-    display:block;
-    top:20px;
-    @include border-radius(3px); 
-    z-index:2;
-}
 
 .tools{
     position:fixed;
     width:230px;
-    right:-230px;
+    left:-230px;
     top:0;
     height:100%;
-    background-color:$color2;
+    background-color:$color5;
     z-index:9998;
     padding:15px;
-    @include transition-property(all);
-    @include transition-duration(0.3s);
-    @include transition-timing-function(ease-in);
-}
-
-.tools.active{
-    right:0px;
+    margin:100px 0 -100px 0;
 }
 
 .tools ul{
@@ -243,6 +224,7 @@ body{
     display:none;
     z-index:9999;
     background:url('../img/bg-overlay.png') 0 0 repeat;
+    top:0;
 }
 
 .popup{
