@@ -384,7 +384,7 @@ function addGridObjectToStage(type, id){
                         '<a class="settings control" href="#" title="click here to edit this box">&#9881;</a>'+
                         '<a class="end-toggle control" href="#" title="End class">&#58542;</a>'+
                         '<a class="remove control" href="#" title="Remove Item">&#10060;</a>'+
-                        '<div class="text-label-proto-builder"></div></li>');
+                        '<div class="text-label-proto-builder">'+global.templates[global.currentTemplate].grid[id].text+'</div></li>');
 
     // add the col class to the grid obj
     $(gridObject).addClass(type);

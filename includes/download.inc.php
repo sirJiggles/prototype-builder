@@ -63,6 +63,11 @@ foreach($json->templates as $templateName => $templateData){
 
 		$fileString .= '<div class="col span-1 '.$size.$end.'">'."\n";
 
+		// check for text in the grid box
+		if($json->templates->$templateName->grid->$gridId->text != ''){
+			$fileString .= '<p>'.$json->templates->$templateName->grid->$gridId->text .'</p>'. "\n";
+		}
+
 		if(count($modules) > 0){
 			// loop through all the modules in the grid
 			foreach($modules as $moduleKey => $moduleVal){

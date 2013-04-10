@@ -156,7 +156,7 @@ body { overflow-x: hidden; }
 .row .col.sixths.span-6 { width: 100%; float: left; margin-right: 2.12766%; display: inline; }
 .row .col.sixths.span-6.end { float: right; margin-right: 0; #margin-left: -20px; display: inline; }
 
-.main { background-color: #dddddd; min-height: 500px; padding-top: 40px; padding-bottom: 40px; }
+.main { background-color: #dddddd; }
 
 .tools-link { font-size: 1.25em; color: #222222; font-weight: 700; text-decoration: none; position: absolute; left: -31px; padding: 5px; background-color: white; border: 2px solid #222222; display: block; top: 20px; -webkit-border-radius: 3px; -moz-border-radius: 3px; -ms-border-radius: 3px; -o-border-radius: 3px; border-radius: 3px; z-index: 2; }
 
