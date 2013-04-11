@@ -9,12 +9,13 @@
     ul{
         @include reset-box;
         width:100%;
-        position:fixed;
-        left:-100%;
+        left:0%;
+        position:relative;
         height:100%;
         background-color:$color5;
-        margin:60px 0 -60px 0;
         z-index:999;
+        margin:10px 0 10px 0;
+        @include block-left;
 
         @include transition-property(all);
         @include transition-duration(0.5s);
@@ -22,8 +23,8 @@
         li{
             @include block-left;
             margin:0;
-            border-bottom:1px solid white;
-            width:100%;
+            border:none;
+            width:auto;
 
             a{
                 text-decoration: none;
@@ -49,9 +50,11 @@
     }
 
     .nav-controls{
-        @include block-left;
+        float:left;
+        display:none;
         padding:10px 0;
         width:100%;
+        overflow: hidden;
 
         a{
             text-decoration: none;
@@ -80,23 +83,23 @@
 
 // Change the nav at various break points
 
-/* TABLET UP */
-@media only screen and (min-width: $tablet){
+// TABLET DOWN
+@media only screen and (max-width: $tablet){
+
     .main-nav-facebook{
         ul{
-            position:relative;
-            left:0% !important;
-            margin:10px 0 10px 0;
-            @include block-left;
+            position:fixed;
+            left:-100%;
+            margin:60px 0 -60px 0;
 
             li{
-                border:none;
-                width:auto;
+                border-bottom:1px solid white;
+                width:100%;
             }
         }
 
         .nav-controls{
-            display:none;
+            display:block;
         }
     }
 }

@@ -40,7 +40,7 @@
             &.#{$name}{
                 @for $i from 1 through $number{
                     &.span-#{$i}{
-                        @include span-columns($total-columns);
+                        @include span-columns($total-columns * ($i/$number));
                         
                         &.end{
                             @include omega;

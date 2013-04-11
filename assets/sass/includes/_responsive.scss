@@ -1,40 +1,81 @@
 /* Responsive styles 
 
-Mobile first css,
-
-the mixins is where you want to put the styles, the mixins are both used here and in IE stylesheet 
+Changed to Desktop first else we would not be able to have a modular system!
 
 */
 @import "_settings";
 @import "_mixins";
-@import "_media_mixins";
 
 
-/* MOBILE LANDSCAPE UP */
-@media only screen and (min-width: $mobile){
+/* LESS THAN DESKTOP LARGE */
+@media only screen and (max-width: $dekstopLarge){
+    #site-wrapper{
+        margin:0;
+    }
 
-    @include mobile-land-styles();
+    .tools{
+        left:-230px;
+    }
+
+    #header{
+        display:none;
+    }
+}
+
+
+
+/* LESS THAN DESKTOP */
+@media only screen and (max-width: $desktop){
+
+    form{
+
+        label{
+            width:100%;
+            padding: 0 0 2% 0;
+        }
+
+        input,
+        select{
+            width: 92%;
+            padding:4%;
+            margin: 0 0 2% 0;
+        }
+
+    }
 
 }
 
-/* TABLET UP */
-@media only screen and (min-width: $tablet){
 
-    @include tablet-styles();
+/* LESS THAN TABLET */
+@media only screen and (max-width: $tablet){
 
+    
 }
 
-/* DESKTOP UP */
-@media only screen and (min-width: $desktop){
+/* LESS THAN MOBILE LANDSCAPE */
+@media only screen and (max-width: $mobile){
 
-    @include desktop-styles();
+ // re create grid for small screen
+    .row{
+        .col{
 
+            @each $section in $gridGlobal{
+                $name: nth($section, 1);
+                $number: nth($section, 2);
+
+                &.#{$name}{
+                    @for $i from 1 through $number{
+                        &.span-#{$i}{
+                            @include span-columns($total-columns);
+                            
+                            &.end{
+                                @include omega;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
 }
-
-// Large desktop
-@media only screen and (min-width: $dekstopLarge){
-
-    @include desktop-styles-large();
-
-}
-

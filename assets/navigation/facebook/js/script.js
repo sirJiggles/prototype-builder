@@ -1,7 +1,6 @@
 /* facebook mobile navigation */ 
 $('.nav-controls a').click(function(e){
 
-
     $('.main-nav-facebook ul').toggleClass('active');
     $('.main-nav-facebook .nav-controls').toggleClass('active');
 

@@ -33,10 +33,6 @@
         <!--[if lte IE 7]>
             <link rel="stylesheet" href="assets/css/fixed-width.css" media="screen" type="text/css"/>
         <![endif]-->
-
-        <!--[if lt IE 9]>
-            <link rel="stylesheet" href="assets/css/all-media.css" media="screen" type="text/css"/>
-        <![endif]-->
               
         
         
