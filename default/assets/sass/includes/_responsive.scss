@@ -67,6 +67,7 @@ Changed to Desktop first else we would not be able to have a modular system!
                     @for $i from 1 through $number{
                         &.span-#{$i}{
                             @include span-columns($total-columns);
+                            margin-bottom:$grid-padding;
                             
                             &.end{
                                 @include omega;
