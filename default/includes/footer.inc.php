@@ -5,7 +5,7 @@
  * @author Gareth Fuller
  */
 ?>
-        </ol>
+        </div>
         <!-- end row / main -->
         
         <!-- for sticky footer -->
@@ -18,18 +18,17 @@
         <div class="row">
             <footer id="site-footer">
                 <div class="col end">
+                    <p>This is our footer!</p>
                 </div>
             </footer>
         </div>
 
-        
-        <!-- Remove after develop --> 
-        
+            
         
         
-        <!--<script type="text/javascript" src="assets/js/script.min.js"></script> -->
+        <!-- Load all JS last -->
+        <script type="text/javascript" src="assets/js/script.min.js"></script>
         
-       
 
     </body>
 </html>

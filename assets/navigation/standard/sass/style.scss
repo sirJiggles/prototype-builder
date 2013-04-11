@@ -1,0 +1,82 @@
+
+// Standard mobile navigation
+.main-nav-standard{
+
+	background-color: $color5;
+
+	ul{
+		@include reset-box;
+		display:none;
+		width:100%;
+		float:left;
+		margin:10px 0 10px 0;
+
+		li{
+			@include block-left;
+			margin:0;
+			border-bottom:1px solid white;
+			width:100%;
+
+			a{
+				text-decoration: none;
+				color:$color1;
+				@include em-font(16);
+				@include em-line-height(16);
+				width:100%;
+				background-color:$color5;
+				padding:20px;
+				text-align: center;
+				@include block-left;
+			}
+
+			a:hover{
+				background-color:$color4;
+			}
+		}
+
+		li.last{
+			border:none;
+		}
+	}
+
+	.nav-controls{
+		@include block-left;
+		
+
+		padding:10px 0;
+		width:100%;
+
+		a{
+			text-decoration: none;
+			outline:none;
+			width:40px;
+			height:40px;
+			background-color: $color2;
+			border:1px solid black;
+			@include block-left;
+			text-indent: 9999px;
+		}
+	}
+
+}
+
+// Change the nav at various break points
+
+/* TABLET UP */
+@media only screen and (min-width: $tablet){
+	.main-nav-standard{
+		ul{
+
+			display:block !important;
+
+			li{
+				border:none;
+				width:auto;
+			}
+		}
+
+		.nav-controls{
+			display:none;
+		}
+	}
+}

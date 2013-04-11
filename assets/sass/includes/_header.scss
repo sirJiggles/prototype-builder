@@ -1,2 +1,53 @@
 @import "_settings";
 @import "_mixins";
+
+// Header for the builder
+#header{
+	position:fixed;
+	width:100%;
+	height:100px;
+	top:0;
+	left:0;
+	background-color:$color6;
+	z-index:99999;
+	display:none;
+	padding:20px 20px 0 20px;
+}
+
+#header h1{
+	margin:10px 50px 0 0;
+	@include block-left;
+}
+
+// Template Tabs
+.template-tabs{
+
+    @include reset-box;
+    list-style-type: none;
+    @include block-left;
+
+    margin: 41px 0 0 0;
+
+    li{
+    	background-color: #fefefe;
+    	border-bottom:1px solid $color6;
+
+    	@include border-top-left-radius(5px);
+    	@include border-top-right-radius(5px);
+
+    	padding:12px 20px 10px 20px;
+
+    	float:left;
+    	margin:0 10px 0 0;
+
+    	a{
+    		color:$color3;
+    		text-decoration: none;
+    	}
+    }
+
+    li.active{
+    	border-bottom:1px solid white;
+    	background-color: white;
+    }
+}

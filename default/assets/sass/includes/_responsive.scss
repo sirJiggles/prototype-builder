@@ -31,10 +31,3 @@ the mixins is where you want to put the styles, the mixins are both used here an
 
 }
 
-// Large desktop
-@media only screen and (min-width: $dekstopLarge){
-
-    @include desktop-styles-large();
-
-}
-

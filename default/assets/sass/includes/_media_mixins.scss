@@ -38,32 +38,5 @@
             }
         }
     }
-
-    // desktop forms
-    form label{
-        width:40%;
-        @include reset-box;
-    }
-
-    form input,
-    form select{
-        width:59%;
-        padding:0;
-        margin:0 0 15px 0;
-    }
-
-}
-
-@mixin desktop-styles-large(){
-    #site-wrapper{
-        margin:120px 0 0 240px;
-    }
-
-    .tools{
-        left:0px;
-    }
-
-    #header{
-        display:block;
-    }
+  
 }

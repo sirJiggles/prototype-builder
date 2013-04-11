@@ -1,0 +1,85 @@
+@import "_settings";
+
+@mixin em-font($px:12){
+    font-size:(1 / $base-font) * $px + em;
+}
+
+@mixin em-line-height($px:12){
+    line-height:((1 / $base-font) * $px) + (((1 / $base-font) * $px) / 2) + em;
+}  
+
+@mixin block-left(){
+    display:block;
+    float:left;
+}
+
+@mixin reset-box(){
+    padding:0;
+    margin:0;
+}
+    
+@mixin custom-font(){
+    font-family: 'Montserrat', sans-serif;
+}
+
+@mixin standard-font(){
+    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+}
+    
+
+@mixin no-rounded(){
+    -webkit-border-radius: 0px;
+    -moz-border-radius: 0px;
+    border-radius: 0px;
+}
+
+@mixin no-drop-shadow(){
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+
+@mixin bg-gradient($from:#222, $to:#fff, $from-percentage:0%, $to-percentage:100%){
+    background: -moz-linear-gradient(top, $from $from-percentage, $to $to-percentage);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop($from-percentage,$from), color-stop($to-percentage,$to));
+    background: -webkit-linear-gradient(top, $from $from-percentage,$to $to-percentage);
+    background: -o-linear-gradient(top, $from $from-percentage,$to $to-percentage);
+    background: -ms-linear-gradient(top, $from $from-percentage,$to $to-percentage);
+    background: linear-gradient( to bottom, $from $from-percentage,$to $to-percentage);
+    filter: unquote("progid:DXImageTransform.Microsoft.gradient(startColorstr='")
+    + $from
+    + unquote("', endColorstr='")
+    + $to
+    + unquote("',GradientType=0)");
+}
+
+@mixin grayscale($url){
+    @if $url != ''{
+        filter: url($url+'#grayscale');
+    }
+    filter: gray; 
+    -webkit-filter: grayscale(1);
+}
+
+@mixin no-grayscale(){
+    filter: none;
+    -webkit-filter: grayscale(0);
+}
+
+@mixin box($radius:5){
+    background-color:white;
+    //@include drop-shadow(0px, 2px, 7px, 0px, #888);
+    @include rounded($radius);
+    padding:25px;
+}
+
+@mixin border-box($url){
+    -webkit-box-sizing:border-box;
+    -moz-box-sizing:border-box;
+    box-sizing:border-box;
+    @if $url != ''{
+        *behavior:url($url);
+    }
+}
+
