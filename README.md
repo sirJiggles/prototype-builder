@@ -67,10 +67,10 @@ more people start using this I will create some sort of library and so on but no
 Please use the following format for modules / navigation
 
 * module-name
-** /sass/style.scss
-** /js/script.js
-** /js/any-plugins-here.js
-** markup.html
+    * /sass/style.scss
+    * /js/script.js
+    * /js/any-plugins-here.js
+    * markup.html
 
 Obviously some modules will need more things like images, audio, flash and so on. There is no limit here I would just
 ask please use lowercase names and -'s for spaces on files.
