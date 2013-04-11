@@ -2,7 +2,6 @@
 $('.nav-controls a').click(function(e){
 
     $('.main-nav-facebook ul').toggleClass('active');
-    $('.main-nav-facebook .nav-controls').toggleClass('active');
 
 
     if( $('.main-nav-facebook ul').hasClass('active') ){
