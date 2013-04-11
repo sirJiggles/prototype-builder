@@ -2,6 +2,7 @@
 $mobile: 480px;
 $tablet: 678px;
 $desktop: 920px;
+$dekstopLarge: 1200px;
 
 $base-font: 16;
 $bodyFontSize: 16px;
@@ -16,13 +17,12 @@ $footer-height: 357;
 
 $border-box-sizing: true;
 
-$color1: #ddd;
-$color2: #888;
-$color3: #555;
-$color4: #222;
-
-$light-shadow:#d6dee0;
-$dark-shadow:#555;
+$color1: #222;
+$color2: #555;
+$color3: #888;
+$color4: #aaa;
+$color5: #ddd;
+$color6: #eee;
 
 
 $gridGlobal: ("half" 2, "halves" 2, "third" 3, "thirds" 3, "quarter" 4, "quarters" 4, "fith" 5, "fiths" 5, "sixth" 6, "sixths" 6 );

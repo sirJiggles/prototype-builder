@@ -35,9 +35,26 @@ if(!mkdir($rootDir.'/tmp/'.$hash)){
 	exit('Could not create directory');
 }
 
+
 // Create a copy of the standard package into the new downalod folder
 recurse_copy($rootDir.'/default/',$rootDir.'/tmp/'.$hash.'/');
 
+// Copy the used navigation into the package
+recurse_copy($rootDir.'/assets/navigation/'.$json->navigation, $rootDir.'/tmp/'.$hash.'/assets/navigation/');
+
+
+if( !file_exists($rootDir.'/assets/navigation/'.$json->navigation.'/markup.html')){
+	exit('could not find the navigation markup file');
+}
+
+$navigationMarkup = '<header id="nav-header" role="banner">'."\n";
+$navigationMarkup .= file_get_contents($rootDir.'/assets/navigation/'.$json->navigation.'/markup.html');
+$navigationMarkup .= '</header>'."\n";
+
+// Add naviagtion markup to the header includes file
+$headerFileContents = file_get_contents($rootDir.'/tmp/'.$hash.'/includes/header.inc.php');
+$headerFileContents = str_replace('NAVIGATION_MARKUP', $navigationMarkup, $headerFileContents);
+file_put_contents($rootDir.'/tmp/'.$hash.'/includes/header.inc.php', $headerFileContents);
 
 // Create a new html file for each template and write the grid to it
 foreach($json->templates as $templateName => $templateData){
@@ -50,7 +67,6 @@ foreach($json->templates as $templateName => $templateData){
 
 	// template file should be created at this stage so now we will write the data string to it
 	$fileString  = "<?php include('includes/header.inc.php'); ?>"."\n";
-
 
 	// loop through the positions and add the grid in the correct order 
 	// at the same time we will get a list of the modules need for this project
@@ -129,6 +145,14 @@ foreach($usedModules as $moduleKey => $moduleVal){
 
 }
 
+// add navigation styles to the styleModules
+$styleModules .= "@import '../navigation/sass/style';"."\n";
+
+// if there is any JS for the navigation we are going to add it here
+if (file_exists($rootDir.'/assets/navigation/'.$json->navigation.'/js/script.js')){
+	$jsModules .= "* @depends ../navigation/js/script.js"."\n";
+}
+
 $handleStylesFile = fopen($rootDir.'/tmp/'.$hash.'/assets/sass/screen.scss', 'a+');
 fwrite($handleStylesFile, $styleModules);
 fclose($handleStylesFile);
@@ -139,6 +163,7 @@ $jsFileContents = str_replace('INCLUDE PLUGINS', $jsPlugins, $jsFileContents);
 $jsFileContents = str_replace('INCLUDE MODULES', $jsModules, $jsFileContents);
 
 file_put_contents($rootDir.'/tmp/'.$hash.'/assets/js/script.js', $jsFileContents);
+
 
 
 // Convert folder to zip

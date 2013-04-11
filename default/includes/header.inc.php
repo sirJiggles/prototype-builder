@@ -1,21 +1,8 @@
-<?php
-
-/*
- * Header file that is included on all pages 
- * 
- * @author Gareth Fuller
- * 
- */
-
-$currentPage = str_replace('.php', '', end(explode('/', $_SERVER['SCRIPT_FILENAME'])));
-
-?>
-
 <!DOCTYPE html>
 <html lang="en" class="no-js">
     <head>
 
-    	<title>Basilisk</title>
+    	<title>PROTOTYPE</title>
             
         <!--[if lt IE 9]>
             <script src="assets/js/vendor/htmlshiv.min.js"></script>
@@ -59,28 +46,5 @@ $currentPage = str_replace('.php', '', end(explode('/', $_SERVER['SCRIPT_FILENAM
         <!-- used for sticky footer -->
         <div id="site-wrapper">
 
-            <header id="header" class="row" role="banner">
-                
-                <div class="col span-2 halves">
-                    
-                    <h1>SITE TITLE</h1>
-                    
-                   <nav role="navigation" class="slide-main-nav">
-                        <ul>
-                            <li><a href="#" title="click here to go to nav item one">Nav item one</a></li>
-                            <li><a href="#" title="click here to go to nav item two">Nav item two</a></li>
-                            <li><a href="#" title="click here to go to nav item three">Nav item three</a></li>
-                            <li><a href="#" title="click here to go to nav item four">Nav item four</a></li>
-                            <li><a href="#" title="click here to go to nav item five">Nav item five</a></li>
-                        </ul>
-                    </nav>
-
-                </div>
-
-                
-            </header>
-            
+            NAVIGATION_MARKUP
             <div class="row main" role="main">
-
-
-                

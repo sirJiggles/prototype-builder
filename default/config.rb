@@ -6,6 +6,7 @@ http_path = "/"
 css_dir = "assets/css"
 sass_dir = "assets/sass"
 add_import_path "assets/modules"
+add_import_path "assets/navigation"
 images_dir = "assets/img"
 javascripts_dir = "assets/js"
 
