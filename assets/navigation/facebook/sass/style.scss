@@ -5,6 +5,7 @@
     background-color: $color5;
     display:block;
     min-height:60px;
+    width:100%;
 
     ul{
         @include reset-box;
@@ -31,7 +32,6 @@
                 color:$color1;
                 @include em-font(16);
                 @include em-line-height(16);
-                width:100%;
                 background-color:$color5;
                 padding:20px;
                 text-align: center;
@@ -95,6 +95,10 @@
             li{
                 border-bottom:1px solid white;
                 width:100%;
+
+                a{
+                    width:100%;
+                }
             }
         }
 

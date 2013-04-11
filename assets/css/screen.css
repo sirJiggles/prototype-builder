@@ -1400,10 +1400,10 @@ html.ie7 .gallery .flex-viewport ul { min-height: 410px; }
 @media only screen and (max-width: 700px) { .main-nav-standard ul { display: none !important; }
   .main-nav-standard ul li { border: block; width: 100%; }
   .main-nav-standard .nav-controls { display: block; } }
-.main-nav-facebook { background-color: #dddddd; display: block; min-height: 60px; }
+.main-nav-facebook { background-color: #dddddd; display: block; min-height: 60px; width: 100%; }
 .main-nav-facebook ul { padding: 0; margin: 0; width: 100%; left: 0%; position: relative; height: 100%; background-color: #dddddd; z-index: 999; margin: 10px 0 10px 0; display: block; float: left; -webkit-transition-property: all; -moz-transition-property: all; -o-transition-property: all; transition-property: all; -webkit-transition-duration: 0.5s; -moz-transition-duration: 0.5s; -o-transition-duration: 0.5s; transition-duration: 0.5s; }
 .main-nav-facebook ul li { display: block; float: left; margin: 0; border: none; width: auto; }
-.main-nav-facebook ul li a { text-decoration: none; color: #222222; font-size: 1em; line-height: 1.5em; width: 100%; background-color: #dddddd; padding: 20px; text-align: center; display: block; float: left; overflow: hidden; }
+.main-nav-facebook ul li a { text-decoration: none; color: #222222; font-size: 1em; line-height: 1.5em; background-color: #dddddd; padding: 20px; text-align: center; display: block; float: left; overflow: hidden; }
 .main-nav-facebook ul li a:hover { background-color: #aaaaaa; }
 .main-nav-facebook ul li.last { border: none; }
 .main-nav-facebook .nav-controls { float: left; display: none; padding: 10px 0; width: 100%; overflow: hidden; }
@@ -1413,4 +1413,5 @@ html.ie7 .gallery .flex-viewport ul { min-height: 410px; }
 
 @media only screen and (max-width: 700px) { .main-nav-facebook ul { position: fixed; left: -100%; margin: 60px 0 -60px 0; }
   .main-nav-facebook ul li { border-bottom: 1px solid white; width: 100%; }
+  .main-nav-facebook ul li a { width: 100%; }
   .main-nav-facebook .nav-controls { display: block; } }
