@@ -1,8 +1,14 @@
-======================== OUTPUT FROM PROTOTYPE BUILDER ========================
+# Prototype Builder
+
+This system is designed to make creating the base of the HTML protorypes that get sent to clients
+as quick as possible. Using the interface at [prototype-builder.com](http://prototype-builder.com) create prototypes quickly and downlaod 
+what you create.
+
+To be hoenst most of it is self explanitory but after you have downloaded the package you will need
+to know the following.
 
 
-
-======================== CSS FILES ========================
+## CSS FILES
 
 Unfortunatly you will have to open the following files, add a space or something then save them. After this run the
 'compass compile' command from the root of the project to create the CSS files.
@@ -14,7 +20,7 @@ Unfortunatly you will have to open the following files, add a space or something
 
 After this use 'compass watch' to detect changes in the background
 
-=== JS FILES ==
+## JS FILES
 
 The kit is settup to use juicer, yo get the JS you will need to run the command to combine and minify
 all javascript. You will need the juicer gem installed obviously, this command is run from the the folder
@@ -29,7 +35,7 @@ To see what is going on open up the js file and take note with the @depends decl
 
 
 
-======================== GENERAL USE ========================
+## GENERAL USE
 
 The whole idea of the system is to be modular, all html 'chunks' of functionality are stored in
 the modules directory. These contain a markup.html file, for your own use but also this is part of how
@@ -53,22 +59,21 @@ and modules.
 
 
 
-======================== SUBMITTING MODULES ========================
+## SUBMITTING MODULES
 
 If you would like to submit modules at the moment just email me a ziped file with the module in and I will add. If 
 more people start using this I will create some sort of library and so on but not right now.
 
 Please use the following format for modules / navigation
 
-module-name
-	/sass/style.scss
-	/js/script.js
-	/js/any-plugins-here.js
-	markup.html
+* module-name
+    * /sass/style.scss
+    * /js/script.js
+    * /js/any-plugins-here.js
+    * markup.html
 
 Obviously some modules will need more things like images, audio, flash and so on. There is no limit here I would just
 ask please use lowercase names and -'s for spaces on files.
-
 
 
 ========================================================================

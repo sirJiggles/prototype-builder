@@ -19,7 +19,7 @@ body{
     margin-bottom:-$footer-height+px;
     position:relative;
     overflow:hidden;
-    margin:0;
+    margin:120px 0 0 240px;
 }
 
 *{
@@ -49,7 +49,7 @@ body{
             &.#{$name}{
                 @for $i from 1 through $number{
                     &.span-#{$i}{
-                        @include span-columns($total-columns);
+                        @include span-columns($total-columns * ($i/$number));
                         
                         &.end{
                             @include omega;
@@ -71,7 +71,7 @@ body{
 .tools{
     position:fixed;
     width:230px;
-    left:-230px;
+    left:0;
     top:0;
     height:100%;
     background-color:$color6;
