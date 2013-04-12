@@ -4,6 +4,11 @@
 
 /* ================ MAIN LAYOUT ELEMENTS ================ */
 
+body,html{
+    height:100%;
+}
+
+
 #site-wrapper{
     height:100%;
     min-height: 100%;

@@ -6,7 +6,12 @@
     clear:left;
 }
 
+.footer-row{
+	z-index:99;
+	position:relative;
+}
+
 #site-footer{
-    height:($footer-height - 50)+px;
+    height:$footer-height+px;
     @include block-left;;
 }
