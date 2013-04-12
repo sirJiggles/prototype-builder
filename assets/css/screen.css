@@ -1390,7 +1390,7 @@ html.ie7 .gallery .flex-viewport ul { min-height: 410px; }
 
 #nav-header { min-height: 80px; }
 
-.main-nav-standard ul { padding: 0; margin: 0; display: none; width: 100%; float: left; margin: 60px 0 10px 0; }
+.main-nav-standard ul { padding: 0; margin: 0; width: 100%; float: left; margin: 60px 0 10px 0; }
 .main-nav-standard ul li { display: block; float: left; margin: 0; border: none; width: auto; }
 .main-nav-standard ul li a { text-decoration: none; color: #222222; font-size: 1em; line-height: 1.5em; width: 100%; background-color: #dddddd; padding: 20px; text-align: center; display: block; float: left; }
 .main-nav-standard ul li a:hover { background-color: #aaaaaa; }
@@ -1399,7 +1399,8 @@ html.ie7 .gallery .flex-viewport ul { min-height: 410px; }
 .main-nav-standard .nav-controls a { text-decoration: none; outline: none; width: 40px; height: 40px; background-color: #555555; border: 1px solid black; display: block; float: left; text-indent: 9999px; margin-left: 20px; }
 
 /* TABLET DOWN */
-@media only screen and (max-width: 700px) { .main-nav-standard ul li { border-bottom: 1px solid white; width: 100%; }
+@media only screen and (max-width: 700px) { .main-nav-standard ul { display: none; }
+  .main-nav-standard ul li { border-bottom: 1px solid white; width: 100%; }
   .main-nav-standard .nav-controls { display: block; } }
 #nav-header { min-height: 60px; display: block; float: left; width: 100%; z-index: 9999999; }
 

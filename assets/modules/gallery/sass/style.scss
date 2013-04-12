@@ -1,0 +1,210 @@
+
+.gallery{
+	width:100%;
+    margin:0 auto;
+    position:relative;
+    @include block-left;
+
+    ul{
+
+    	@include reset-box;
+    	list-style-type: none;
+
+	    li{
+
+	    	@include reset-box;
+	    	display: none;
+			-webkit-backface-visibility: hidden;
+
+	    	article{
+
+	    		width:100%;
+	    		padding:20px 0 20px 0;
+	    		float:left;
+
+
+		    	figure{
+
+
+			    	h4{
+			    		width:50%;
+			    		@include em-font(14);
+			    		@include em-line-height(14);
+			    		color:$color4;
+			    		float:left;
+			    		margin:0 0 10px 0;
+			    	}
+
+
+		    		@include block-left;
+		    		position:relative;
+
+		    		figcaption{
+		    			@include block-left;
+		    			width:50%;
+		    			@include em-font(24);
+		    			@include em-line-height(16);
+		    			padding-right:20px;
+		    		}
+
+
+			    	img{
+			    		float:right;
+			    		width:50%;
+
+			    	}
+
+			    	a.btn{
+	    				position:absolute;
+	    				bottom:50px;
+	    				left:0;
+	    			}
+		    	}
+	    	}
+	    }
+    }
+
+
+    // Customisation of flexslider controls
+    .flex-control-nav{
+
+    	position:absolute;
+    	bottom:35px;
+
+    	li{
+    		@include block-left;
+    		margin:0 4px 0 0;
+
+    		a{
+    			@include block-left;
+    			background-color: $color5;
+    			@include border-radius(7px);
+    			width:7px;
+    			height:7px;
+    			text-decoration: none;
+    			outline:none;
+    			text-indent: -999px;
+    			overflow: hidden;
+
+    		}
+
+    		a.flex-active{
+    			background-color:$color4;
+    		}
+    	}
+    }
+
+    .flex-direction-nav{
+
+    	width:50px;
+    	position: absolute;
+		bottom: 35px;
+		right: 52%;
+
+    	li{
+
+    		@include block-left;
+
+    		a{
+    			width:23px;
+    			height:23px;
+    			@include block-left;
+    			text-indent: -999px;
+    			overflow: hidden;
+    		}
+
+    		a.flex-prev{
+    			background:url('/assets/modules/gallery/img/arrow-left.gif');
+    			margin:0 3px 0 0;
+    		}
+
+    		a.flex-next{
+				background:url('/assets/modules/gallery/img/arrow-right.gif');
+    		}
+    	}
+    }
+
+}
+
+/* LESS THAN DESKTOP */
+@media only screen and (max-width: $desktop){
+	.gallery{
+
+		min-height:370px;
+		margin:0 0 20px 0;
+
+		ul{
+			li{
+				article{
+					figure{
+						figcaption{
+							@include em-font(20);
+							@include em-line-height(16);
+						}
+
+						a.btn{
+		    				position:relative;
+		    				margin:10px 0 0 0;
+		    				bottom:0;
+		    			}
+
+		    			
+					}
+				}
+			}
+		}
+
+		.flex-direction-nav{
+			bottom:-11px;
+			right:0;
+		}
+
+		.flex-control-nav{
+			bottom:0;
+			left:46%;
+		}
+	}	
+}
+
+/* LESS THAN TABLET */
+@media only screen and (max-width: $mobile){
+	.gallery{
+
+		min-height:600px;
+
+		ul{
+			li{
+				article{
+					figure{
+
+						h4{
+							width:100%;
+							margin:10px 0 0 0;
+						}
+						figcaption{
+							@include em-font(20);
+							@include em-line-height(16);
+							width:100%;
+							padding:10px 0;
+						}
+
+						img{
+							width:100%;
+						}
+
+						a.btn{
+		    				margin:0;
+		    			}
+					}
+				}
+			}
+		}
+
+		.flex-control-nav{
+			left:0;
+		}
+
+
+	}	
+}
+

@@ -8,7 +8,6 @@
 
 	ul{
 		@include reset-box;
-		display:none;
 		width:100%;
 		float:left;
 		margin:60px 0 10px 0;
@@ -74,6 +73,7 @@
 	.main-nav-standard{
 
 		ul{
+			display:none;
 			li{
 				border-bottom:1px solid white;
 				width:100%;
