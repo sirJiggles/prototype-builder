@@ -68,9 +68,13 @@ textarea { width: 100%; height: 50px; }
 
 .push { height: 10px; clear: left; }
 
-#site-footer { height: -40px; display: block; float: left; }
+.footer-row { z-index: 99; position: relative; }
+
+#site-footer { height: 10px; display: block; float: left; }
 
 /* ================ MAIN LAYOUT ELEMENTS ================ */
+body, html { height: 100%; }
+
 body { overflow-x: hidden; }
 
 #site-wrapper { height: 100%; min-height: 100%; height: auto; margin-bottom: -10px; position: relative; overflow: hidden; margin: 120px 0 0 240px; }
@@ -1387,6 +1391,45 @@ html.ie7 .gallery .flex-viewport ul { min-height: 410px; }
 .me-cannotplay { display: none; }
 
 .media-controls { display: none; }
+
+.gallery { width: 100%; margin: 0 auto; position: relative; display: block; float: left; }
+.gallery ul { padding: 0; margin: 0; list-style-type: none; }
+.gallery ul li { padding: 0; margin: 0; display: none; -webkit-backface-visibility: hidden; }
+.gallery ul li article { width: 100%; padding: 20px 0 20px 0; float: left; }
+.gallery ul li article figure { display: block; float: left; position: relative; }
+.gallery ul li article figure h4 { width: 50%; font-size: 0.875em; line-height: 1.3125em; color: #aaaaaa; float: left; margin: 0 0 10px 0; }
+.gallery ul li article figure figcaption { display: block; float: left; width: 50%; font-size: 1.5em; line-height: 1.5em; padding-right: 20px; }
+.gallery ul li article figure img { float: right; width: 50%; }
+.gallery ul li article figure a.btn { position: absolute; bottom: 50px; left: 0; }
+.gallery .flex-control-nav { position: absolute; bottom: 35px; }
+.gallery .flex-control-nav li { display: block; float: left; margin: 0 4px 0 0; }
+.gallery .flex-control-nav li a { display: block; float: left; background-color: #dddddd; -webkit-border-radius: 7px; -moz-border-radius: 7px; -ms-border-radius: 7px; -o-border-radius: 7px; border-radius: 7px; width: 7px; height: 7px; text-decoration: none; outline: none; text-indent: -999px; overflow: hidden; }
+.gallery .flex-control-nav li a.flex-active { background-color: #aaaaaa; }
+.gallery .flex-direction-nav { width: 50px; position: absolute; bottom: 35px; right: 52%; }
+.gallery .flex-direction-nav li { display: block; float: left; }
+.gallery .flex-direction-nav li a { width: 23px; height: 23px; display: block; float: left; text-indent: -999px; overflow: hidden; }
+.gallery .flex-direction-nav li a.flex-prev { background: url("/assets/modules/gallery/img/arrow-left.gif"); margin: 0 3px 0 0; }
+.gallery .flex-direction-nav li a.flex-next { background: url("/assets/modules/gallery/img/arrow-right.gif"); }
+
+/* LESS THAN DESKTOP */
+@media only screen and (max-width: 960px) { .gallery { min-height: 370px; margin: 0 0 20px 0; }
+  .gallery ul li article figure figcaption { font-size: 1.25em; line-height: 1.5em; }
+  .gallery ul li article figure a.btn { position: relative; margin: 10px 0 0 0; bottom: 0; clear: left; }
+  .gallery .flex-direction-nav { bottom: -11px; right: 0; }
+  .gallery .flex-control-nav { bottom: 0; left: 46%; } }
+/* LESS THAN TABLET */
+@media only screen and (max-width: 480px) { .gallery { min-height: 600px; }
+  .gallery ul li article figure h4 { width: 100%; margin: 10px 0 0 0; }
+  .gallery ul li article figure figcaption { font-size: 1.25em; line-height: 1.5em; width: 100%; padding: 10px 0; }
+  .gallery ul li article figure img { width: 100%; }
+  .gallery ul li article figure a.btn { margin: 0; }
+  .gallery .flex-control-nav { left: 0; } }
+.news-listing-small ul { padding: 0; margin: 0; list-style-type: none; }
+.news-listing-small ul li { display: block; float: left; margin: 0; padding: 20px 0; border-bottom: 1px solid #eeeeee; }
+.news-listing-small ul li time { font-size: 0.75em; line-height: 1.125em; color: #dddddd; width: 100%; display: block; float: left; margin: 0 0 5px 0; }
+.news-listing-small ul li a { color: #888888; text-decoration: none; outline: none; font-size: 1em; line-height: 1.5em; }
+.news-listing-small ul li.last { border: none; }
+.news-listing-small ul li.first { padding: 0 0 20px 0; }
 
 #nav-header { min-height: 80px; }
 
