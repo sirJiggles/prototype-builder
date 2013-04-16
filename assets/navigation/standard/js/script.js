@@ -1,3 +1,3 @@
 $('.nav-controls a').click(function(e){
-	$('.main-nav-standard ul').slideToggle();
+	$('.main-nav-standard ul').toggleClass('open');
 });

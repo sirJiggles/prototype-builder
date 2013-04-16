@@ -220,6 +220,62 @@ $(window).ready(function () {
 
     });
 
+    // Download project functionality
+    $('.download-project').click(function(e){
+        e.preventDefault();
+
+        // post the hidden form with the json data in it
+        $('#data').val(JSON.stringify(global));
+        $('#data-form').submit();
+    });
+
+    // lock / unlocking the template
+    $('.lock-template').click(function(e){
+        $('.main').toggleClass('lock');
+        if ($('.main').hasClass('lock')){
+            global.templates[global.currentTemplate].lock = true;
+        }else{
+            global.templates[global.currentTemplate].lock = false;
+        }
+        updateStore(false);
+    })
+
+});
+
+// Function to update the lost of templates the user can choose
+function updateTemplateList(){
+    var templateListString = '';
+    for(var template in global.templates){
+        if (global.templates.hasOwnProperty(template)){
+            templateListString += '<li' ;
+
+            // If the active template we will add our controls to the tab
+            if(template == global.currentTemplate){
+                templateListString += ' class="active">';
+                templateListString += '<a href="#" title="Click here to edit the template" class="edit-template">Rename Template</a>';
+                templateListString += '<a class="template-item" href="#" title="Click here to select the template">'+template+'</a>';
+                templateListString += '<a href="#" title="Click to delete current template" class="delete-template">Delete Template</a>';
+                templateListString += '</li>';
+
+                
+            }else{
+                templateListString += '><a class="template-item" href="#" title="Click here to select the template">'+template+'</a></li>';
+            }
+
+            
+        }
+    }
+
+    // add the add new template button to the end
+    templateListString += '<li class="new-template-li"><a href="#" title="Click to create a new template" class="new-template">New Template</a></li>';
+
+    $('.template-tabs').html(templateListString);
+
+    $('.edit-template').unbind('click');
+    $('.new-template').unbind('click');
+    $('.delete-template').unbind('click');
+
+    //bind and unbind the template controls
     // click to view the popup for editing template
     $('.edit-template').click(function(e){
         e.preventDefault();
@@ -280,42 +336,7 @@ $(window).ready(function () {
 
     });
 
-    // Download project functionality
-    $('.download-project').click(function(e){
-        e.preventDefault();
 
-        // post the hidden form with the json data in it
-        $('#data').val(JSON.stringify(global));
-        $('#data-form').submit();
-    });
-
-    // lock / unlocking the template
-    $('.lock-template').click(function(e){
-        $('.main').toggleClass('lock');
-        if ($('.main').hasClass('lock')){
-            global.templates[global.currentTemplate].lock = true;
-        }else{
-            global.templates[global.currentTemplate].lock = false;
-        }
-        updateStore(false);
-    })
-
-});
-
-// Function to update the lost of templates the user can choose
-function updateTemplateList(){
-    var templateListString = '';
-    for(var template in global.templates){
-        if (global.templates.hasOwnProperty(template)){
-            templateListString += '<li' ;
-            if(template == global.currentTemplate){
-                templateListString += ' class="active"';
-            }
-
-            templateListString += '><a class="template-item" href="#" title="Click here to select the template">'+template+'</a></li>';
-        }
-    }
-    $('.template-tabs').html(templateListString);
 }
 
 // Function to apply the global.currentTemplate to stage

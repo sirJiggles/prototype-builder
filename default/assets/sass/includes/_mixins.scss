@@ -1,4 +1,3 @@
-@import "_settings";
 
 @mixin em-font($px:12){
     font-size:(1 / $base-font) * $px + em;

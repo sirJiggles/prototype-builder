@@ -29,6 +29,9 @@
     	<!-- CSS -->
         <link rel="stylesheet" href="assets/css/screen.css" media="screen" type="text/css" />
     	<link rel="stylesheet" href="assets/css/print.css" media="print" type="text/css"/>
+
+        <!-- CUSTOM FONT -->
+        <link href='http://fonts.googleapis.com/css?family=Noto+Sans:400,700' rel='stylesheet' type='text/css'>
         
         <!--[if lte IE 7]>
             <link rel="stylesheet" href="assets/css/fixed-width.css" media="screen" type="text/css"/>
@@ -156,8 +159,8 @@
         <aside class="tools">
             <div class="tools-wrapper">
                 
-                <h3>Grid boxes</h3>
-                <ul>
+                <h3>Grid</h3>
+                <ul class="grid-containers">
                     <li><a href="#" class="grid-link" id="full">Full</a></li>
                     <li><a href="#" class="grid-link" id="half">Half</a></li>
                     <li><a href="#" class="grid-link" id="third">Third</a></li>
@@ -166,7 +169,6 @@
                     <li><a href="#" class="grid-link" id="sixth">Sixth</a></li>
                 </ul>
                 <h3>Modules</h3>
-                <label for="module-select">Insert</label>
                 <select name="module-select" id="module-select">
                     <option id="default-module-select" value="select-module">Select Module</option>
                     <?php 
@@ -199,7 +201,6 @@
                 <?php endforeach; ?>
 
                 <h3>Navigation</h3>
-                <label for="nav-select">Use</label>
                 <select name="nav-select" id="nav-select">
                     <option id="default-nav-select" value="select-nav">Select Navigation</option>
                     <?php 
@@ -229,18 +230,11 @@
                     <code id="code-<?php echo $entryRaw; ?>"><?php echo $markup; ?></code>
                 <?php endforeach; ?>
 
-                <h3>Templates</h3>
-                <ul class="template-controls">
-                    <li><a href="#" title="Click here to edit the name of this template" class="edit-template">Rename Template</a></li>
-                    <li><a href="#" title="Click to create a new template" class="new-template">New Template</a></li>
-                    <li><a href="#" title="Click to delete current template" class="delete-template">Delete Template</a></li>
-                    <li><a href="#" title="Click to lock / unclock the template" class="lock-template">Lock / Unlock grid</a></li>
-                </ul>
-
                 <h3>Project</h3>
-                <ul>
+                <ul class="project-controls">
+                    <li><a href="#" title="Click to lock / unclock the template" class="lock-template">Lock / Unlock grid</a></li>
                     <li><a href="#" title="Click to download project" class="download-project">Download Project</a></li>
-                    <li><a href="#" title="Delete the project" class="clear-store">Delete Project</a></li>
+                    <li class="last"><a href="#" title="Delete the project" class="clear-store">Delete Project</a></li>
                 </ul>
 
             </div>

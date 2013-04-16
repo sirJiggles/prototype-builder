@@ -3,9 +3,6 @@
 Changed to Desktop first else we would not be able to have a modular system!
 
 */
-@import "_settings";
-@import "_mixins";
-
 
 /* LESS THAN DESKTOP LARGE */
 @media only screen and (max-width: $dekstopLarge){
