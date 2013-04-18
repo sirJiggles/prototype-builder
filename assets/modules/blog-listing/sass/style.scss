@@ -9,63 +9,94 @@
 			@include block-left;
 			width:100%;
 			@include reset-box;
-			background-color: white;
 
 			article{
+
 				@include block-left;
 				position:relative;
 				background-color:white;
 				margin:30px 15px 0 15px;
-				border-bottom:1px solid $color6;
 				padding-bottom:15px;
+				border-bottom:1px solid $color5;
+
+				.social{
+					background:url('../modules/blog-listing/img/social.png') 0 0 no-repeat;
+					position:absolute;
+					top:5px;
+					right:0;
+					width:248px;
+					height:20px;
+				}
+
+
 
 				time{
 					position:absolute;
 					top:0px;
 					left:-17px;
-					background-color: $color3;
+					background-color: #BFD0D4;
 					text-transform: uppercase;
 					color:white;
 					@include em-font(20);
 					@include em-line-height(16);
-					@include box-shadow(#222 1px 1px 5px);
-					text-shadow: $color2 1px 1px;
 					padding:2px 10px;
 				}
 				header{
 					width:100%;
-					display:block;
+					@include block-left;
+					padding-top:40px;
 
 					h2{
 						width:100%;
 						@include block-left;
-						@include em-font(24);
-						color:$color2;
-						margin:40px 0 0 0;
+						@include em-font(22);
+						font-style: italic;
+						font-weight: 400;
+						margin:0;
+
+						a{
+							color:$color2;
+							text-decoration: none;
+
+						}
 					}
 				}
+
+				a.comments{
+
+					color:$color2;
+					@include em-font(14);
+					font-style: italic;
+					@include em-line-height(14);
+					float:right;
+					display:block;
+					width:30%;
+					text-align: right;
+					text-decoration: none;
+					height:30px;
+
+				}
+
+
 				ul.tags{
 
-					width:100%;
+					width:70%;
 					@include block-left;
-					margin:0 0 20px 0;
+					margin:0;
+					height:30px;
 
 					li{
 					 	width:auto;
 					 	@include em-font(13);
 				 		@include em-line-height(13);
-					 	color:$color4;
+					 	color:$color2;
 					 	margin:0 5px 0 0;
 
 					 	a{
-					 		color:$color4;
+					 		color:$color2;
 					 		text-decoration:none;
 					 		outline:none;
 					 		font-weight: 700;
-
-					 		&:hover{
-					 			text-decoration: underline;
-					 		}
 
 					 	}
 					 }
@@ -77,6 +108,7 @@
 					@include em-font(16);
 					@include em-line-height(16);
 					color:$color3;
+					font-weight:300;
 					margin:0 0 15px 0;
 				}
 
