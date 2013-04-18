@@ -79,7 +79,7 @@
     padding:25px;
 }
 
-@mixin border-box($url){
+@mixin border-box($url:''){
     -webkit-box-sizing:border-box;
     -moz-box-sizing:border-box;
     box-sizing:border-box;

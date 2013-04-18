@@ -1,0 +1,125 @@
+.blog-listing{
+
+	ul{
+		@include reset-box;
+		list-style-type: none;
+		@include block-left;
+
+		li{
+			@include block-left;
+			width:100%;
+			@include reset-box;
+			background-color: white;
+
+			article{
+				@include block-left;
+				position:relative;
+				background-color:white;
+				margin:30px 15px 0 15px;
+				border-bottom:1px solid $color6;
+				padding-bottom:15px;
+
+				time{
+					position:absolute;
+					top:0px;
+					left:-17px;
+					background-color: $color3;
+					text-transform: uppercase;
+					color:white;
+					@include em-font(20);
+					@include em-line-height(16);
+					@include box-shadow(#222 1px 1px 5px);
+					text-shadow: $color2 1px 1px;
+					padding:2px 10px;
+				}
+				header{
+					width:100%;
+					display:block;
+
+					h2{
+						width:100%;
+						@include block-left;
+						@include em-font(24);
+						color:$color2;
+						margin:40px 0 0 0;
+					}
+				}
+				ul.tags{
+
+					width:100%;
+					@include block-left;
+					margin:0 0 20px 0;
+
+					li{
+					 	width:auto;
+					 	@include em-font(13);
+				 		@include em-line-height(13);
+					 	color:$color4;
+					 	margin:0 5px 0 0;
+
+					 	a{
+					 		color:$color4;
+					 		text-decoration:none;
+					 		outline:none;
+					 		font-weight: 700;
+
+					 		&:hover{
+					 			text-decoration: underline;
+					 		}
+
+					 	}
+					 }
+
+				}
+
+				p{
+					display:block;
+					@include em-font(16);
+					@include em-line-height(16);
+					color:$color3;
+					margin:0 0 15px 0;
+				}
+
+			}
+
+			&.last{
+				article{
+					border:none;
+				}
+			}
+
+			&.first{
+				article{
+					margin-top:15px;
+				}
+			}
+
+			img{
+				float:left;
+				margin:0 20px 10px 0;
+			}
+
+		}
+	}
+}
+
+// MEDIA QUARS
+
+
+/* LESS THAN TABLET */
+@media only screen and (max-width: $mobile){
+	.blog-listing{
+		ul{
+			li{
+				img{
+					width:100%;
+					margin:0 0 20px 0;
+				}
+
+				p{
+					width:100%;
+				}
+			}
+		}
+	}
+}

@@ -21,7 +21,7 @@ body{
 }
 
 *{
-    @include border-box('/assets/js/vendor/border-box.htc');
+    @include border-box('../assets/js/vendor/border-box.htc');
 }
 
 .row {

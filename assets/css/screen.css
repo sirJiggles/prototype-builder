@@ -94,7 +94,7 @@ body { overflow-x: hidden; background: url("../img/osx.png") 0 0 repeat; }
 
 #site-wrapper { height: 100%; min-height: 100%; height: auto; margin-bottom: -10px; position: relative; overflow: hidden; margin: 120px 0 0 240px; }
 
-* { -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; *behavior: url("/assets/js/vendor/border-box.htc"); }
+* { -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; *behavior: url("../assets/js/vendor/border-box.htc"); }
 
 .row { *zoom: 1; max-width: 960px; _width: 960px; padding-left: 10px; padding-right: 10px; margin-left: auto; margin-right: auto; }
 .row:after { content: ""; display: table; clear: both; }
@@ -1251,11 +1251,11 @@ article.news .grid-9 .article-left-wrapper h2 { width: 100%; }
 
 .media-controls { display: none; }
 
-.gallery { width: 100%; margin: 0 auto; position: relative; display: block; float: left; }
+.gallery { width: 100%; position: relative; display: block; float: left; }
 .gallery ul { padding: 0; margin: 0; list-style-type: none; }
-.gallery ul li { padding: 0; margin: 0; display: none; -webkit-backface-visibility: hidden; }
+.gallery ul li { padding: 0; margin: 0; display: block; float: left; -webkit-backface-visibility: hidden; }
 .gallery ul li article { width: 100%; padding: 20px 0 20px 0; float: left; }
-.gallery ul li article figure { display: block; float: left; position: relative; }
+.gallery ul li article figure { display: block; float: left; position: relative; display: block; float: left; position: relative; }
 .gallery ul li article figure h4 { width: 50%; font-size: 0.875em; line-height: 1.3125em; color: #aaaaaa; float: left; margin: 0 0 10px 0; }
 .gallery ul li article figure figcaption { display: block; float: left; width: 50%; font-size: 1.5em; line-height: 1.5em; padding-right: 20px; }
 .gallery ul li article figure img { float: right; width: 50%; }
@@ -1290,6 +1290,24 @@ article.news .grid-9 .article-left-wrapper h2 { width: 100%; }
 .news-listing-small ul li.last { border: none; }
 .news-listing-small ul li.first { padding: 0 0 20px 0; }
 
+.blog-listing ul { padding: 0; margin: 0; list-style-type: none; display: block; float: left; }
+.blog-listing ul li { display: block; float: left; width: 100%; padding: 0; margin: 0; background-color: white; }
+.blog-listing ul li article { display: block; float: left; position: relative; background-color: white; margin: 30px 15px 0 15px; border-bottom: 1px solid #eeeeee; padding-bottom: 15px; }
+.blog-listing ul li article time { position: absolute; top: 0px; left: -17px; background-color: #888888; text-transform: uppercase; color: white; font-size: 1.25em; line-height: 1.5em; -webkit-box-shadow: #222222 1px 1px 5px; -moz-box-shadow: #222222 1px 1px 5px; box-shadow: #222222 1px 1px 5px; text-shadow: #555555 1px 1px; padding: 2px 10px; }
+.blog-listing ul li article header { width: 100%; display: block; }
+.blog-listing ul li article header h2 { width: 100%; display: block; float: left; font-size: 1.5em; color: #555555; margin: 40px 0 0 0; }
+.blog-listing ul li article ul.tags { width: 100%; display: block; float: left; margin: 0 0 20px 0; }
+.blog-listing ul li article ul.tags li { width: auto; font-size: 0.8125em; line-height: 1.21875em; color: #aaaaaa; margin: 0 5px 0 0; }
+.blog-listing ul li article ul.tags li a { color: #aaaaaa; text-decoration: none; outline: none; font-weight: 700; }
+.blog-listing ul li article ul.tags li a:hover { text-decoration: underline; }
+.blog-listing ul li article p { display: block; font-size: 1em; line-height: 1.5em; color: #888888; margin: 0 0 15px 0; }
+.blog-listing ul li.last article { border: none; }
+.blog-listing ul li.first article { margin-top: 15px; }
+.blog-listing ul li img { float: left; margin: 0 20px 10px 0; }
+
+/* LESS THAN TABLET */
+@media only screen and (max-width: 480px) { .blog-listing ul li img { width: 100%; margin: 0 0 20px 0; }
+  .blog-listing ul li p { width: 100%; } }
 #nav-header { min-height: 60px; display: block; float: left; width: 100%; z-index: 9999999; }
 
 .main-nav-standard ul { padding: 0; margin: 0; width: 100%; float: left; margin: 60px 0 10px 0; display: block; }

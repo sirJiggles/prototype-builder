@@ -1,9 +1,9 @@
 if ($('.gallery').length > 0){
 
-
+	$('.gallery li').fadeOut();
+	
 	// start the Gallery
 	$('.gallery').flexslider({
-		animation:'slide',
         selector:"ul li",
         animation:"fade",
         animationSpeed: isTouchDevice() ? 400 : 1000
