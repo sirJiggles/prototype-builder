@@ -101,31 +101,33 @@ $(window).ready(function () {
     });
     
     // click a grid button click
-    $('.grid-link').click(function(e){
+    $('#grid-select').change(function(e){
 
         e.preventDefault();
-        
-        if(!$('.main').hasClass('lock')){
 
-            $('.grid-box').removeClass('grid-active');
-            
-            addGridObjectToStage($(this).attr('id'), global.gridIdent);
+        if($(this).val() == 'select-grid') return;
+        if($('.main').hasClass('lock')) return;
         
-            // add item to grid store
-            global.templates[global.currentTemplate].grid[global.gridIdent] = {
-                                                size:$(this).attr('id'),
-                                                end:0,
-                                                text:'',
-                                                modules:[]
-                                            };
+
+        $('.grid-box').removeClass('grid-active');
+            
+        addGridObjectToStage($(this).val(), global.gridIdent);
+        
+        // add item to grid store
+        global.templates[global.currentTemplate].grid[global.gridIdent] = {
+                                            size:$(this).val(),
+                                            end:0,
+                                            text:'',
+                                            modules:[]
+                                        };
                                             
-            global.templates[global.currentTemplate].positions.push(global.gridIdent);
-            
-            //increment the grid ref var
-            global.gridIdent ++;
-            
-            updateStore(false);
-        }
+        global.templates[global.currentTemplate].positions.push(global.gridIdent);
+        
+        //increment the grid ref var
+        global.gridIdent ++;
+        
+        updateStore(false);
+
             
     });
     
@@ -430,15 +432,13 @@ function addGridObjectToStage(type, id){
     
     var gridText = (typeof global.templates[global.currentTemplate].grid[id] !== 'undefined') ? global.templates[global.currentTemplate].grid[id].text : '';
 
-    var gridObject = $('<li class="grid-box grid-active col span-1 unlocked" id="grid-ident-'+id+'">'+
+    var gridObject = $('<li class="grid-box grid-active unlocked '+type+'" id="grid-ident-'+id+'">'+
                         '<a href="#" class="dragger control">&#9871;</a>'+
                         '<a class="settings control" href="#" title="click here to edit this box">&#9881;</a>'+
                         '<a class="end-toggle control" href="#" title="End class">&#58542;</a>'+
                         '<a class="remove control" href="#" title="Remove Item">&#10060;</a>'+
                         '<div class="text-label-proto-builder">'+gridText+'</div></li>');
 
-    // add the col class to the grid obj
-    $(gridObject).addClass(type);
 
     // add grid object to stage
     $('.main').append(gridObject);

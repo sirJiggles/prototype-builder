@@ -160,14 +160,22 @@
             <div class="tools-wrapper">
                 
                 <h3>Grid</h3>
-                <ul class="grid-containers">
-                    <li><a href="#" class="grid-link" id="full">Full</a></li>
-                    <li><a href="#" class="grid-link" id="half">Half</a></li>
-                    <li><a href="#" class="grid-link" id="third">Third</a></li>
-                    <li><a href="#" class="grid-link" id="quarter">Quarter</a></li>
-                    <li><a href="#" class="grid-link" id="fith">Fith</a></li>
-                    <li><a href="#" class="grid-link" id="sixth">Sixth</a></li>
-                </ul>
+                <select name="grid-select" id="grid-select">
+                    <option id="default-grid-select" value="select-grid">Select Grid Box</option>
+                    <option id="grid-12" value="grid-12">12 Col</option>
+                    <option id="grid-11" value="grid-11">11 Col</option>
+                    <option id="grid-10" value="grid-10">10 Col</option>
+                    <option id="grid-9" value="grid-9">9 Col</option>
+                    <option id="grid-8" value="grid-8">8 Col</option>
+                    <option id="grid-7" value="grid-7">7 Col</option>
+                    <option id="grid-6" value="grid-6">6 Col</option>
+                    <option id="grid-5" value="grid-5">5 Col</option>
+                    <option id="grid-4" value="grid-4">4 Col</option>
+                    <option id="grid-3" value="grid-3">3 Col</option>
+                    <option id="grid-2" value="grid-2">2 Col</option>
+                    <option id="grid-1" value="grid-1">1 Col</option>
+                </select>
+
                 <h3>Modules</h3>
                 <select name="module-select" id="module-select">
                     <option id="default-module-select" value="select-module">Select Module</option>

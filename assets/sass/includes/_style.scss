@@ -32,30 +32,16 @@ body{
         margin-right:-$grid-padding;
         
     } // Nudge back nested rows
-    
-    .col {
-        @include span-columns($total-columns);
-        
-        &.end{
-            @include omega;
-        }
-        
-        @each $section in $gridGlobal{
-            $name: nth($section, 1);
-            $number: nth($section, 2);
 
-            &.#{$name}{
-                @for $i from 1 through $number{
-                    &.span-#{$i}{
-                        @include span-columns($total-columns * ($i/$number));
+    @for $i from 1 through $total-columns{
+        .grid-#{$i}{
+            @include span-columns($i);
                         
-                        &.end{
-                            @include omega;
-                        }
-                    }
-                }
+            &.end{
+                @include omega;
             }
         }
+
     }
 }
 
