@@ -33,7 +33,7 @@
         <!-- CUSTOM FONT -->
         <link href='http://fonts.googleapis.com/css?family=Noto+Sans:400,700' rel='stylesheet' type='text/css'>
         
-        <!--[if lte IE 7]>
+        <!--[if lte IE 8]>
             <link rel="stylesheet" href="assets/css/fixed-width.css" media="screen" type="text/css"/>
         <![endif]-->
         
@@ -157,6 +157,8 @@
 
 
         <aside class="tools">
+
+            <a class="built-for" href="http://google.com" title="Built for Google Chrome">Built for Google Chrome</a>
             <div class="tools-wrapper">
                 
                 <h3>Grid</h3>

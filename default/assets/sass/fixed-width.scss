@@ -6,7 +6,8 @@
 @import "includes/_settings";
 @import "includes/_mixins";
 
-#site-wrapper{
+#site-wrapper,
+#site-footer{
     min-width:1024px;
     overflow:visible;
 }

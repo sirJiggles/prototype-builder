@@ -26,8 +26,7 @@ form {
     }
     label,
     input,
-    textarea,
-    select{
+    textarea{
         @include em-font(14);
     }
 
@@ -36,6 +35,9 @@ form {
         line-height: 1.8em;
         width:40%;
         @include reset-box;
+        @include em-font(18);
+        @include em-line-height(18);
+        @include custom-font;
     }
 
     legend {
@@ -47,12 +49,12 @@ form {
         color: white;
     }
 
-    input,
-    select {
+    input{
         width:59%;
         padding:0;
         margin:0 0 15px 0;
     }
+
 
     input[type='search'] {
         width:100%;
@@ -70,17 +72,28 @@ form {
         border:none;
         overflow:visible;
         font-weight:400;
-        padding:20px;
+        padding:10px;
         margin:10px 0 0 0;
+        background-color: #00b6ff;
+        color:white;
+
+        &:hover{
+            background-color: lighten(#00b6ff, 10%);
+        }
     }
 
-    input[type='submit']:hover,
-    input[type='submit']:active{
-        
+    input[type='text'],
+    textarea{
+        @include border-radius(5px);
+        @include box-shadow(#333 2px 2px 6px inset);
+        padding:7px 10px;
+        color:#999;
+        border:none;
     }
 
     input[type='checkbox']{
         width:15px;
+        margin-top:10px;
     }
 }
 
@@ -95,4 +108,21 @@ meter {
 textarea{
     width:100%;
     height:50px;
+}
+
+select{
+    -webkit-appearance: none;
+    background: transparent;
+    color:white;
+    @include em-font(16);
+    font-weight: 400;
+    border:none;
+    padding:5px 10px;
+    margin-bottom:15px;
+    width:59%;
+    background:image-url('select-arrow.png') 95% 50% no-repeat #00b6ff;
+
+    &:hover{
+        background:image-url('select-arrow.png') 95% 50% no-repeat lighten(#00b6ff, 10%);
+    }
 }

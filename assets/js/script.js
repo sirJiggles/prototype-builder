@@ -433,10 +433,10 @@ function addGridObjectToStage(type, id){
     var gridText = (typeof global.templates[global.currentTemplate].grid[id] !== 'undefined') ? global.templates[global.currentTemplate].grid[id].text : '';
 
     var gridObject = $('<li class="grid-box grid-active unlocked '+type+'" id="grid-ident-'+id+'">'+
-                        '<a href="#" class="dragger control">&#9871;</a>'+
-                        '<a class="settings control" href="#" title="click here to edit this box">&#9881;</a>'+
-                        '<a class="end-toggle control" href="#" title="End class">&#58542;</a>'+
-                        '<a class="remove control" href="#" title="Remove Item">&#10060;</a>'+
+                        '<a href="#" title="Click here to drag sort the grid box" class="dragger control">Drag box</a>'+
+                        '<a class="settings control" href="#" title="Click here to edit the settings of this container">Edit container</a>'+
+                        '<a class="end-toggle control" href="#" title="Click here to toggle the end class on this container">Toggle end class</a>'+
+                        '<a class="remove control" href="#" title="Click here to remove item">Remove Item</a>'+
                         '<div class="text-label-proto-builder">'+gridText+'</div></li>');
 
 

@@ -17,15 +17,10 @@
         
         <div class="row footer-row">
             <footer id="site-footer">
-                <div class="col span-1 full end">
-                    <p>This is our footer!</p>
-                </div>
+                
             </footer>
         </div>
 
-        
-        <!-- Remove after develop --> 
-        
         
         
         <!--<script type="text/javascript" src="assets/js/script.min.js"></script> -->

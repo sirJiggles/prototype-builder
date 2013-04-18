@@ -30,7 +30,7 @@
         <link rel="stylesheet" href="assets/css/screen.css" media="screen" type="text/css" />
     	<link rel="stylesheet" href="assets/css/print.css" media="print" type="text/css"/>
         
-        <!--[if lte IE 7]>
+        <!--[if lte IE 8]>
             <link rel="stylesheet" href="assets/css/fixed-width.css" media="screen" type="text/css"/>
         <![endif]-->
               
