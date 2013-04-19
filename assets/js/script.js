@@ -125,6 +125,9 @@ $(window).ready(function () {
         
         //increment the grid ref var
         global.gridIdent ++;
+
+        // reset the value of the select box
+        $(this).val('Select Grid Box');
         
         updateStore(false);
 
@@ -174,7 +177,7 @@ $(window).ready(function () {
 
         e.preventDefault();
         // remove old grid size classes and add new ones
-        $('.grid-link').each(function(){
+        $("#grid-select > option").each(function() {
             $('.editing').removeClass($(this).attr('id'));
         });
         
@@ -349,7 +352,6 @@ function loadTemplate(){
 
     // re-calculate the value of gird ident
     var gridCount = 0, allModules = [];
-    console.log(global.currentTemplate);
 
     for(var prop in global.templates[global.currentTemplate].grid){
         if (global.templates[global.currentTemplate].grid.hasOwnProperty(prop)){

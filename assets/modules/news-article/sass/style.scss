@@ -1,6 +1,7 @@
 
 article.news{
-    padding:4%;
+
+    padding:20px;
     height:100%;
     width:100%;
     background-color:white;
@@ -10,105 +11,110 @@ article.news{
     z-index:1;
     margin:0 0 20px 0;
 
-    h2{
-        @include em-font(18);
-        @include em-line-height(18);
-        font-weight: 700;
-        margin:0;
-        color:$color2;
-        width:85%;
-    }
+    .article-left{
 
-    p{
-        margin:0 0 20px 0;
         @include block-left;
-        color:$color1;
-        @include em-font(14);
-        @include em-line-height(14);
-    }
+        width:75%;
 
+        h3{
+            @include em-font(18);
+            @include em-line-height(18);
+            font-weight: 700;
+            margin:0;
+            color:$color2;
+            width:100%;
+        }
 
-    ul.tags{
-        list-style-type:none;
-        margin:0 0 10px 0;
-        padding:0;
-        width:100%;
-        @include block-left;
-    
-        li{
-            @include reset-box;
-            @include block-left;
-            color:$color4;
-            @include em-font(13);
-            @include em-line-height(13);
-            margin:0 5px 0 0;
+        time{
+            position:absolute;
+            right:0;
+            top:0;
+            z-index:10;
+            background-color:$color2;
+            padding:0 15px 0 15px;
+            text-transform:uppercase;
+            color:white;
+            @include em-font(22);
+            @include em-line-height(22);
+            @include custom-font;
             font-weight:700;
+        }
 
-            a{
+        p{
+            margin:0 0 20px 0;
+            @include block-left;
+            color:$color1;
+            @include em-font(14);
+            @include em-line-height(14);
+        }
+
+
+        ul.tags{
+            list-style-type:none;
+            margin:0 0 10px 0;
+            padding:0;
+            width:100%;
+            @include block-left;
+        
+            li{
+                @include reset-box;
                 @include block-left;
                 color:$color4;
-            }
+                @include em-font(13);
+                @include em-line-height(13);
+                margin:0 5px 0 0;
+                font-weight:700;
 
-            a:hover{
-                text-decoration:underline;
+                a{
+                    @include block-left;
+                    color:$color4;
+                }
+
+                a:hover{
+                    text-decoration:underline;
+                }
             }
         }
+
     }
 
-    time{
-        position:absolute;
-        right:0;
-        top:0;
-        z-index:10;
-        background-color:$color2;
-        padding:0 15px 0 15px;
-        text-transform:uppercase;
-        color:white;
-        @include em-font(22);
-        @include em-line-height(22);
-        @include custom-font;
-        font-weight:700;
-    }
+    .article-right{
 
-    figure{
-        @include reset-box;
-        @include box-shadow(inset $color4 2px 2px 10px -1px);
+        width:25%;
         display:block;
-        float:left;
-        margin:0 0 10px 0;
-        position:absolute;
-        right:0;
-        top:0;
-        width:auto;
+        float:right;
 
-
-        img{
+        figure{
             @include reset-box;
-            z-index:-1;
-            position:relative;
-            float:right;
-            width:auto;
-            height:auto;
+            margin:0 0 10px 0;
+            @include block-left;
+            width:100%;
+
+            img{
+                @include reset-box;
+                z-index:-1;
+                position:relative;
+                float:right;
+                width:100%;
+                height:auto;
+            }
         }
     }
+    
 
-    .article-left-wrapper{
-        @include block-left;
-        width:65%;
-        
-    }
-
-    .grid-9 .article-left-wrapper h2{
-        width:100%;
-    }
 }
 
 
 /* LESS THAN DESKTOP */
 @media only screen and (max-width: $desktop){
 
-    article.news .article-left-wrapper{
-        width:45%;
+    article.news{
+        .article-left{
+            width:65%;
+        }
+        .article-right{
+            width:35%;
+        }
     }
 
 }
@@ -118,17 +124,13 @@ article.news{
 
     article.news{
 
+        .article-right{
 
-        figure{
-            position:relative;
             width:100%;
 
-            img{
-                width:100%;
-            }
         }
 
-        .article-left-wrapper{
+        .article-left{
             width:100%;
         }
 

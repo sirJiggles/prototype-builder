@@ -102,12 +102,17 @@
             <form method="post" action="">
                 <label for="popup-grid-size">Size:</label>
                 <select name="popup-grid-size" id="popup-grid-size">
-                    <option value="full">Full</option>
-                    <option value="half">Half</option>
-                    <option value="third">Third</option>
-                    <option value="quarter">Quarter</option>
-                    <option value="fith">Fith</option>
-                    <option value="sixth">Sixth</option>
+                    <option id="grid-12" value="grid-12">12 Col</option>
+                    <option id="grid-11" value="grid-11">11 Col</option>
+                    <option id="grid-10" value="grid-10">10 Col</option>
+                    <option id="grid-9" value="grid-9">9 Col</option>
+                    <option id="grid-8" value="grid-8">8 Col</option>
+                    <option id="grid-7" value="grid-7">7 Col</option>
+                    <option id="grid-6" value="grid-6">6 Col</option>
+                    <option id="grid-5" value="grid-5">5 Col</option>
+                    <option id="grid-4" value="grid-4">4 Col</option>
+                    <option id="grid-3" value="grid-3">3 Col</option>
+                    <option id="grid-2" value="grid-2">2 Col</option>
                 </select>
                 <label for="popup-grid-text">Text:</label>
                 <input type="text" name="popup-grid-text" id="popup-grid-text" value="" placeholder="some text for the box" />
@@ -175,7 +180,6 @@
                     <option id="grid-4" value="grid-4">4 Col</option>
                     <option id="grid-3" value="grid-3">3 Col</option>
                     <option id="grid-2" value="grid-2">2 Col</option>
-                    <option id="grid-1" value="grid-1">1 Col</option>
                 </select>
 
                 <h3>Modules</h3>

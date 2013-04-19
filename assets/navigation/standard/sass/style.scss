@@ -1,20 +1,20 @@
 
 // Standard mobile navigation
-#nav-header{
-    min-height:60px;
+
+#main-nav-standard{
+
+	min-height:60px;
     @include block-left;
     width:100%;
     z-index:9999999;
-}
-
-.main-nav-standard{
 
 	ul{
 		@include reset-box;
 		width:100%;
 		float:left;
-		margin:60px 0 10px 0;
+		margin:10px 0 10px 0;
 		display:block;
+		background-color:$color5;
 
 		li{
 			@include block-left;
@@ -74,7 +74,11 @@
 /* TABLET DOWN */
 @media only screen and (max-width: $desktop){
 
-	.main-nav-standard{
+	#main-nav-standard{
+
+		nav{
+			padding-top:52px;
+		}
 
 		ul{
 			
@@ -90,7 +94,7 @@
 			}
 
 			&.open{
-				height:522px;
+				height:330px;
 			}
 		}
 

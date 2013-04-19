@@ -1,3 +1,4 @@
 $('.nav-controls a').click(function(e){
-	$('.main-nav-standard ul').toggleClass('open');
+	$(jQuery.browser.webkit ? "body": "html").animate({ scrollTop: 0 }, "slow");
+	$('#main-nav-standard ul').toggleClass('open');
 });

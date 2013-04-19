@@ -111,18 +111,6 @@ textarea{
 }
 
 select{
-    -webkit-appearance: none;
-    background: transparent;
-    color:white;
-    @include em-font(16);
-    font-weight: 400;
-    border:none;
-    padding:5px 10px;
-    margin-bottom:15px;
-    width:59%;
-    background:image-url('select-arrow.png') 95% 50% no-repeat #00b6ff;
-
-    &:hover{
-        background:image-url('select-arrow.png') 95% 50% no-repeat lighten(#00b6ff, 10%);
-    }
+    width:150px;
+    margin:10px 0 18px 0;
 }
