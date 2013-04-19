@@ -1,0 +1,95 @@
+<section class="blog-details">
+
+    <article>
+        <time datetime="2013-05-18">18 May</time>
+        <div class="social"></div>
+
+        <header>
+            <h2>Blog post with text</h2>
+        </header>
+
+        <a class="comments" href="#" title="Click here to ...">Comments (12)</a>
+        <ul class="tags">
+            <li><a href='#' title="Click here to ...">Category one</a>,</li>
+            <li><a href='#' title="Click here to ...">Category two</a></li>
+        </ul>
+
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas et eros nisl, vitae blandit purus. 
+            Donec non orci quis augue molestie volutpat nec id orci. Proin auctor turpis feugiat ipsum condimentum 
+            id tempus lacus euismod. Integer lectus orci, bibendum vel elementum a, ornare vel neque. Integer lobortis 
+            faucibus gravida. Aenean faucibus urna eget lacus semper feugiat. Suspendisse potenti. Pellentesque fringilla 
+            vulputate nunc vel ultricies. Aenean semper fringilla accumsan. Pellentesque sollicitudin eleifend semper.</p>
+
+        <p>Curabitur orci felis, rhoncus vulputate vestibulum vitae, malesuada sit amet quam. In eleifend mauris augue, ac 
+            commodo urna. Aenean sollicitudin nulla vel augue adipiscing tempus. Aliquam quam felis, ultrices nec auctor 
+            dictum, fermentum vitae massa. Praesent ornare consectetur orci, ut condimentum nisl commodo non. Integer 
+            pharetra dui eu augue hendrerit semper hendrerit tellus volutpat. Lorem ipsum dolor sit amet, consectetur 
+            adipiscing elit.</p>
+
+        <p>Nunc eu leo arcu. Cras luctus est eget justo sollicitudin lobortis. Nam ut nunc porttitor mauris mattis convallis. 
+            Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Quisque in urna orci. 
+            Vivamus sodales tempor neque vel rhoncus. Sed bibendum elementum dui, lacinia sagittis urna congue a. Integer 
+            quis lacus non enim interdum pretium non vel lorem. Pellentesque vehicula, nibh non consectetur dapibus, nulla 
+            nunc adipiscing tortor, et gravida dolor enim vitae leo. Maecenas eu metus orci, egestas rhoncus erat. Ut 
+            magna risus, venenatis a gravida vestibulum, vehicula et dui. Etiam eu diam non sapien pretium fringilla. 
+            Donec nisl metus, pretium sollicitudin vestibulum et, commodo sed purus. Mauris varius pulvinar velit, 
+            eu sagittis urna pulvinar vel. Aenean tristique dolor sit amet urna aliquet eget vehicula quam pharetra. 
+            Quisque malesuada dapibus vehicula.</p>
+
+        <p>Aenean ac quam volutpat urna ultrices porttitor. Nulla mattis, nisi nec ultrices gravida, quam massa elementum 
+            elit, ut feugiat risus ante vitae nibh. Nunc vehicula nisl ut lorem vestibulum facilisis. Donec porttitor 
+            pellentesque mauris, vel tristique ligula porttitor vel. Phasellus eu leo vulputate nisl sagittis aliquet.</p> 
+
+        <!-- COMMENTS -->
+        <div class="comments-container"> 
+
+            <!-- this is what we scroll down to -->
+            <span id="comments">Comments (2)</span>
+            <article class="first">
+                <header>
+                    <h4>Joe Bloggs</h4>
+                    <time datetime="2013-05-18T12:19:21+00:00">May 18th at 12.19</time>
+                </header>
+                <a class="reply" href="#" title="Click here to reply">Reply</a>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas et eros nisl, vitae blandit purus. 
+                    Donec non orci quis augue molestie volutpat nec id orci. Proin auctor turpis feugiat ipsum condimentum 
+                    id tempus lacus euismod. </p>
+            </article>
+
+            <article class="last">
+                <header>
+                    <h4>Joe Bloggs</h4>
+                    <time datetime="2013-05-18T12:19:21+00:00">May 18th at 12.19</time>
+                </header>
+                <a class="reply" href="#" title="Click here to reply">Reply</a>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas et eros nisl, vitae blandit purus. 
+                    Donec non orci quis augue molestie volutpat nec id orci. Proin auctor turpis feugiat ipsum condimentum 
+                    id tempus lacus euismod. </p>
+            </article>
+
+            <form method="post" action="/">
+                <fieldset>
+                    <legend>Leave a comment</legend>
+                    <label for="name">Name *</label>
+                    <input type="text" name="name" id="name" placeholder="Enter your name" required="required"/>
+
+                    <label for="email">Email *</label>
+                    <input type="email" name="email" id="email" placeholder="Enter your email address" required="required"/>
+
+                    <label for="message">Comments *</label>
+                    <textarea name="message" id="message" placeholder="Enter your comments" required="required"></textarea>
+
+                    <input type="checkbox" checked="" name="notify" id="notify" />
+                    <label for="notify" class="notify-me">Notify me of responses to this</label>
+                    
+
+                    <input type="submit" name="submit-comment" id="submit-comment" value="post your comment" class="btn" />
+                </fieldset>
+            </form>
+
+        </div>
+
+    </article>
+
+
+</section>

@@ -1323,6 +1323,43 @@ article.news .article-right figure img { padding: 0; margin: 0; z-index: -1; pos
 .pagination-first-last ul li a.last { margin-left: 6px; margin-right: 0; background: url("../modules/pagination-first-last/img/pagination-last.png") 0 0 no-repeat; }
 .pagination-first-last ul li a.last:hover, .pagination-first-last ul li a.last.active { background: url("../modules/pagination-first-last/img/pagination-last-active.png") 0 0 no-repeat; }
 
+.blog-details article { display: block; float: left; position: relative; background-color: white; margin: 15px 15px 0 15px; padding-bottom: 15px; }
+.blog-details article .social { background: url("../modules/blog-listing/img/social.png") 0 0 no-repeat; position: absolute; top: 5px; right: 0; width: 248px; height: 20px; }
+.blog-details article time { position: absolute; top: 0px; left: -17px; background-color: #BFD0D4; text-transform: uppercase; color: white; font-size: 1.25em; line-height: 1.5em; padding: 2px 10px; }
+.blog-details article header { width: 100%; display: block; float: left; padding-top: 40px; }
+.blog-details article header h2 { width: 100%; display: block; float: left; font-size: 1.375em; font-style: italic; font-weight: 400; margin: 0; color: #555555; }
+.blog-details article a.comments { color: #555555; font-size: 0.875em; font-style: italic; line-height: 1.3125em; float: right; display: block; width: 30%; text-align: right; text-decoration: none; height: 30px; }
+.blog-details article ul.tags { width: 70%; display: block; float: left; margin: 0; height: 30px; list-style-type: none; padding: 0; margin: 0; }
+.blog-details article ul.tags li { width: auto; font-size: 0.8125em; line-height: 1.21875em; display: block; float: left; color: #3D8B9E; margin: 0 5px 0 0; }
+.blog-details article ul.tags li a { color: #3D8B9E; text-decoration: none; outline: none; font-weight: 700; }
+.blog-details article p { display: block; font-size: 1em; line-height: 1.5em; color: #4D4D4D; font-weight: 300; margin: 0 0 15px 0; }
+.blog-details article img { float: left; margin: 0 20px 10px 0; }
+.blog-details article .comments-container { border-bottom: 1px solid #eeeeee; padding: 40px 0 20px 0; display: block; float: left; margin-top: 25px; }
+.blog-details article .comments-container #comments { font-size: 1em; line-height: 1.5em; color: #333; font-weight: 500; }
+.blog-details article .comments-container article { border-bottom: 1pc solid #eeeeee; margin: 30px 0 0 0; }
+.blog-details article .comments-container article header { width: 70%; display: block; float: left; padding-top: 0; height: 45px; }
+.blog-details article .comments-container article header h4 { font-size: 0.875em; line-height: 1.3125em; color: #555555; font-style: italic; margin-bottom: 5px; }
+.blog-details article .comments-container article header time { background: none; padding: 0; margin: 0; color: #999; font-weight: 300; text-transform: none; font-size: 0.75em; line-height: 1.125em; position: relative; display: block; float: left; width: 100%; font-style: italic; left: 0; }
+.blog-details article .comments-container article a.reply { float: right; text-align: right; width: 30%; font-size: 0.875em; line-height: 1.3125em; font-style: italic; text-decoration: none; height: 45px; }
+.blog-details article .comments-container article.last { border: none; }
+.blog-details article .comments-container article.first { margin-top: 15px; }
+.blog-details article .comments-container form { background-color: #eeeeee; padding: 20px; display: block; float: left; }
+.blog-details article .comments-container form fieldset { padding: 0; margin: 0; }
+.blog-details article .comments-container form fieldset legend { padding: 0; margin: 0; font-size: 1em; line-height: 1.5em; color: #555555; margin: 0 0 20px 0; }
+.blog-details article .comments-container form fieldset label { width: 100%; display: block; float: left; font-size: 0.875em; line-height: 1.3125em; color: #555555; margin: 0 0 5px 0; }
+.blog-details article .comments-container form fieldset label.notify-me { font-size: 0.75em; line-height: 1.125em; width: auto; }
+.blog-details article .comments-container form fieldset input[type='text'], .blog-details article .comments-container form fieldset input[type='email'], .blog-details article .comments-container form fieldset input[type='number'], .blog-details article .comments-container form fieldset input[type='telephone'], .blog-details article .comments-container form fieldset textarea { padding: 5px 10px; border: none; -webkit-box-shadow: #999999 1px 1px 5px inset; -moz-box-shadow: #999999 1px 1px 5px inset; box-shadow: #999999 1px 1px 5px inset; display: block; float: left; margin: 0 0 15px 0; color: #555555; }
+.blog-details article .comments-container form fieldset input[type='text'], .blog-details article .comments-container form fieldset input[type='email'], .blog-details article .comments-container form fieldset input[type='number'], .blog-details article .comments-container form fieldset input[type='telephone'] { font-size: 0.875em; line-height: 1.3125em; width: 250px; }
+.blog-details article .comments-container form fieldset input[type='checkbox'] { display: block; float: left; margin-right: 10px; }
+.blog-details article .comments-container form fieldset input[type='submit'] { width: auto; clear: left; margin: 10px 0 10px 0; }
+.blog-details article .comments-container form fieldset textarea { width: 100%; min-height: 240px; }
+
+/* LESS THAN DESKTOP */
+@media only screen and (max-width: 700px) { .blog-details article .comments-container form fieldset input[type='text'], .blog-details article .comments-container form fieldset input[type='email'], .blog-details article .comments-container form fieldset input[type='number'], .blog-details article .comments-container form fieldset input[type='telephone'] { padding: 10px; width: 100%; } }
+/* LESS THAN TABLET */
+@media only screen and (max-width: 480px) { .blog-details article img { width: 100%; margin: 0 0 20px 0; }
+  .blog-details article p { width: 100%; }
+  .blog-details article .comments-container form fieldset input[type='text'], .blog-details article .comments-container form fieldset input[type='email'], .blog-details article .comments-container form fieldset input[type='number'], .blog-details article .comments-container form fieldset input[type='telephone'] { padding: 20px; } }
 #main-nav-standard { min-height: 60px; display: block; float: left; width: 100%; z-index: 9999999; }
 #main-nav-standard ul { padding: 0; margin: 0; width: 100%; float: left; margin: 10px 0 10px 0; display: block; background-color: #dddddd; }
 #main-nav-standard ul li { display: block; float: left; margin: 0; border: none; width: auto; }

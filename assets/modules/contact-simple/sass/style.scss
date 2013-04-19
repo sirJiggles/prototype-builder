@@ -1,0 +1,128 @@
+.contact-simple{
+
+	@include block-left;
+	position:relative;
+	background-color:white;
+	padding:15px;
+
+	p{
+		display:block;
+		@include em-font(16);
+		@include em-line-height(16);
+		color:#4D4D4D;
+		@include custom-font-rob;
+		font-weight:300;
+		margin:0 0 15px 0;
+	}
+
+	form{
+
+		@include block-left;
+
+		fieldset{
+			@include reset-box;
+
+			legend{
+				@include reset-box;
+				@include em-font(16);
+				@include em-line-height(16);
+				color:#333;
+				@include custom-font-rob;
+				font-weight: 500;
+				margin:0 0 20px 0;
+			}
+
+			label{
+				width:100%;
+				@include block-left;
+				@include em-font(14);
+				@include em-line-height(14);
+				color:#4C4C4C;
+				@include custom-font-rob;
+				font-weight: 500;
+				margin:0 0 5px 0;
+
+				&.notify-me{
+					@include em-font(12);
+					@include em-line-height(12);
+					width:auto;
+				}
+			}
+
+			input[type='text'],
+			input[type='email'],
+			input[type='number'],
+			input[type='tel'],
+			textarea{
+				padding:5px 10px;
+				border:none;
+				@include box-shadow(#999 1px 1px 5px inset);
+				@include block-left;
+				margin:0 0 15px 0;
+				color:$color2;
+				@include custom-font-rob;
+				@include em-font(14);
+				@include em-line-height(14);
+			}
+
+			input[type='text'],
+			input[type='email'],
+			input[type='number'],
+			input[type='tel'],{
+				width:250px;
+			}
+
+			input[type='submit']{
+				width:auto;
+				clear:left;
+				margin:10px 0 10px 0;
+			}
+
+			textarea{
+				width:100%;
+				min-height:240px;
+			}
+
+		}
+
+	}
+}
+
+// MEDIA QUARS
+
+/* LESS THAN DESKTOP */
+@media only screen and (max-width: $tablet){
+	
+	.contact-simple{
+
+		form{
+			fieldset{
+				input[type='text'],
+				input[type='email'],
+				input[type='number'],
+				input[type='tel']{
+					padding:10px;
+					width:100%;
+				}
+			}
+		}
+	}
+
+}
+
+
+/* LESS THAN TABLET */
+@media only screen and (max-width: $mobile){
+	.contact-simple{
+		form{
+			fieldset{
+				input[type='text'],
+				input[type='email'],
+				input[type='number'],
+				input[type='tel']{
+					padding:20px;
+				}
+			}
+		}
+	}
+}
