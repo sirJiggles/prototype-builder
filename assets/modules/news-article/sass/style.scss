@@ -46,6 +46,7 @@ article.news{
             color:$color1;
             @include em-font(14);
             @include em-line-height(14);
+            padding:0 20px 0 0;
         }
 
 

@@ -24,21 +24,7 @@ Changed to Desktop first else we would not be able to have a modular system!
 /* LESS THAN DESKTOP */
 @media only screen and (max-width: $desktop){
 
-    form{
-
-        label{
-            width:100%;
-            padding: 0 0 2% 0;
-        }
-
-        input,
-        select{
-            width: 92%;
-            padding:4%;
-            margin: 0 0 2% 0;
-        }
-
-    }
+   
 
 }
 

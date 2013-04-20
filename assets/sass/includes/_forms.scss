@@ -26,7 +26,8 @@ form {
     }
     label,
     input,
-    textarea{
+    textarea,
+    select{
         @include em-font(14);
     }
 
@@ -35,9 +36,6 @@ form {
         line-height: 1.8em;
         width:40%;
         @include reset-box;
-        @include em-font(18);
-        @include em-line-height(18);
-        @include custom-font;
     }
 
     legend {
@@ -49,12 +47,12 @@ form {
         color: white;
     }
 
-    input{
+    input,
+    select {
         width:59%;
         padding:0;
         margin:0 0 15px 0;
     }
-
 
     input[type='search'] {
         width:100%;
@@ -72,28 +70,20 @@ form {
         border:none;
         overflow:visible;
         font-weight:400;
-        padding:10px;
+        padding:20px;
         margin:10px 0 0 0;
-        background-color: #00b6ff;
+        background-color: $color3;
+        float:left;
         color:white;
-
-        &:hover{
-            background-color: lighten(#00b6ff, 10%);
-        }
     }
 
-    input[type='text'],
-    textarea{
-        @include border-radius(5px);
-        @include box-shadow(#333 2px 2px 6px inset);
-        padding:7px 10px;
-        color:#999;
-        border:none;
+    input[type='submit']:hover,
+    input[type='submit']:active{
+        
     }
 
     input[type='checkbox']{
         width:15px;
-        margin-top:10px;
     }
 }
 
@@ -110,7 +100,24 @@ textarea{
     height:50px;
 }
 
-select{
-    width:150px;
-    margin:10px 0 18px 0;
+@media only screen and (max-width: $desktop){
+    form{
+
+        label{
+            width:100%;
+            padding: 0 0 2% 0;
+        }
+
+        input,
+        select{
+            width: 92%;
+            padding:4%;
+            margin: 0 0 2% 0;
+        }
+
+        input[type='checkbox']{
+            padding:0;
+        }
+
+    }
 }

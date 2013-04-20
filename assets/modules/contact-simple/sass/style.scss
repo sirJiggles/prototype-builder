@@ -9,8 +9,7 @@
 		display:block;
 		@include em-font(16);
 		@include em-line-height(16);
-		color:#4D4D4D;
-		@include custom-font-rob;
+		color:$color2;
 		font-weight:300;
 		margin:0 0 15px 0;
 	}
@@ -26,8 +25,7 @@
 				@include reset-box;
 				@include em-font(16);
 				@include em-line-height(16);
-				color:#333;
-				@include custom-font-rob;
+				color:$color2;
 				font-weight: 500;
 				margin:0 0 20px 0;
 			}
@@ -37,8 +35,7 @@
 				@include block-left;
 				@include em-font(14);
 				@include em-line-height(14);
-				color:#4C4C4C;
-				@include custom-font-rob;
+				color:$color3;
 				font-weight: 500;
 				margin:0 0 5px 0;
 
@@ -60,7 +57,6 @@
 				@include block-left;
 				margin:0 0 15px 0;
 				color:$color2;
-				@include custom-font-rob;
 				@include em-font(14);
 				@include em-line-height(14);
 			}

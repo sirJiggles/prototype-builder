@@ -35,22 +35,6 @@ $(window).ready(function () {
         console.log('Error', e);
     });
 
-     // if there is no template name set create the frst one using the default template name
-    var hasTemplate = false;
-    for(var prop in global.templates){
-        if(global.templates.hasOwnProperty(prop)){
-            hasTemplate = true;
-            break;
-        }
-    }
-
-    if(!hasTemplate){
-        global.templates = {'template-one' : {grid:{}, positions:[]}};
-        global.currentTemplate = 'template-one';
-    }
-
-    updateTemplateList();
-
     // clicking on tools link 
     $('.tools-link').click(function(e){
         e.preventDefault();
@@ -346,7 +330,7 @@ function updateTemplateList(){
 
 // Function to apply the global.currentTemplate to stage
 function loadTemplate(){
-    
+
     // clear stage
     $('.main').html('');
 
@@ -571,7 +555,7 @@ function updateStore(reload, write){
 function loadFromStore(){
     
     fileSystem.root.getFile('prototype-builder.json', {}, function(fileEntry) {
-
+  
         // Get a File object representing the file,
         // then use FileReader to read its contents.
         fileEntry.file(function(file) {
@@ -580,22 +564,34 @@ function loadFromStore(){
             reader.onloadend = function(e) {
                 
                 if (this.result && this.result != ''){
-                   // using the data provided create the grid and the global store
-                   global = JSON.parse(this.result);
-
-                   loadTemplate();
+                    // using the data provided create the grid and the global store
+                    global = JSON.parse(this.result);
+                    loadTemplate();
+                }else{
+                    settupDefaultTemplate();
                 }
-             
+                             
            };
 
            reader.readAsText(file);
         }, fileSystemErrorHandler);
 
     }, function(){
+
+        alert('noe');
         // file must not exist, create it here
         fileSystem.root.getFile('prototype-builder.json', {create:true}, function(fileEntry) {
         });
+
+        settupDefaultTemplate();
+   
     });
+}
+
+function settupDefaultTemplate(){
+    global.templates = {'template-one' : {grid:{}, positions:[]}};
+    global.currentTemplate = 'template-one';
+    $('#nav-header').html($('#code-'+global.navigation).html());
 }
 
 /* 

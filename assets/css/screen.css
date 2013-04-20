@@ -46,23 +46,22 @@ strong { font-weight: 700; }
 
 /* CSS validation overrides */
 form fieldset { display: block; float: left; width: 96%; }
-form label, form input, form textarea { font-size: 0.875em; }
-form label { float: left; line-height: 1.8em; width: 40%; padding: 0; margin: 0; font-size: 1.125em; line-height: 1.6875em; font-family: 'Noto Sans', sans-serif; }
+form label, form input, form textarea, form select { font-size: 0.875em; }
+form label { float: left; line-height: 1.8em; width: 40%; padding: 0; margin: 0; }
 form legend { margin: 0 0 10px 0; font-weight: 400; float: left; width: 96%; padding: 10px 2% 10px 2%; color: white; }
-form input { width: 59%; padding: 0; margin: 0 0 15px 0; }
+form input, form select { width: 59%; padding: 0; margin: 0 0 15px 0; }
 form input[type='search'] { width: 100%; -moz-appearance: none; -webkit-appearance: none; -webkit-box-sizing: content-box; -moz-box-sizing: content-box; box-sizing: content-box; border: none; -webkit-border-radius: 15px; -moz-border-radius: 15px; -ms-border-radius: 15px; -o-border-radius: 15px; border-radius: 15px; -webkit-box-shadow: #222222, 1px, 1px, 5px, inset; -moz-box-shadow: #222222, 1px, 1px, 5px, inset; box-shadow: #222222, 1px, 1px, 5px, inset; }
-form input[type='submit'] { border: none; overflow: visible; font-weight: 400; padding: 10px; margin: 10px 0 0 0; background-color: #00b6ff; color: white; }
-form input[type='submit']:hover { background-color: #33c5ff; }
-form input[type='text'], form textarea { -webkit-border-radius: 5px; -moz-border-radius: 5px; -ms-border-radius: 5px; -o-border-radius: 5px; border-radius: 5px; -webkit-box-shadow: #333333 2px 2px 6px inset; -moz-box-shadow: #333333 2px 2px 6px inset; box-shadow: #333333 2px 2px 6px inset; padding: 7px 10px; color: #999; border: none; }
-form input[type='checkbox'] { width: 15px; margin-top: 10px; }
+form input[type='submit'] { border: none; overflow: visible; font-weight: 400; padding: 20px; margin: 10px 0 0 0; background-color: #888888; float: left; color: white; }
+form input[type='checkbox'] { width: 15px; }
 
 /* New input types */
 progress, meter { width: 100%; margin: 0 0 4% 0; display: block; float: left; }
 
 textarea { width: 100%; height: 50px; }
 
-select { width: 150px; margin: 10px 0 18px 0; }
-
+@media only screen and (max-width: 960px) { form label { width: 100%; padding: 0 0 2% 0; }
+  form input, form select { width: 92%; padding: 4%; margin: 0 0 2% 0; }
+  form input[type='checkbox'] { padding: 0; } }
 #header { position: fixed; width: 100%; height: 100px; top: 0; left: 0; background-color: #2d2d2d; z-index: 99999; display: block; padding: 20px 20px 0 20px; border-bottom: 8px solid white; }
 
 #header h1 { margin: 2px 50px 0 0; color: white; font-family: 'Noto Sans', sans-serif; display: block; float: left; font-weight: 400; }
@@ -175,6 +174,9 @@ body { overflow-x: hidden; background: url("../img/osx.png") 0 0 repeat; }
 .popup ul li { display: block; float: left; margin: 0 10px 0 0; }
 .popup ul li a { text-decoration: none; margin: 0 5px 5px 0; display: block; float: left; }
 .popup a.close-button { position: absolute; top: -10px; right: -10px; outline: none; text-decoration: none; height: 22px; width: 22px; text-indent: -999px; overflow: hidden; background-position: 0 -222px; }
+.popup form input[type='text'], .popup form textarea { -webkit-border-radius: 5px; -moz-border-radius: 5px; -ms-border-radius: 5px; -o-border-radius: 5px; border-radius: 5px; -webkit-box-shadow: #666666 2px 2px 6px inset; -moz-box-shadow: #666666 2px 2px 6px inset; box-shadow: #666666 2px 2px 6px inset; padding: 5px 10px; color: #222; border: none; }
+.popup form input[type='submit'] { font-weight: 400; padding: 10px; margin: 10px 0 0 0; background-color: #00b6ff; }
+.popup form input[type='submit']:hover { background-color: #33c5ff; }
 
 #data-form { display: none; }
 
@@ -191,8 +193,6 @@ Changed to Desktop first else we would not be able to have a modular system!
   .tools { left: -230px; }
   #header { display: none; } }
 /* LESS THAN DESKTOP */
-@media only screen and (max-width: 960px) { form label { width: 100%; padding: 0 0 2% 0; }
-  form input, form select { width: 92%; padding: 4%; margin: 0 0 2% 0; } }
 /* LESS THAN TABLET */
 /* LESS THAN MOBILE LANDSCAPE */
 @media only screen and (max-width: 480px) { .row .grid-1 { width: 100%; float: left; margin-right: 2.12766%; display: inline; margin-bottom: 10px; }
@@ -984,7 +984,7 @@ article.news { padding: 20px; height: 100%; width: 100%; background-color: white
 article.news .article-left { display: block; float: left; width: 75%; }
 article.news .article-left h3 { font-size: 1.125em; line-height: 1.6875em; font-weight: 700; margin: 0; color: #555555; width: 100%; }
 article.news .article-left time { position: absolute; right: 0; top: 0; z-index: 10; background-color: #555555; padding: 0 15px 0 15px; text-transform: uppercase; color: white; font-size: 1.375em; line-height: 2.0625em; font-family: 'Noto Sans', sans-serif; font-weight: 700; }
-article.news .article-left p { margin: 0 0 20px 0; display: block; float: left; color: #222222; font-size: 0.875em; line-height: 1.3125em; }
+article.news .article-left p { margin: 0 0 20px 0; display: block; float: left; color: #222222; font-size: 0.875em; line-height: 1.3125em; padding: 0 20px 0 0; }
 article.news .article-left ul.tags { list-style-type: none; margin: 0 0 10px 0; padding: 0; width: 100%; display: block; float: left; }
 article.news .article-left ul.tags li { padding: 0; margin: 0; display: block; float: left; color: #aaaaaa; font-size: 0.8125em; line-height: 1.21875em; margin: 0 5px 0 0; font-weight: 700; }
 article.news .article-left ul.tags li a { display: block; float: left; color: #aaaaaa; }
@@ -1334,9 +1334,9 @@ article.news .article-right figure img { padding: 0; margin: 0; z-index: -1; pos
 .blog-details article ul.tags li a { color: #3D8B9E; text-decoration: none; outline: none; font-weight: 700; }
 .blog-details article p { display: block; font-size: 1em; line-height: 1.5em; color: #4D4D4D; font-weight: 300; margin: 0 0 15px 0; }
 .blog-details article img { float: left; margin: 0 20px 10px 0; }
-.blog-details article .comments-container { border-bottom: 1px solid #eeeeee; padding: 40px 0 20px 0; display: block; float: left; margin-top: 25px; }
+.blog-details article .comments-container { border-top: 1px solid #eeeeee; padding: 40px 0 20px 0; display: block; float: left; margin-top: 25px; }
 .blog-details article .comments-container #comments { font-size: 1em; line-height: 1.5em; color: #333; font-weight: 500; }
-.blog-details article .comments-container article { border-bottom: 1pc solid #eeeeee; margin: 30px 0 0 0; }
+.blog-details article .comments-container article { border-bottom: 1px solid #eeeeee; margin: 30px 0 0 0; }
 .blog-details article .comments-container article header { width: 70%; display: block; float: left; padding-top: 0; height: 45px; }
 .blog-details article .comments-container article header h4 { font-size: 0.875em; line-height: 1.3125em; color: #555555; font-style: italic; margin-bottom: 5px; }
 .blog-details article .comments-container article header time { background: none; padding: 0; margin: 0; color: #999; font-weight: 300; text-transform: none; font-size: 0.75em; line-height: 1.125em; position: relative; display: block; float: left; width: 100%; font-style: italic; left: 0; }
@@ -1360,6 +1360,22 @@ article.news .article-right figure img { padding: 0; margin: 0; z-index: -1; pos
 @media only screen and (max-width: 480px) { .blog-details article img { width: 100%; margin: 0 0 20px 0; }
   .blog-details article p { width: 100%; }
   .blog-details article .comments-container form fieldset input[type='text'], .blog-details article .comments-container form fieldset input[type='email'], .blog-details article .comments-container form fieldset input[type='number'], .blog-details article .comments-container form fieldset input[type='telephone'] { padding: 20px; } }
+.contact-simple { display: block; float: left; position: relative; background-color: white; padding: 15px; }
+.contact-simple p { display: block; font-size: 1em; line-height: 1.5em; color: #555555; font-weight: 300; margin: 0 0 15px 0; }
+.contact-simple form { display: block; float: left; }
+.contact-simple form fieldset { padding: 0; margin: 0; }
+.contact-simple form fieldset legend { padding: 0; margin: 0; font-size: 1em; line-height: 1.5em; color: #555555; font-weight: 500; margin: 0 0 20px 0; }
+.contact-simple form fieldset label { width: 100%; display: block; float: left; font-size: 0.875em; line-height: 1.3125em; color: #888888; font-weight: 500; margin: 0 0 5px 0; }
+.contact-simple form fieldset label.notify-me { font-size: 0.75em; line-height: 1.125em; width: auto; }
+.contact-simple form fieldset input[type='text'], .contact-simple form fieldset input[type='email'], .contact-simple form fieldset input[type='number'], .contact-simple form fieldset input[type='tel'], .contact-simple form fieldset textarea { padding: 5px 10px; border: none; -webkit-box-shadow: #999999 1px 1px 5px inset; -moz-box-shadow: #999999 1px 1px 5px inset; box-shadow: #999999 1px 1px 5px inset; display: block; float: left; margin: 0 0 15px 0; color: #555555; font-size: 0.875em; line-height: 1.3125em; }
+.contact-simple form fieldset input[type='text'], .contact-simple form fieldset input[type='email'], .contact-simple form fieldset input[type='number'], .contact-simple form fieldset input[type='tel'] { width: 250px; }
+.contact-simple form fieldset input[type='submit'] { width: auto; clear: left; margin: 10px 0 10px 0; }
+.contact-simple form fieldset textarea { width: 100%; min-height: 240px; }
+
+/* LESS THAN DESKTOP */
+@media only screen and (max-width: 700px) { .contact-simple form fieldset input[type='text'], .contact-simple form fieldset input[type='email'], .contact-simple form fieldset input[type='number'], .contact-simple form fieldset input[type='tel'] { padding: 10px; width: 100%; } }
+/* LESS THAN TABLET */
+@media only screen and (max-width: 480px) { .contact-simple form fieldset input[type='text'], .contact-simple form fieldset input[type='email'], .contact-simple form fieldset input[type='number'], .contact-simple form fieldset input[type='tel'] { padding: 20px; } }
 #main-nav-standard { min-height: 60px; display: block; float: left; width: 100%; z-index: 9999999; }
 #main-nav-standard ul { padding: 0; margin: 0; width: 100%; float: left; margin: 10px 0 10px 0; display: block; background-color: #dddddd; }
 #main-nav-standard ul li { display: block; float: left; margin: 0; border: none; width: auto; }
