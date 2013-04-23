@@ -19,6 +19,13 @@
     @include custom-font;
 	@include block-left;
     font-weight: 400;
+    width:auto;
+}
+
+#nav-header{
+    .row{
+        background-color: white;
+    }
 }
 
 // Template Tabs
@@ -27,7 +34,7 @@
     @include reset-box;
     list-style-type: none;
     @include block-left;
-
+    width:auto;
     margin: 38px 0 0 0;
 
     li{

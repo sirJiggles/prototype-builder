@@ -85,9 +85,11 @@ textarea { width: 100%; height: 50px; }
   form input[type='checkbox'] { padding: 0; } }
 #header { position: fixed; width: 100%; height: 100px; top: 0; left: 0; background-color: #2d2d2d; z-index: 99999; display: block; padding: 20px 20px 0 20px; border-bottom: 8px solid white; }
 
-#header h1 { margin: 2px 50px 0 0; color: white; font-family: 'Noto Sans', sans-serif; display: block; float: left; font-weight: 400; }
+#header h1 { margin: 2px 50px 0 0; color: white; font-family: 'Noto Sans', sans-serif; display: block; float: left; font-weight: 400; width: auto; }
 
-.template-tabs { padding: 0; margin: 0; list-style-type: none; display: block; float: left; margin: 38px 0 0 0; }
+#nav-header .row { background-color: white; }
+
+.template-tabs { padding: 0; margin: 0; list-style-type: none; display: block; float: left; width: auto; margin: 38px 0 0 0; }
 .template-tabs li { background-color: #dbd8d8; -moz-border-radius-topleft: 5px; -webkit-border-top-left-radius: 5px; border-top-left-radius: 5px; -moz-border-radius-topright: 5px; -webkit-border-top-right-radius: 5px; border-top-right-radius: 5px; padding: 12px 10px 10px 10px; float: left; margin: 0 5px 0 0; }
 .template-tabs li a { color: #848383; font-family: 'Noto Sans', sans-serif; font-size: 0.75em; text-decoration: none; display: block; float: left; }
 .template-tabs li a.edit-template, .template-tabs li a.delete-template { height: 13px; width: 13px; ovrflow: hidden; text-indent: -999px; }
@@ -143,7 +145,7 @@ body { overflow-x: hidden; background: url("../img/osx.png") 0 0 repeat; }
 .row .grid-12 { width: 100%; float: left; margin-right: 2.12766%; display: inline; }
 .row .grid-12.end { float: right; margin-right: 0; #margin-left: -20px; display: inline; }
 
-.main { background-color: white; -webkit-box-shadow: black 2px 8px 10px; -moz-box-shadow: black 2px 8px 10px; box-shadow: black 2px 8px 10px; margin: 0 0 10px 0; }
+.main { background-color: white; -webkit-box-shadow: black 2px 8px 10px; -moz-box-shadow: black 2px 8px 10px; box-shadow: black 2px 8px 10px; margin-bottom: 10px; }
 
 .tools { position: fixed; width: 230px; left: 0; top: 0; height: 100%; z-index: 9998; padding: 24px; margin: 100px 0 -100px 0; background: url("../img/carbon.png") 0 0 repeat; -webkit-box-shadow: black -7px 0 20px inset; -moz-box-shadow: black -7px 0 20px inset; box-shadow: black -7px 0 20px inset; }
 .tools .built-for { position: absolute; width: 188px; height: 85px; background-position: 0 0; bottom: 120px; left: 20px; overflow: hidden; text-indent: -999px; text-decoration: none; outline: none; }

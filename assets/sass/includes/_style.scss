@@ -48,7 +48,7 @@ body{
 .main{
     background-color:white;
     @include box-shadow(black 2px 8px 10px);
-    margin:0 0 10px 0;
+    margin-bottom:10px;
 }
 
 
