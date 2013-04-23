@@ -1,0 +1,258 @@
+/* Browser Resets */
+.flex-container a:active,
+.gallery-simple a:active,
+.flex-container a:focus,
+.gallery-simple a:focus  {outline: none;}
+.gallery-simple .slides,
+.flex-control-nav,
+.flex-direction-nav {margin: 0; padding: 0; list-style: none;} 
+
+/* FlexSlider Necessary Styles
+*********************************/ 
+.gallery-simple {margin: 0; padding: 0;}
+.gallery-simple .slides li{display: none; -webkit-backface-visibility: hidden;} /* Hide the slides before the JS is loaded. Avoids image jumping */
+.gallery-simple .slides img {width: 100%; display: block;}
+.flex-pauseplay span {text-transform: capitalize;}
+
+/* Clearfix for the .slides element */
+.slides:after {content: "."; display: block; clear: both; visibility: hidden; line-height: 0; height: 0;} 
+html[xmlns] .slides {display: block;} 
+* html .slides {height: 1%;}
+
+/* No JavaScript Fallback */
+/* If you are not using another script, such as Modernizr, make sure you
+ * include js that eliminates this class on page load */
+.no-js .slides > li:first-child {display: block;}
+
+.gallery-simple .slides{zoom: 1;}
+
+.gallery-simple{
+	width:100%;
+    position:relative;
+    @include block-left;
+
+    ul.slides{
+
+    	@include block-left;
+    	width:100%;
+    	list-style-type: none;
+
+	    li{
+
+	    	@include reset-box;
+	    	@include block-left;
+	    	width:100%;
+
+	    	article{
+
+	    		width:100%;
+	    		padding:20px 0 20px 0;
+
+	    		@include block-left;
+
+	    		h4{
+		    		width:50%;
+		    		@include em-font(14);
+		    		@include em-line-height(14);
+		    		color:$color4;
+		    		float:left;
+		    		margin:20px 0 0 0;
+		    	}
+
+		    	a.btn{
+    				position:absolute;
+    				bottom:50px;
+    				left:0;
+    			}
+
+
+		    	figure{
+
+		    		@include block-left;
+		    		width:100%;
+		    		margin-top:-38px;
+
+
+		    		figcaption{
+		    			@include block-left;
+		    			width:50%;
+		    			@include em-font(24);
+		    			@include em-line-height(16);
+		    			padding-right:20px;
+		    			margin-top:40px;
+		    		}
+
+
+			    	img{
+			    		float:right;
+			    		width:50%;
+			    		display:block;
+			    	}
+
+			    	
+		    	}
+	    	}
+	    }
+    }
+
+
+    // Customisation of flexslider controls
+    .flex-control-nav{
+
+    	position:absolute;
+    	bottom:25px;
+    	left:0;
+
+    	li{
+    		@include block-left;
+    		margin:0 4px 0 0;
+
+    		a{
+    			@include block-left;
+    			background-color: $color5;
+    			@include border-radius(7px);
+    			width:7px;
+    			height:7px;
+    			text-decoration: none;
+    			outline:none;
+    			text-indent: -999px;
+    			overflow: hidden;
+
+    		}
+
+    		a.flex-active{
+    			background-color:$color4;
+    		}
+    	}
+    }
+
+    .flex-direction-nav{
+
+    	width:50px;
+    	position: absolute;
+		bottom: 20px;
+		right: 52%;
+		z-index:999;
+
+    	li{
+
+    		@include block-left;
+    		margin:0;
+
+    		a{
+    			width:23px;
+    			height:23px;
+    			@include block-left;
+    			text-indent: -999px;
+    			overflow: hidden;
+    		}
+
+    		a.flex-prev{
+    			background:url('/assets/modules/gallery-simple/img/arrow-left.gif');
+    			margin:0 3px 0 0;
+    		}
+
+    		a.flex-next{
+				background:url('/assets/modules/gallery-simple/img/arrow-right.gif');
+    		}
+    	}
+    }
+
+}
+
+/* LESS THAN DESKTOP */
+@media only screen and (max-width: $desktop){
+	.gallery-simple{
+
+		margin:0 0 20px 0;
+
+		ul.slides{
+			li{
+				article{
+
+					a.btn{
+	    				margin:10px 0 0 0;
+	    				bottom:0;
+	    				clear:left;
+	    			}
+
+					figure{
+						figcaption{
+							@include em-font(20);
+							@include em-line-height(16);
+						}
+		    			
+					}
+				}
+			}
+		}
+
+		.flex-direction-nav{
+			bottom:-11px;
+			right:0;
+		}
+
+		.flex-control-nav{
+			bottom:0;
+			left:46%;
+		}
+	}	
+}
+
+/* LESS THAN TABLET */
+@media only screen and (max-width: $mobile){
+	.gallery-simple{
+
+		ul.slides{
+			li{
+				article{
+
+					padding-top:0px;
+
+					h4{
+						width:100%;
+						margin:10px 0 10px 0;
+					}
+
+					a.btn{
+	    				margin:0;
+	    			}
+
+
+					figure{
+
+						margin:0;
+
+						figcaption{
+							@include em-font(20);
+							@include em-line-height(16);
+							width:100%;
+							padding:10px 0;
+							margin:0;
+						}
+
+						img{
+							width:100%;
+						}
+
+						
+					}
+				}
+			}
+		}
+
+		.flex-control-nav{
+			left: auto;
+			right: 10px;
+			bottom: 11px;
+		}
+
+		.flex-direction-nav{
+			bottom:auto;
+			top:7px;
+		}
+
+
+	}	
+}
+

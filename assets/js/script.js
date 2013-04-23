@@ -578,7 +578,6 @@ function loadFromStore(){
 
     }, function(){
 
-        alert('noe');
         // file must not exist, create it here
         fileSystem.root.getFile('prototype-builder.json', {create:true}, function(fileEntry) {
         });
