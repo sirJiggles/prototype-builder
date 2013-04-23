@@ -283,9 +283,28 @@
 @media only screen and (max-width: $mobile){
 	.blog-details{
 		article{
+			.social{
+				position:relative;
+				top:52px;
+				margin-bottom:25px;
+			}
+
 			img{
 				width:100%;
 				margin:0 0 20px 0;
+			}
+
+			a.comments{
+				position:relative;
+				float:left;
+				width:100%;
+				margin-bottom:5px;
+				text-align:left;
+			}
+
+			ul.tags{
+				width:100%;
+				@include block-left;
 			}
 
 			p{
@@ -299,7 +318,7 @@
 						input[type='email'],
 						input[type='number'],
 						input[type='telephone']{
-							padding:20px;
+							padding:10px 15px;
 						}
 					}
 				}

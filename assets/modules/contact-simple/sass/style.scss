@@ -17,6 +17,8 @@
 	form{
 
 		@include block-left;
+		background-color: $color6;
+		padding:20px;
 
 		fieldset{
 			@include reset-box;
@@ -116,7 +118,7 @@
 				input[type='email'],
 				input[type='number'],
 				input[type='tel']{
-					padding:20px;
+					padding:10px 15px;
 				}
 			}
 		}

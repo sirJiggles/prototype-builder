@@ -4,16 +4,13 @@
 #main-nav-standard{
 
 	min-height:60px;
-    @include block-left;
-    width:100%;
     z-index:9999999;
 
 	ul{
 		@include reset-box;
+		@include block-left;
 		width:100%;
-		float:left;
 		margin:10px 0 10px 0;
-		display:block;
 		background-color:$color5;
 
 		li{

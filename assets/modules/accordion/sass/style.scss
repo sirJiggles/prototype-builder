@@ -13,24 +13,18 @@
         @include transition-timing-function(linear);
         color:#eee;
 
-        span{
-            float:right;
-            color:white;
-            @include rotate(270);
-            margin:1% 0 0 0;
-        }
-
         h3{
-            float:left;
-            display:inline-block;
+            @include block-left;
+            width:100%;
+        }
+
+        &:hover{
+            background-color: lighten($color2, 10%);
         }
     }
 
-    a.accordion-link:hover{
-        background-color: lighten($color2, 10%);
-    }
 
-    .accordion-slide{
+    article.accordion-slide{
         @include block-left;
         padding: 10px;
         background: lighten($color4, 10%);
@@ -38,15 +32,10 @@
         position:relative;
         z-index:1;
         border-left: 1px solid $color2;
-    }
 
-    a.open{
-        position:relative;
-        z-index:2;
-        margin:0;
-
-        span{
-             @include rotate(0);
+        p{
+            @include block-left;
+            width:100%;
         }
     }
 

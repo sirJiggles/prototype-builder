@@ -5,12 +5,12 @@ if ($('.accordion').length > 0){
     $('.accordion-link').click(function(e){
         
         e.preventDefault();
-        if (!$(this).hasClass('open')){
+        if (!$(this).next().hasClass('open')){
 
             $('.accordion-slide').slideUp();
-            $(this).next().slideToggle();
-            $('.accordion-link').removeClass('open');
-            $(this).toggleClass('open');
+            $('.accordion-slide').removeClass('open');
+            $(this).next().slideDown();
+            $(this).next().addClass('open');
 
         }
     });
