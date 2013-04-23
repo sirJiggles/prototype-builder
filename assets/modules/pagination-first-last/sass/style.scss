@@ -10,6 +10,7 @@
 		margin:0 auto;
 		width:210px;
 		display:block;
+		float:none;
 
 		li{
 			@include reset-box;

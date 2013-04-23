@@ -1,5 +1,11 @@
 .blog-listing{
 
+	background-color:white;
+    @include box-shadow(#d6dee0 0px 0px 9px);
+    @include block-left;
+    width:100%;
+    padding:0 15px;
+
 	ul{
 		@include reset-box;
 		list-style-type: none;
@@ -15,15 +21,15 @@
 				@include block-left;
 				position:relative;
 				background-color:white;
-				margin:30px 15px 0 15px;
-				padding-bottom:15px;
+				padding:25px 0 15px 0;
 				border-bottom:1px solid $color5;
+				width:100%;
 
 				.social{
 					background:url('../modules/blog-listing/img/social.png') 0 0 no-repeat;
 					position:absolute;
-					top:5px;
-					right:0;
+					top:20px;
+					right:0px;
 					width:248px;
 					height:20px;
 				}
@@ -32,8 +38,8 @@
 
 				time{
 					position:absolute;
-					top:0px;
-					left:-17px;
+					top:15px;
+					left:-15px;
 					background-color: #BFD0D4;
 					text-transform: uppercase;
 					color:white;
@@ -50,7 +56,6 @@
 						width:100%;
 						@include block-left;
 						@include em-font(22);
-						font-style: italic;
 						font-weight: 400;
 						margin:0;
 
@@ -145,8 +150,9 @@
 				article{
 					.social{
 						position:relative;
-						top:52px;
-						margin-bottom:25px;
+						top:42px;
+						margin-bottom:5px;
+						left:0;
 					}
 
 					a.comments{
@@ -164,10 +170,6 @@
 					}
 				}
 				
-				img{
-					width:100%;
-					margin:0 0 20px 0;
-				}
 
 				p{
 					width:100%;

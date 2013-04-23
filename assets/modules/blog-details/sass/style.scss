@@ -1,19 +1,23 @@
 .blog-details{
 
 
+	background-color:white;
+    @include box-shadow(#d6dee0 0px 0px 9px);
+    @include block-left;
+    width:100%;
+    padding:0 15px;
 
 	article{
 
 		@include block-left;
 		position:relative;
 		background-color:white;
-		margin:15px 15px 0 15px;
-		padding-bottom:15px;
+		padding:15px 0 0 0;
 
 		.social{
 			background:url('../modules/blog-listing/img/social.png') 0 0 no-repeat;
 			position:absolute;
-			top:5px;
+			top:20px;
 			right:0;
 			width:248px;
 			height:20px;
@@ -23,7 +27,7 @@
 
 		time{
 			position:absolute;
-			top:0px;
+			top:15px;
 			left:-17px;
 			background-color: #BFD0D4;
 			text-transform: uppercase;
@@ -42,7 +46,6 @@
 				width:100%;
 				@include block-left;
 				@include em-font(22);
-				font-style: italic;
 				font-weight: 400;
 				margin:0;
 				color:$color2;
@@ -79,11 +82,9 @@
 			 	@include em-font(13);
 		 		@include em-line-height(13);
 		 		@include block-left;
-			 	color:#3D8B9E;
 			 	margin:0 5px 0 0;
 
 			 	a{
-			 		color:#3D8B9E;
 			 		text-decoration:none;
 			 		outline:none;
 			 		font-weight: 700;
@@ -110,7 +111,7 @@
 		.comments-container{
 
 			border-top:1px solid $color6;
-			padding:40px 0 20px 0;
+			padding:25px 0 20px 0;
 			@include block-left;
 			margin-top:25px;
 
@@ -124,7 +125,7 @@
 			article{
 
 				border-bottom:1px solid $color6;
-				margin:30px 0 0 0;
+				padding-top:20px;
 
 				header{
 					width:70%;
@@ -153,6 +154,7 @@
 						width:100%;
 						font-style: italic;
 						left:0;
+						top:5px;
 					}
 				}
 
@@ -172,7 +174,7 @@
 				}
 
 				&.first{
-					margin-top:15px;
+					padding-top:15px;
 				}
 
 			}
