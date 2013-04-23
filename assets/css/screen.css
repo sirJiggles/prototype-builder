@@ -1435,6 +1435,22 @@ html[xmlns] .slides { display: block; }
 @media only screen and (max-width: 700px) { .contact-simple form fieldset input[type='text'], .contact-simple form fieldset input[type='email'], .contact-simple form fieldset input[type='number'], .contact-simple form fieldset input[type='tel'] { padding: 10px; width: 100%; } }
 /* LESS THAN TABLET */
 @media only screen and (max-width: 480px) { .contact-simple form fieldset input[type='text'], .contact-simple form fieldset input[type='email'], .contact-simple form fieldset input[type='number'], .contact-simple form fieldset input[type='tel'] { padding: 10px 15px; } }
+#respond h3 { padding-bottom: 15px; font-size: 1em; line-height: 1.5em; color: #555555; font-weight: 500; font-style: normal; }
+#respond form { background-color: #eeeeee; padding: 0 20px 20px 20px; display: block; float: left; width: 100%; }
+#respond form legend { padding: 0; margin: 0; font-size: 1em; line-height: 1.5em; color: #555555; font-weight: 500; margin: 0 0 20px 0; }
+#respond form label { width: 100%; display: block; float: left; font-size: 0.875em; line-height: 1.3125em; color: #555555; font-weight: 500; margin: 0 0 5px 0; }
+#respond form label.notify-me { font-size: 0.75em; line-height: 1.125em; width: auto; }
+#respond form input[type='text'], #respond form input[type='email'], #respond form input[type='number'], #respond form input[type='telephone'], #respond form textarea { padding: 5px 10px; border: none; -webkit-box-shadow: #999999 1px 1px 5px inset; -moz-box-shadow: #999999 1px 1px 5px inset; box-shadow: #999999 1px 1px 5px inset; display: block; float: left; margin: 0 0 15px 0; color: #555555; font-size: 0.875em; line-height: 1.3125em; clear: left; }
+#respond form input[type='text'], #respond form input[type='email'], #respond form input[type='number'], #respond form input[type='telephone'] { width: 250px; }
+#respond form input[type='checkbox'] { display: block; float: left; margin-right: 10px; padding: 0; }
+#respond form input[type='submit'] { width: auto; clear: left; margin: 10px 0 10px 0; }
+#respond form textarea { width: 100%; min-height: 240px; }
+#respond form input[type='submit'] { -webkit-border-radius: 5px; -moz-border-radius: 5px; -ms-border-radius: 5px; -o-border-radius: 5px; border-radius: 5px; background-color: #888888; color: white; text-align: center; }
+
+/* LESS THAN DESKTOP */
+@media only screen and (max-width: 700px) { #respond form input[type='text'], #respond form input[type='email'], #respond form input[type='number'], #respond form input[type='telephone'] { padding: 10px; width: 100%; } }
+/* LESS THAN TABLET */
+@media only screen and (max-width: 480px) { #respond form input[type='text'], #respond form input[type='email'], #respond form input[type='number'], #respond form input[type='telephone'] { padding: 10px 15px; } }
 #main-nav-standard { min-height: 60px; z-index: 9999999; }
 #main-nav-standard ul { padding: 0; margin: 0; display: block; float: left; width: 100%; margin: 10px 0 10px 0; background-color: #dddddd; }
 #main-nav-standard ul li { display: block; float: left; margin: 0; border: none; width: auto; }
