@@ -1,7 +1,6 @@
-
 $('audio').mediaelementplayer({
-    flashName: '/flash/flashmediaelement.swf',
-    silverlightName: '/flash/silverlightmediaelement.xap',
+    flashName: 'assets/modules/audio/flash/flashmediaelement.swf',
+    silverlightName: 'assets/modules/audio/flash/silverlightmediaelement.xap',
     features: ['playpause', 'progress', 'current','duration']
 
 });

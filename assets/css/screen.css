@@ -1022,16 +1022,17 @@ article.news .article-right figure img { padding: 0; margin: 0; z-index: -1; pos
 /* LESS THAN TABLET */
 @media only screen and (max-width: 700px) { article.news .article-right { width: 100%; }
   article.news .article-left { width: 100%; } }
-.accordion a.accordion-link { background-color: #888888; padding: 10px; width: 100%; display: block; float: left; margin: 0 0 1px 0; text-decoration: none; -webkit-transition-property: background-color; -moz-transition-property: background-color; -o-transition-property: background-color; transition-property: background-color; -webkit-transition-duration: 0.3s; -moz-transition-duration: 0.3s; -o-transition-duration: 0.3s; transition-duration: 0.3s; -webkit-transition-timing-function: linear; -moz-transition-timing-function: linear; -o-transition-timing-function: linear; transition-timing-function: linear; color: #eee; }
-.accordion a.accordion-link h3 { display: block; float: left; width: 100%; }
+.accordion { display: block; float: left; width: 100%; }
+.accordion a.accordion-link { background-color: #888888; padding: 10px; width: 100%; display: block; float: left; margin: 0 0 1px 0; text-decoration: none; color: #eeeeee; }
+.accordion a.accordion-link h3 { display: block; float: left; width: 100%; color: #eeeeee; }
 .accordion a.accordion-link:hover { background-color: #6e6e6e; }
-.accordion article.accordion-slide { display: block; float: left; padding: 10px; background: #c3c3c3; width: 100%; position: relative; z-index: 1; border-left: 1px solid #555555; }
-.accordion article.accordion-slide p { display: block; float: left; width: 100%; }
+.accordion article { display: block; float: left; width: 100%; }
+.accordion article p { display: block; float: left; width: 100%; padding: 10px; background: #c3c3c3; border-left: 1px solid #555555; margin: 0; }
 
 /* LESS THAN TABLET */
-@media only screen and (max-width: 700px) { .accordion .accordion-slide { border-left: 7px solid #555555; } }
+@media only screen and (max-width: 700px) { .accordion article p { border-left: 7px solid #555555; } }
 /* LESS THAN MOBILE LANDSCAPE */
-@media only screen and (max-width: 480px) { .accordion .accordion-slide { border-left: 10px solid #555555; } }
+@media only screen and (max-width: 480px) { .accordion article p { border-left: 10px solid #555555; } }
 .mejs-container { position: relative; text-align: left; vertical-align: top; text-indent: 0; }
 
 .me-plugin { position: absolute; }
@@ -1377,6 +1378,16 @@ html[xmlns] .slides { display: block; }
 .pagination-first-last ul li a.next:hover, .pagination-first-last ul li a.next.active { background: url("../modules/pagination-first-last/img/pagination-next-active.png") 0 0 no-repeat; }
 .pagination-first-last ul li a.last { margin-left: 6px; margin-right: 0; background: url("../modules/pagination-first-last/img/pagination-last.png") 0 0 no-repeat; }
 .pagination-first-last ul li a.last:hover, .pagination-first-last ul li a.last.active { background: url("../modules/pagination-first-last/img/pagination-last-active.png") 0 0 no-repeat; }
+
+.pagination { display: block; float: left; width: 100%; padding: 20px 0; }
+.pagination ul { padding: 0; margin: 0; list-style-type: none; margin: 0 auto; width: 210px; display: block; float: none; }
+.pagination ul li { padding: 0; margin: 0; display: block; float: left; }
+.pagination ul li a { text-decoration: none; display: block; float: left; margin: 4px 5px 0 0; }
+.pagination ul li a.next, .pagination ul li a.previous { height: 23px; width: 23px; text-indent: -999px; overflow: hidden; margin-top: 0px; }
+.pagination ul li a.previous { margin-right: 12px; background: url("../modules/pagination-first-last/img/pagination-prev.png") 0 0 no-repeat; }
+.pagination ul li a.previous:hover, .pagination ul li a.previous.active { background: url("../modules/pagination-first-last/img/pagination-prev-active.png") 0 0 no-repeat; }
+.pagination ul li a.next { margin-left: 7px; margin-right: 0; background: url("../modules/pagination-first-last/img/pagination-next.png") 0 0 no-repeat; }
+.pagination ul li a.next:hover, .pagination ul li a.next.active { background: url("../modules/pagination-first-last/img/pagination-next-active.png") 0 0 no-repeat; }
 
 .blog-details { background-color: white; -webkit-box-shadow: #d6dee0 0px 0px 9px; -moz-box-shadow: #d6dee0 0px 0px 9px; box-shadow: #d6dee0 0px 0px 9px; display: block; float: left; width: 100%; padding: 0 15px; }
 .blog-details article { display: block; float: left; position: relative; background-color: white; padding: 15px 0 0 0; }

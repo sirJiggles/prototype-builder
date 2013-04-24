@@ -1,6 +1,10 @@
 
 .accordion{
 
+    @include block-left;
+    width:100%;
+
+
     a.accordion-link{
         background-color: $color3;
         padding:10px;
@@ -8,14 +12,12 @@
         @include block-left;
         margin: 0 0 1px 0;
         text-decoration:none;
-        @include transition-property(background-color);
-        @include transition-duration(0.3s);
-        @include transition-timing-function(linear);
-        color:#eee;
+        color:$color6;
 
         h3{
             @include block-left;
             width:100%;
+            color:$color6;
         }
 
         &:hover{
@@ -24,18 +26,18 @@
     }
 
 
-    article.accordion-slide{
+    article{
+
         @include block-left;
-        padding: 10px;
-        background: lighten($color4, 10%);
-        width: 100%;
-        position:relative;
-        z-index:1;
-        border-left: 1px solid $color2;
+        width:100%;
 
         p{
             @include block-left;
             width:100%;
+            padding:10px;
+            background: lighten($color4, 10%);
+            border-left: 1px solid $color2;
+            margin:0;
         }
     }
 
@@ -46,14 +48,22 @@
 /* LESS THAN TABLET */
 @media only screen and (max-width: $tablet){
 
-    .accordion .accordion-slide{
-        border-left:7px solid $color2;
+    .accordion{
+        article{
+            p{
+                border-left:7px solid $color2;
+            }
+        }
     }
 }
 
 /* LESS THAN MOBILE LANDSCAPE */
 @media only screen and (max-width: $mobile){
-    .accordion .accordion-slide{
-        border-left:10px solid $color2;
+    .accordion{
+        article{
+            p{
+                border-left:10px solid $color2;
+            }
+        }
     }
 }
