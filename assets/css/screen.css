@@ -1380,7 +1380,7 @@ html[xmlns] .slides { display: block; }
 .pagination-first-last ul li a.last:hover, .pagination-first-last ul li a.last.active { background: url("../modules/pagination-first-last/img/pagination-last-active.png") 0 0 no-repeat; }
 
 .pagination { display: block; float: left; width: 100%; padding: 20px 0; }
-.pagination ul { padding: 0; margin: 0; list-style-type: none; margin: 0 auto; width: 210px; display: block; float: none; }
+.pagination ul { padding: 0; margin: 0; list-style-type: none; margin: 0 auto; width: 160px; display: block; float: none; }
 .pagination ul li { padding: 0; margin: 0; display: block; float: left; }
 .pagination ul li a { text-decoration: none; display: block; float: left; margin: 4px 5px 0 0; }
 .pagination ul li a.next, .pagination ul li a.previous { height: 23px; width: 23px; text-indent: -999px; overflow: hidden; margin-top: 0px; }
