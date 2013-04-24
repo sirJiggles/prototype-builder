@@ -1,6 +1,6 @@
 # Prototype Builder
 
-This system is designed to make creating the base of the HTML protorypes that get sent to clients
+This system is designed to make creating the base of the HTML prototypes that get sent to clients
 as quick as possible. Using the interface at [prototype-builder.com](http://prototype-builder.com) create prototypes quickly and downlaod 
 what you create.
 
