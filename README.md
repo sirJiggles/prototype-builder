@@ -14,7 +14,7 @@ To generate the CSS files for the start navigate to the new project and type com
 genarte the CSS files. This will need to be run when working on sass stylesheets. There are four CSS files that will be included
 after compiling. screen for all the site styles, print for print (this includes typography and any other custom styles) and lastly fixed
 width which is included for browsers that do not suport media queries. The purpose of this is to fix the width of site containers like
-#site-wrapper to 1024 or something simular.
+site-wrapper to 1024 or something simular.
 
 * assets/sass/fixed-width.scss
 * assets/sass/print.scss
