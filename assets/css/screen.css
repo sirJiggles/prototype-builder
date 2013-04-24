@@ -1477,8 +1477,8 @@ html[xmlns] .slides { display: block; }
   #main-nav-standard ul li { border-bottom: 1px solid white; width: 100%; }
   #main-nav-standard ul.open { height: 330px; }
   #main-nav-standard .nav-controls { display: block; } }
-#main-nav-facebook { min-height: 60px; display: block; float: left; width: 100%; z-index: 9999999; }
-#main-nav-facebook ul { padding: 0; margin: 0; width: 100%; left: 0%; position: relative; height: 100%; background-color: #dddddd; z-index: 999; margin: 10px 0 10px 0; display: block; float: left; -webkit-transition-property: all; -moz-transition-property: all; -o-transition-property: all; transition-property: all; -webkit-transition-duration: 0.5s; -moz-transition-duration: 0.5s; -o-transition-duration: 0.5s; transition-duration: 0.5s; }
+#main-nav-facebook { min-height: 60px; z-index: 9999999; }
+#main-nav-facebook ul { padding: 0; margin: 0; width: 100%; left: 0%; position: relative; height: 100%; background-color: #dddddd; z-index: 9999999; margin: 10px 0 10px 0; display: block; float: left; -webkit-transition-property: all; -moz-transition-property: all; -o-transition-property: all; transition-property: all; -webkit-transition-duration: 0.5s; -moz-transition-duration: 0.5s; -o-transition-duration: 0.5s; transition-duration: 0.5s; }
 #main-nav-facebook ul li { display: block; float: left; margin: 0; border: none; width: auto; }
 #main-nav-facebook ul li a { text-decoration: none; color: #222222; font-size: 1em; line-height: 1.5em; background-color: #dddddd; padding: 20px; text-align: center; display: block; float: left; overflow: hidden; }
 #main-nav-facebook ul li a:hover { background-color: #aaaaaa; }

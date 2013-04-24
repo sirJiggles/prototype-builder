@@ -4,8 +4,6 @@
 #main-nav-facebook{
 
     min-height:60px;
-    @include block-left;
-    width:100%;
     z-index:9999999;
 
     ul{
@@ -15,7 +13,7 @@
         position:relative;
         height:100%;
         background-color:$color5;
-        z-index:999;
+        z-index:9999999;
         margin:10px 0 10px 0;
         @include block-left;
 
