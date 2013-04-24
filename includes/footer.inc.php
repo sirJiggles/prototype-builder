@@ -15,16 +15,12 @@
         <!-- end site wrapper -->
         
         
-        <div class="row">
+        <div class="row footer-row">
             <footer id="site-footer">
-                <div class="col end">
-                </div>
+                
             </footer>
         </div>
 
-        
-        <!-- Remove after develop --> 
-        
         
         
         <!--<script type="text/javascript" src="assets/js/script.min.js"></script> -->

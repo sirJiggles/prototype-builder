@@ -1,15 +1,13 @@
-@import "_settings";
-@import "_mixins";
-
 
 /* ================ MAIN LAYOUT ELEMENTS ================ */
 body,html{
-    
+    height:100%;
 }
 
 
 body{
     overflow-x:hidden;
+    background:url('../img/osx.png') 0 0 repeat;
 }
 
 #site-wrapper{
@@ -23,7 +21,7 @@ body{
 }
 
 *{
-    @include border-box('/assets/js/vendor/border-box.htc');
+    @include border-box('../assets/js/vendor/border-box.htc');
 }
 
 .row {
@@ -34,35 +32,23 @@ body{
         margin-right:-$grid-padding;
         
     } // Nudge back nested rows
-    
-    .col {
-        @include span-columns($total-columns);
-        
-        &.end{
-            @include omega;
-        }
-        
-        @each $section in $gridGlobal{
-            $name: nth($section, 1);
-            $number: nth($section, 2);
 
-            &.#{$name}{
-                @for $i from 1 through $number{
-                    &.span-#{$i}{
-                        @include span-columns($total-columns * ($i/$number));
+    @for $i from 1 through $total-columns{
+        .grid-#{$i}{
+            @include span-columns($i);
                         
-                        &.end{
-                            @include omega;
-                        }
-                    }
-                }
+            &.end{
+                @include omega;
             }
         }
+
     }
 }
 
 .main{
-    background-color:$color5;
+    background-color:white;
+    @include box-shadow(black 2px 8px 10px);
+    margin-bottom:10px;
 }
 
 
@@ -74,132 +60,206 @@ body{
     left:0;
     top:0;
     height:100%;
-    background-color:$color6;
     z-index:9998;
-    padding:15px;
+    padding:24px;
     margin:100px 0 -100px 0;
+    background:url('../img/carbon.png') 0 0 repeat;
+    @include box-shadow(black -7px 0 20px inset);
+
+    // Built for logo
+    .built-for{
+        position:absolute;
+        width:188px;
+        height:85px;
+        @include icons-sprite(built-for);
+        bottom:120px;
+        left:20px;
+        overflow: hidden;
+        text-indent: -999px;
+        text-decoration: none;
+        outline: none;
+    }
+
+    h3{
+        @include custom-font;
+        color:white;
+        font-weight:400;
+        @include em-font(18);
+        line-height:1.2em;
+        border-bottom:3px solid #95dffd;
+        margin:0 0 10px 0;
+    }
     
     ul{
         list-style-type:none;
         @include reset-box;
+        @include block-left;
 
-        a{
-            color:$color4;
-            text-decoration:none;
-            outline:none;
-            font-weight:700;
-            display:block;
+        li{
+            @include block-left;
+            width:100%;
+            margin:0;
         }
 
-        a:hover{
-            color:white;
+        &.project-controls{
+            li{
+                height:49px;
+                width:49px;
+                padding:9px;
+                background-color:#00b6ff;
+                @include border-radius(5px);
+                @include block-left;
+                margin:0 16px 0 0;
+                border:none;
+
+                a{
+                    @include block-left;
+                    outline:none;
+                    text-indent: -999px;
+                    overflow: hidden;
+                    text-decoration: none;
+                    height:31px;
+                    width:30px;
+
+                    &.lock-template{
+                        @include icons-sprite(lock);
+                    }
+
+                    &.download-project{
+                        @include icons-sprite(download);
+                    }
+
+                    &.clear-store{
+                        @include icons-sprite(delete-project);
+                    }
+                }
+
+                &.last{
+                    margin:0px;
+                }
+            }
         }
+
+    }
+
+    select{
+        width:100%;
+        margin:0 0 40px 0;
+        @include block-left;
     }
 
     code{
         display:none;
     }
+
 }
 
 /* NEW GRID BOXES ADDED TO THE STAGE */
 
+
+
 .grid-box{
+
     min-height:100px;
     @include block-left;
     position:relative;
     padding:10px;
     background-color:white;
     border:1px solid black;
+
+    &.grid-active{
+        border:3px solid #00b6ff;
+
+        &.end{
+            border:3px solid red; 
+        }
+    }
+
+    &.end{
+        border:1px solid red; 
+
+        a.control{
+
+            &.end-toggle{
+                @include icons-sprite(back);
+
+                &:hover{
+                    @include icons-sprite(back-hover);
+                }
+            }
+        }
+    }
+
+    &:hover a.control{
+        display:block;
+    }
+
+    a.control{
+        position:absolute;
+        top:5px;
+        text-indent: -999px;
+        overflow: hidden;
+        height:22px;
+        width:22px;
+        text-decoration:none;
+        z-index:997;
+        display:none;
+        outline:none;
+
+        &:hover{
+            outline:none;
+            text-decoration:none;
+        }
+
+        &.end-toggle{
+            right:30px;
+            @include icons-sprite(end);
+
+            &:hover{
+                @include icons-sprite(end-hover);
+            }
+        } 
+
+        &.settings{
+            left:30px;
+            @include icons-sprite(settings);
+
+            &:hover{
+                @include icons-sprite(settings-hover);
+            }
+        }
+
+        &.remove{
+            right:5px;
+            @include icons-sprite(close);
+            &:hover{
+                @include icons-sprite(close-hover);
+            }
+        }
+
+        &.dragger{
+            left:5px;
+            @include icons-sprite(drag);
+            &:hover{
+                @include icons-sprite(drag-hover);
+            }
+        }
+    }
 }
 
 
-.grid-box.grid-active{
-    border:3px solid blue;
-}
-
-.grid-box.end{
-    border:1px solid red; 
-}
-
-.grid-box.grid-active.end{
-    border:3px solid red; 
-}
-
-.grid-box.end a.end-toggle{
-    @include rotate(180deg);
-    right: 63px;
-    top: 14px;
-}
-
-.grid-box:hover a.control{
-    display:block;
-}
-
-    
-.grid-box a.control{
-    position:absolute;
-    top:16px;
-    color:#555;
-    font-weight:700;
-    @include em-font(26);
-    @include icon-font;
-    text-decoration:none;
-    z-index:997;
-    display:none;
-    outline:none;
-    text-decoration:none;
-}
-
-.grid-box a.control:hover{
-    outline:none;
-    text-decoration:none;
-}
-    
-
-.grid-box a.control:after{
-    @include shape(20px, 20px);
-    @include border-radius(10px);
-    background-color:$color3;
-    @include bg-gradient($color5, $color2);
-    top:-12px;
-    left:-6px;
-    z-index:-1;
-    border:1px solid $color1;
-}
 
 // when the page is locked
-.main.lock .grid-box{
-    padding:0px;
-    background:none;
-    border:none;
-}
+.main.lock{
+    .grid-box{
+        padding:0px;
+        background:none;
+        border:none;
 
-.main.lock .grid-box:hover a.control{
-    display:none;
-}
-
-.grid-box a.end-toggle{
-    right:60px;
-} 
-
-.grid-box a.settings{
-    left:33px;
-}
-
-.grid-box a.settings:after{
-    left:-4px;
-}
-
-.grid-box a.remove{
-    right:37px;
-}
-
-.grid-box a.remove:after{
-    left:-7px;
-}
-
-.grid-box a.dragger{
-    left:10px;
+        &:hover a.control{
+            display:none;
+        }
+    }
 }
     
 
@@ -241,6 +301,7 @@ body{
     h2{
         line-height:1.0em;
         width:100%;
+        @include custom-font;
     }
 
     ul{
@@ -249,22 +310,49 @@ body{
         
         li{
             @include block-left;
-            margin:0 20px 0 0;
+            margin:0 10px 0 0;
 
             a{
                 text-decoration: none;
+                margin:0 5px 5px 0;
+                @include block-left;
             }
             
         }
     }
     a.close-button{
         position:absolute;
-        top:0px;
-        right:0px;
+        top:-10px;
+        right:-10px;
         outline: none;
         text-decoration: none;
-        height:20px;
-        width:20px;
+        height:22px;
+        width:22px;
+        text-indent: -999px;
+        overflow: hidden;
+        @include icons-sprite(close-hover);
+
+    }
+
+    form{
+        input[type='text'],
+        textarea{
+            @include border-radius(5px);
+            @include box-shadow(#666 2px 2px 6px inset);
+            padding:5px 10px;
+            color:#222;
+            border:none;
+        }
+
+        input[type='submit']{
+            font-weight:400;
+            padding:10px;
+            margin:10px 0 0 0;
+            background-color: #00b6ff;
+            &:hover{
+                background-color: lighten(#00b6ff, 10%);
+            }
+        }
     }
 }
 

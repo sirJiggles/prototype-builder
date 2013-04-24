@@ -3,9 +3,6 @@
 Changed to Desktop first else we would not be able to have a modular system!
 
 */
-@import "_settings";
-@import "_mixins";
-
 
 /* LESS THAN DESKTOP LARGE */
 @media only screen and (max-width: $dekstopLarge){
@@ -27,21 +24,7 @@ Changed to Desktop first else we would not be able to have a modular system!
 /* LESS THAN DESKTOP */
 @media only screen and (max-width: $desktop){
 
-    form{
-
-        label{
-            width:100%;
-            padding: 0 0 2% 0;
-        }
-
-        input,
-        select{
-            width: 92%;
-            padding:4%;
-            margin: 0 0 2% 0;
-        }
-
-    }
+  
 
 }
 
@@ -55,27 +38,20 @@ Changed to Desktop first else we would not be able to have a modular system!
 /* LESS THAN MOBILE LANDSCAPE */
 @media only screen and (max-width: $mobile){
 
- // re create grid for small screen
-    .row{
-        .col{
-
-            @each $section in $gridGlobal{
-                $name: nth($section, 1);
-                $number: nth($section, 2);
-
-                &.#{$name}{
-                    @for $i from 1 through $number{
-                        &.span-#{$i}{
-                            @include span-columns($total-columns);
+     // re create grid for small screen
+     .row{
+         @for $i from 1 through $total-columns{
+            .grid-#{$i}{
+                @include span-columns($total-columns);
+                margin-bottom:$grid-padding;
                             
-                            &.end{
-                                @include omega;
-                            }
-                        }
-                    }
+                &.end{
+                    @include omega;
                 }
             }
+
         }
-    }
+
+     }
     
 }

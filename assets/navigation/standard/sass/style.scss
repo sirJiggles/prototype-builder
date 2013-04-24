@@ -1,20 +1,21 @@
 
 // Standard mobile navigation
-.main-nav-standard{
 
-	background-color: $color5;
+#main-nav-standard{
+
+	min-height:60px;
+    z-index:9999999;
 
 	ul{
 		@include reset-box;
-		display:block;
+		@include block-left;
 		width:100%;
-		float:left;
 		margin:10px 0 10px 0;
+		background-color:$color5;
 
 		li{
-			float:left;
+			@include block-left;
 			margin:0;
-			border-bottom:1px solid white;
 			border:none;
 			width:auto;
 
@@ -41,12 +42,14 @@
 	}
 
 	.nav-controls{
-
-		display:none;
 		float:left;
-
+		display:none;
 		padding:10px 0;
 		width:100%;
+		background-color:$color5;
+		left:0;
+		position:fixed;
+		z-index:9999999;
 
 		a{
 			text-decoration: none;
@@ -57,6 +60,7 @@
 			border:1px solid black;
 			@include block-left;
 			text-indent: 9999px;
+			margin-left:20px;
 		}
 	}
 
@@ -64,16 +68,30 @@
 
 // Change the nav at various break points
 
-// TABLET DOWN
-@media only screen and (max-width: $tablet){
-	.main-nav-standard{
+/* TABLET DOWN */
+@media only screen and (max-width: $desktop){
+
+	#main-nav-standard{
+
+		nav{
+			padding-top:52px;
+		}
+
 		ul{
-			display:none !important;
 			
+			height:0px;
+			overflow:hidden;
+
+			@include transition-property(height);
+			@include transition-duration(1.0s);
 
 			li{
-				border:block;
+				border-bottom:1px solid white;
 				width:100%;
+			}
+
+			&.open{
+				height:330px;
 			}
 		}
 

@@ -1,0 +1,127 @@
+// Comemnts form
+#respond{
+
+	h3{
+		padding-bottom:15px;
+		@include em-font(16);
+		@include em-line-height(16);
+		color:$color2;
+		font-weight: 500;
+		font-style: normal;
+	}
+
+	form{
+		background-color:$color6;
+		padding:0 20px 20px 20px;
+		@include block-left;
+		width:100%;
+
+		legend{
+			@include reset-box;
+			@include em-font(16);
+			@include em-line-height(16);
+			color:$color2;
+			font-weight: 500;
+			margin:0 0 20px 0;
+		}
+
+		label{
+			width:100%;
+			@include block-left;
+			@include em-font(14);
+			@include em-line-height(14);
+			color:$color2;
+			font-weight: 500;
+			margin:0 0 5px 0;
+
+			&.notify-me{
+				@include em-font(12);
+				@include em-line-height(12);
+				width:auto;
+			}
+		}
+
+		input[type='text'],
+		input[type='email'],
+		input[type='number'],
+		input[type='telephone'],
+		textarea{
+			padding:5px 10px;
+			border:none;
+			@include box-shadow(#999 1px 1px 5px inset);
+			@include block-left;
+			margin:0 0 15px 0;
+			color:$color2;
+			@include em-font(14);
+			@include em-line-height(14);
+			clear:left;
+		}
+
+		input[type='text'],
+		input[type='email'],
+		input[type='number'],
+		input[type='telephone'],{
+			width:250px;
+		}
+
+		input[type='checkbox']{
+			@include block-left;
+			margin-right:10px;
+			padding:0;
+		}
+
+		input[type='submit']{
+			width:auto;
+			clear:left;
+			margin:10px 0 10px 0;
+		}
+
+		textarea{
+			width:100%;
+			min-height:240px;
+		}
+
+		input[type='submit']{
+			@include border-radius(5px);
+		    background-color:$color3;
+		    color:white;
+		    text-align: center;
+		}
+
+	}
+}
+
+// MEDIA QUARS
+
+/* LESS THAN DESKTOP */
+@media only screen and (max-width: $tablet){
+	#respond{
+		form{
+
+			input[type='text'],
+			input[type='email'],
+			input[type='number'],
+			input[type='telephone']{
+				padding:10px;
+				width:100%;
+			}
+		}
+	}
+}
+
+
+/* LESS THAN TABLET */
+@media only screen and (max-width: $mobile){
+	#respond{
+		form{
+			input[type='text'],
+			input[type='email'],
+			input[type='number'],
+			input[type='telephone']{
+				padding:10px 15px;
+			}
+		}
+	}
+
+}
+

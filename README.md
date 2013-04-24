@@ -10,15 +10,15 @@ to know the following.
 
 ## CSS FILES
 
-Unfortunatly you will have to open the following files, add a space or something then save them. After this run the
-'compass compile' command from the root of the project to create the CSS files.
+To generate the CSS files for the start navigate to the new project and type command 'compass watch' the first time this is run it will
+genarte the CSS files. This will need to be run when working on sass stylesheets. There are four CSS files that will be included
+after compiling. screen for all the site styles, print for print (this includes typography and any other custom styles) and lastly fixed
+width which is included for browsers that do not suport media queries. The purpose of this is to fix the width of site containers like
+#site-wrapper to 1024 or something simular.
 
-* assets/sass/all-media.scss
 * assets/sass/fixed-width.scss
 * assets/sass/print.scss
 * assets/sass/screen.scss
-
-After this use 'compass watch' to detect changes in the background
 
 ## JS FILES
 

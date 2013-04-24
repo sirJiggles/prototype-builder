@@ -1,17 +1,16 @@
 if ($('.accordion').length > 0){
     
-    $('.accordion-slide').slideUp();
+    $('.accordion article').slideToggle();
 
     $('.accordion-link').click(function(e){
         
         e.preventDefault();
-        if (!$(this).hasClass('open')){
 
-            $('.accordion-slide').slideUp();
-            $(this).next().slideToggle();
-            $('.accordion-link').removeClass('open');
-            $(this).toggleClass('open');
+        if (!$(this).next().hasClass('open')){
 
+            $('.accordion article.open').slideToggle().removeClass('open');
+            $(this).next().slideToggle().addClass('open');
         }
+
     });
 }

@@ -32,3 +32,8 @@ body a:link:after, body a:visited:after {
 body{
     color:black;
 }
+
+form,
+#site-footer{
+    display:none;
+}

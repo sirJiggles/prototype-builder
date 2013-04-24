@@ -1,17 +1,10 @@
 
 // Facebook mobile navigation
-#nav-header{
+
+#main-nav-facebook{
+
     min-height:60px;
-    @include block-left;
-    width:100%;
     z-index:9999999;
-}
-
-.main-nav-facebook{
-
-    background-color: $color5;
-    display:block;
-    width:100%;
 
     ul{
         @include reset-box;
@@ -20,7 +13,7 @@
         position:relative;
         height:100%;
         background-color:$color5;
-        z-index:999;
+        z-index:9999999;
         margin:10px 0 10px 0;
         @include block-left;
 
@@ -60,7 +53,10 @@
         display:none;
         padding:10px 0;
         width:100%;
-        overflow: hidden;
+        background-color:$color5;
+        left:0;
+        position:fixed;
+        z-index:9999999;
 
         a{
             text-decoration: none;
@@ -71,6 +67,7 @@
             border:1px solid black;
             @include block-left;
             text-indent: 9999px;
+            margin-left:20px;
         }
     }
 
@@ -83,13 +80,14 @@
 // Change the nav at various break points
 
 // TABLET DOWN
-@media only screen and (max-width: $tablet){
+@media only screen and (max-width: $desktop){
 
-    #nav-header{
-        position:fixed;
-    }
 
-    .main-nav-facebook{
+    #main-nav-facebook{
+
+        margin-bottom:10px;
+        background-color: $color5;
+
         ul{
             position:fixed;
             left:-100%;

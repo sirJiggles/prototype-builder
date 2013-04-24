@@ -1,0 +1,330 @@
+.blog-details{
+
+
+	background-color:white;
+    @include box-shadow(#d6dee0 0px 0px 9px);
+    @include block-left;
+    width:100%;
+    padding:0 15px;
+
+	article{
+
+		@include block-left;
+		position:relative;
+		background-color:white;
+		padding:15px 0 0 0;
+
+		.social{
+			background:url('../modules/blog-listing/img/social.png') 0 0 no-repeat;
+			position:absolute;
+			top:20px;
+			right:0;
+			width:248px;
+			height:20px;
+		}
+
+
+
+		time{
+			position:absolute;
+			top:15px;
+			left:-17px;
+			background-color: #BFD0D4;
+			text-transform: uppercase;
+			color:white;
+			@include em-font(20);
+			@include em-line-height(16);
+			padding:2px 10px;
+		}
+		header{
+
+			width:100%;
+			@include block-left;
+			padding-top:40px;
+
+			h2{
+				width:100%;
+				@include block-left;
+				@include em-font(22);
+				font-weight: 400;
+				margin:0;
+				color:$color2;
+			}
+		}
+
+		a.comments{
+
+			color:$color2;
+			@include em-font(14);
+			font-style: italic;
+			@include em-line-height(14);
+			float:right;
+			display:block;
+			width:30%;
+			text-align: right;
+			text-decoration: none;
+			height:30px;
+
+		}
+
+
+		ul.tags{
+
+			width:70%;
+			@include block-left;
+			margin:0;
+			height:30px;
+			list-style-type: none;
+			@include reset-box;
+
+			li{
+			 	width:auto;
+			 	@include em-font(13);
+		 		@include em-line-height(13);
+		 		@include block-left;
+			 	margin:0 5px 0 0;
+
+			 	a{
+			 		text-decoration:none;
+			 		outline:none;
+			 		font-weight: 700;
+
+			 	}
+			 }
+
+		}
+
+		p{
+			display:block;
+			@include em-font(16);
+			@include em-line-height(16);
+			color:#4D4D4D;
+			font-weight:300;
+			margin:0 0 15px 0;
+		}
+
+		img{
+			float:left;
+			margin:0 20px 10px 0;
+		}
+
+		.comments-container{
+
+			border-top:1px solid $color6;
+			padding:25px 0 20px 0;
+			@include block-left;
+			margin-top:25px;
+
+			#comments{
+				@include em-font(16);
+				@include em-line-height(16);
+				color:#333;
+				font-weight: 500;
+			}
+
+			article{
+
+				border-bottom:1px solid $color6;
+				padding-top:20px;
+
+				header{
+					width:70%;
+					@include block-left;
+					padding-top:0;
+					height:45px;
+
+					h4{
+						@include em-font(14);
+						@include em-line-height(14);
+						color:$color2;
+						font-style: italic;
+						margin-bottom:5px;
+					}
+
+					time{
+						background:none;
+						@include reset-box;
+						color:#999;
+						font-weight:300;
+						text-transform: none;
+						@include em-font(12);
+						@include em-line-height(12);
+						position:relative;
+						@include block-left;
+						width:100%;
+						font-style: italic;
+						left:0;
+						top:5px;
+					}
+				}
+
+				a.reply{
+					float:right;
+					text-align: right;
+					width:30%;
+					@include em-font(14);
+					@include em-line-height(14);
+					font-style: italic;
+					text-decoration: none;
+					height:45px;
+				}
+
+				&.last{
+					border:none;
+				}
+
+				&.first{
+					padding-top:15px;
+				}
+
+			}
+
+			// Comemnts form
+			form{
+				background-color:$color6;
+				padding:20px;
+				@include block-left;
+
+				fieldset{
+					@include reset-box;
+
+					legend{
+						@include reset-box;
+						@include em-font(16);
+						@include em-line-height(16);
+						color:$color2;
+						margin:0 0 20px 0;
+					}
+
+					label{
+						width:100%;
+						@include block-left;
+						@include em-font(14);
+						@include em-line-height(14);
+						color:$color2;
+						margin:0 0 5px 0;
+
+						&.notify-me{
+							@include em-font(12);
+							@include em-line-height(12);
+							width:auto;
+						}
+					}
+
+					input[type='text'],
+					input[type='email'],
+					input[type='number'],
+					input[type='telephone'],
+					textarea{
+						padding:5px 10px;
+						border:none;
+						@include box-shadow(#999 1px 1px 5px inset);
+						@include block-left;
+						margin:0 0 15px 0;
+						color:$color2;
+					}
+
+					input[type='text'],
+					input[type='email'],
+					input[type='number'],
+					input[type='telephone'],{
+						@include em-font(14);
+						@include em-line-height(14);
+						width:250px;
+					}
+
+					input[type='checkbox']{
+						@include block-left;
+						margin-right:10px;
+					}
+
+					input[type='submit']{
+						width:auto;
+						clear:left;
+						margin:10px 0 10px 0;
+					}
+
+					textarea{
+						width:100%;
+						min-height:240px;
+					}
+
+				}
+
+			}
+		}
+
+	}
+}
+
+// MEDIA QUARS
+
+/* LESS THAN DESKTOP */
+@media only screen and (max-width: $tablet){
+	.blog-details{
+		article{
+			.comments-container{
+				form{
+					fieldset{
+						input[type='text'],
+						input[type='email'],
+						input[type='number'],
+						input[type='telephone']{
+							padding:10px;
+							width:100%;
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+
+/* LESS THAN TABLET */
+@media only screen and (max-width: $mobile){
+	.blog-details{
+		article{
+			.social{
+				position:relative;
+				top:52px;
+				margin-bottom:25px;
+			}
+
+			img{
+				width:100%;
+				margin:0 0 20px 0;
+			}
+
+			a.comments{
+				position:relative;
+				float:left;
+				width:100%;
+				margin-bottom:5px;
+				text-align:left;
+			}
+
+			ul.tags{
+				width:100%;
+				@include block-left;
+			}
+
+			p{
+				width:100%;
+			}
+
+			.comments-container{
+				form{
+					fieldset{
+						input[type='text'],
+						input[type='email'],
+						input[type='number'],
+						input[type='telephone']{
+							padding:10px 15px;
+						}
+					}
+				}
+			}
+		}
+	}
+}

@@ -35,22 +35,6 @@ $(window).ready(function () {
         console.log('Error', e);
     });
 
-     // if there is no template name set create the frst one using the default template name
-    var hasTemplate = false;
-    for(var prop in global.templates){
-        if(global.templates.hasOwnProperty(prop)){
-            hasTemplate = true;
-            break;
-        }
-    }
-
-    if(!hasTemplate){
-        global.templates = {'template-one' : {grid:{}, positions:[]}};
-        global.currentTemplate = 'template-one';
-    }
-
-    updateTemplateList();
-
     // clicking on tools link 
     $('.tools-link').click(function(e){
         e.preventDefault();
@@ -101,31 +85,36 @@ $(window).ready(function () {
     });
     
     // click a grid button click
-    $('.grid-link').click(function(e){
+    $('#grid-select').change(function(e){
 
         e.preventDefault();
-        
-        if(!$('.main').hasClass('lock')){
 
-            $('.grid-box').removeClass('grid-active');
-            
-            addGridObjectToStage($(this).attr('id'), global.gridIdent);
+        if($(this).val() == 'select-grid') return;
+        if($('.main').hasClass('lock')) return;
         
-            // add item to grid store
-            global.templates[global.currentTemplate].grid[global.gridIdent] = {
-                                                size:$(this).attr('id'),
-                                                end:0,
-                                                text:'',
-                                                modules:[]
-                                            };
+
+        $('.grid-box').removeClass('grid-active');
+            
+        addGridObjectToStage($(this).val(), global.gridIdent);
+        
+        // add item to grid store
+        global.templates[global.currentTemplate].grid[global.gridIdent] = {
+                                            size:$(this).val(),
+                                            end:0,
+                                            text:'',
+                                            modules:[]
+                                        };
                                             
-            global.templates[global.currentTemplate].positions.push(global.gridIdent);
-            
-            //increment the grid ref var
-            global.gridIdent ++;
-            
-            updateStore(false);
-        }
+        global.templates[global.currentTemplate].positions.push(global.gridIdent);
+        
+        //increment the grid ref var
+        global.gridIdent ++;
+
+        // reset the value of the select box
+        $(this).val('Select Grid Box');
+        
+        updateStore(false);
+
             
     });
     
@@ -172,7 +161,7 @@ $(window).ready(function () {
 
         e.preventDefault();
         // remove old grid size classes and add new ones
-        $('.grid-link').each(function(){
+        $("#grid-select > option").each(function() {
             $('.editing').removeClass($(this).attr('id'));
         });
         
@@ -220,6 +209,62 @@ $(window).ready(function () {
 
     });
 
+    // Download project functionality
+    $('.download-project').click(function(e){
+        e.preventDefault();
+
+        // post the hidden form with the json data in it
+        $('#data').val(JSON.stringify(global));
+        $('#data-form').submit();
+    });
+
+    // lock / unlocking the template
+    $('.lock-template').click(function(e){
+        $('.main').toggleClass('lock');
+        if ($('.main').hasClass('lock')){
+            global.templates[global.currentTemplate].lock = true;
+        }else{
+            global.templates[global.currentTemplate].lock = false;
+        }
+        updateStore(false);
+    })
+
+});
+
+// Function to update the lost of templates the user can choose
+function updateTemplateList(){
+    var templateListString = '';
+    for(var template in global.templates){
+        if (global.templates.hasOwnProperty(template)){
+            templateListString += '<li' ;
+
+            // If the active template we will add our controls to the tab
+            if(template == global.currentTemplate){
+                templateListString += ' class="active">';
+                templateListString += '<a href="#" title="Click here to edit the template" class="edit-template">Rename Template</a>';
+                templateListString += '<a class="template-item" href="#" title="Click here to select the template">'+template+'</a>';
+                templateListString += '<a href="#" title="Click to delete current template" class="delete-template">Delete Template</a>';
+                templateListString += '</li>';
+
+                
+            }else{
+                templateListString += '><a class="template-item" href="#" title="Click here to select the template">'+template+'</a></li>';
+            }
+
+            
+        }
+    }
+
+    // add the add new template button to the end
+    templateListString += '<li class="new-template-li"><a href="#" title="Click to create a new template" class="new-template">New Template</a></li>';
+
+    $('.template-tabs').html(templateListString);
+
+    $('.edit-template').unbind('click');
+    $('.new-template').unbind('click');
+    $('.delete-template').unbind('click');
+
+    //bind and unbind the template controls
     // click to view the popup for editing template
     $('.edit-template').click(function(e){
         e.preventDefault();
@@ -280,53 +325,17 @@ $(window).ready(function () {
 
     });
 
-    // Download project functionality
-    $('.download-project').click(function(e){
-        e.preventDefault();
 
-        // post the hidden form with the json data in it
-        $('#data').val(JSON.stringify(global));
-        $('#data-form').submit();
-    });
-
-    // lock / unlocking the template
-    $('.lock-template').click(function(e){
-        $('.main').toggleClass('lock');
-        if ($('.main').hasClass('lock')){
-            global.templates[global.currentTemplate].lock = true;
-        }else{
-            global.templates[global.currentTemplate].lock = false;
-        }
-        updateStore(false);
-    })
-
-});
-
-// Function to update the lost of templates the user can choose
-function updateTemplateList(){
-    var templateListString = '';
-    for(var template in global.templates){
-        if (global.templates.hasOwnProperty(template)){
-            templateListString += '<li' ;
-            if(template == global.currentTemplate){
-                templateListString += ' class="active"';
-            }
-
-            templateListString += '><a class="template-item" href="#" title="Click here to select the template">'+template+'</a></li>';
-        }
-    }
-    $('.template-tabs').html(templateListString);
 }
 
 // Function to apply the global.currentTemplate to stage
 function loadTemplate(){
-    
+
     // clear stage
     $('.main').html('');
 
     // re-calculate the value of gird ident
     var gridCount = 0, allModules = [];
-    console.log(global.currentTemplate);
 
     for(var prop in global.templates[global.currentTemplate].grid){
         if (global.templates[global.currentTemplate].grid.hasOwnProperty(prop)){
@@ -409,15 +418,13 @@ function addGridObjectToStage(type, id){
     
     var gridText = (typeof global.templates[global.currentTemplate].grid[id] !== 'undefined') ? global.templates[global.currentTemplate].grid[id].text : '';
 
-    var gridObject = $('<li class="grid-box grid-active col span-1 unlocked" id="grid-ident-'+id+'">'+
-                        '<a href="#" class="dragger control">&#9871;</a>'+
-                        '<a class="settings control" href="#" title="click here to edit this box">&#9881;</a>'+
-                        '<a class="end-toggle control" href="#" title="End class">&#58542;</a>'+
-                        '<a class="remove control" href="#" title="Remove Item">&#10060;</a>'+
+    var gridObject = $('<li class="grid-box grid-active unlocked '+type+'" id="grid-ident-'+id+'">'+
+                        '<a href="#" title="Click here to drag sort the grid box" class="dragger control">Drag box</a>'+
+                        '<a class="settings control" href="#" title="Click here to edit the settings of this container">Edit container</a>'+
+                        '<a class="end-toggle control" href="#" title="Click here to toggle the end class on this container">Toggle end class</a>'+
+                        '<a class="remove control" href="#" title="Click here to remove item">Remove Item</a>'+
                         '<div class="text-label-proto-builder">'+gridText+'</div></li>');
 
-    // add the col class to the grid obj
-    $(gridObject).addClass(type);
 
     // add grid object to stage
     $('.main').append(gridObject);
@@ -548,7 +555,7 @@ function updateStore(reload, write){
 function loadFromStore(){
     
     fileSystem.root.getFile('prototype-builder.json', {}, function(fileEntry) {
-
+  
         // Get a File object representing the file,
         // then use FileReader to read its contents.
         fileEntry.file(function(file) {
@@ -557,22 +564,33 @@ function loadFromStore(){
             reader.onloadend = function(e) {
                 
                 if (this.result && this.result != ''){
-                   // using the data provided create the grid and the global store
-                   global = JSON.parse(this.result);
-
-                   loadTemplate();
+                    // using the data provided create the grid and the global store
+                    global = JSON.parse(this.result);
+                    loadTemplate();
+                }else{
+                    settupDefaultTemplate();
                 }
-             
+                             
            };
 
            reader.readAsText(file);
         }, fileSystemErrorHandler);
 
     }, function(){
+
         // file must not exist, create it here
         fileSystem.root.getFile('prototype-builder.json', {create:true}, function(fileEntry) {
         });
+
+        settupDefaultTemplate();
+   
     });
+}
+
+function settupDefaultTemplate(){
+    global.templates = {'template-one' : {grid:{}, positions:[]}};
+    global.currentTemplate = 'template-one';
+    $('#nav-header').html($('#code-'+global.navigation).html());
 }
 
 /* 

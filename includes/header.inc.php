@@ -11,8 +11,8 @@
         <!-- META -->
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    	<meta name="description" content="" />
+    	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1, minimum-scale=1" />
+        <meta name="description" content="" />
     	<meta name="author" content="" />
         <meta name="keywords" content="" />
 	
@@ -29,8 +29,11 @@
     	<!-- CSS -->
         <link rel="stylesheet" href="assets/css/screen.css" media="screen" type="text/css" />
     	<link rel="stylesheet" href="assets/css/print.css" media="print" type="text/css"/>
+
+        <!-- CUSTOM FONT -->
+        <link href='http://fonts.googleapis.com/css?family=Noto+Sans:400,700' rel='stylesheet' type='text/css'>
         
-        <!--[if lte IE 7]>
+        <!--[if lte IE 8]>
             <link rel="stylesheet" href="assets/css/fixed-width.css" media="screen" type="text/css"/>
         <![endif]-->
         
@@ -99,12 +102,17 @@
             <form method="post" action="">
                 <label for="popup-grid-size">Size:</label>
                 <select name="popup-grid-size" id="popup-grid-size">
-                    <option value="full">Full</option>
-                    <option value="half">Half</option>
-                    <option value="third">Third</option>
-                    <option value="quarter">Quarter</option>
-                    <option value="fith">Fith</option>
-                    <option value="sixth">Sixth</option>
+                    <option id="grid-12" value="grid-12">12 Col</option>
+                    <option id="grid-11" value="grid-11">11 Col</option>
+                    <option id="grid-10" value="grid-10">10 Col</option>
+                    <option id="grid-9" value="grid-9">9 Col</option>
+                    <option id="grid-8" value="grid-8">8 Col</option>
+                    <option id="grid-7" value="grid-7">7 Col</option>
+                    <option id="grid-6" value="grid-6">6 Col</option>
+                    <option id="grid-5" value="grid-5">5 Col</option>
+                    <option id="grid-4" value="grid-4">4 Col</option>
+                    <option id="grid-3" value="grid-3">3 Col</option>
+                    <option id="grid-2" value="grid-2">2 Col</option>
                 </select>
                 <label for="popup-grid-text">Text:</label>
                 <input type="text" name="popup-grid-text" id="popup-grid-text" value="" placeholder="some text for the box" />
@@ -154,19 +162,27 @@
 
 
         <aside class="tools">
+
+            <a class="built-for" href="http://google.com" title="Built for Google Chrome">Built for Google Chrome</a>
             <div class="tools-wrapper">
                 
-                <h3>Grid boxes</h3>
-                <ul>
-                    <li><a href="#" class="grid-link" id="full">Full</a></li>
-                    <li><a href="#" class="grid-link" id="half">Half</a></li>
-                    <li><a href="#" class="grid-link" id="third">Third</a></li>
-                    <li><a href="#" class="grid-link" id="quarter">Quarter</a></li>
-                    <li><a href="#" class="grid-link" id="fith">Fith</a></li>
-                    <li><a href="#" class="grid-link" id="sixth">Sixth</a></li>
-                </ul>
+                <h3>Grid</h3>
+                <select name="grid-select" id="grid-select">
+                    <option id="default-grid-select" value="select-grid">Select Grid Box</option>
+                    <option id="grid-12" value="grid-12">12 Col</option>
+                    <option id="grid-11" value="grid-11">11 Col</option>
+                    <option id="grid-10" value="grid-10">10 Col</option>
+                    <option id="grid-9" value="grid-9">9 Col</option>
+                    <option id="grid-8" value="grid-8">8 Col</option>
+                    <option id="grid-7" value="grid-7">7 Col</option>
+                    <option id="grid-6" value="grid-6">6 Col</option>
+                    <option id="grid-5" value="grid-5">5 Col</option>
+                    <option id="grid-4" value="grid-4">4 Col</option>
+                    <option id="grid-3" value="grid-3">3 Col</option>
+                    <option id="grid-2" value="grid-2">2 Col</option>
+                </select>
+
                 <h3>Modules</h3>
-                <label for="module-select">Insert</label>
                 <select name="module-select" id="module-select">
                     <option id="default-module-select" value="select-module">Select Module</option>
                     <?php 
@@ -199,7 +215,6 @@
                 <?php endforeach; ?>
 
                 <h3>Navigation</h3>
-                <label for="nav-select">Use</label>
                 <select name="nav-select" id="nav-select">
                     <option id="default-nav-select" value="select-nav">Select Navigation</option>
                     <?php 
@@ -229,18 +244,11 @@
                     <code id="code-<?php echo $entryRaw; ?>"><?php echo $markup; ?></code>
                 <?php endforeach; ?>
 
-                <h3>Templates</h3>
-                <ul class="template-controls">
-                    <li><a href="#" title="Click here to edit the name of this template" class="edit-template">Rename Template</a></li>
-                    <li><a href="#" title="Click to create a new template" class="new-template">New Template</a></li>
-                    <li><a href="#" title="Click to delete current template" class="delete-template">Delete Template</a></li>
-                    <li><a href="#" title="Click to lock / unclock the template" class="lock-template">Lock / Unlock grid</a></li>
-                </ul>
-
                 <h3>Project</h3>
-                <ul>
+                <ul class="project-controls">
+                    <li><a href="#" title="Click to lock / unclock the template" class="lock-template">Lock / Unlock grid</a></li>
                     <li><a href="#" title="Click to download project" class="download-project">Download Project</a></li>
-                    <li><a href="#" title="Delete the project" class="clear-store">Delete Project</a></li>
+                    <li class="last"><a href="#" title="Delete the project" class="clear-store">Delete Project</a></li>
                 </ul>
 
             </div>

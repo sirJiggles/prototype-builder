@@ -1,0 +1,19 @@
+<div id="respond">
+    <h3 id="reply-title">Leave a comment <small><a rel="nofollow" id="cancel-comment-reply-link" href="/blog/2013/03/23/third-post/#respond" style="display:none;">Cancel reply</a></small></h3>
+    <form action="http://gracie.dev/wp-comments-post.php" method="post" id="commentform">
+        <label for="author">Name *</label>
+        <input id="author" name="author" type="text" class="text" value="">
+
+        <label for="email">Email* (Not shown publicly)</label>
+        <input id="email" name="email" type="email" class="text" value="">
+
+        <label for="comment">Comment *</label>
+        <textarea id="comment" name="comment" aria-required="true"></textarea>
+        
+        <p class="form-submit">
+            <input name="submit" type="submit" id="submit" value="Post your comment">
+            <input type="hidden" name="comment_post_ID" value="37" id="comment_post_ID">
+            <input type="hidden" name="comment_parent" id="comment_parent" value="0">
+        </p>
+    </form>
+</div>

@@ -1,5 +1,3 @@
-@import "_settings";
-@import "_mixins";
 
 // Header for the builder
 #header{
@@ -8,15 +6,26 @@
 	height:100px;
 	top:0;
 	left:0;
-	background-color:$color6;
+	background-color:#2d2d2d;
 	z-index:99999;
 	display:block;
 	padding:20px 20px 0 20px;
+    border-bottom:8px solid white;
 }
 
 #header h1{
-	margin:10px 50px 0 0;
+	margin:2px 50px 0 0;
+    color:white;
+    @include custom-font;
 	@include block-left;
+    font-weight: 400;
+    width:auto;
+}
+
+#nav-header{
+    .row{
+        background-color: white;
+    }
 }
 
 // Template Tabs
@@ -25,29 +34,74 @@
     @include reset-box;
     list-style-type: none;
     @include block-left;
-
-    margin: 41px 0 0 0;
+    width:auto;
+    margin: 38px 0 0 0;
 
     li{
-    	background-color: #fefefe;
-    	border-bottom:1px solid $color6;
+    	background-color: #dbd8d8;
 
     	@include border-top-left-radius(5px);
     	@include border-top-right-radius(5px);
 
-    	padding:12px 20px 10px 20px;
+    	padding:12px 10px 10px 10px;
 
     	float:left;
-    	margin:0 10px 0 0;
+    	margin:0 5px 0 0;
 
     	a{
-    		color:$color3;
+    		color:#848383;
+            @include custom-font;
+            @include em-font(12);
     		text-decoration: none;
-    	}
-    }
+            @include block-left;
 
-    li.active{
-    	border-bottom:1px solid white;
-    	background-color: white;
+            &.edit-template,
+            &.delete-template{
+                height:13px;
+                width:13px;
+                ovrflow:hidden;
+                text-indent: -999px;
+
+            }
+
+            &.edit-template{
+                @include icons-sprite(edit);
+                margin-right:10px;
+                &:hover{
+                    @include icons-sprite(edit-active);
+                }
+            }
+
+            &.delete-template{
+                margin-left:10px;
+                @include icons-sprite(delete);
+                &:hover{
+                    @include icons-sprite(delete-active);
+                }
+            }
+    	}
+
+        &.active{
+            background-color: white;
+
+            a{
+                color:#00b6ff;
+            }
+        }
+
+        &.new-template-li{
+            background-color:#0bd007;
+            padding: 4px 4px 2px 4px;
+            margin-top: 7px;
+
+            a{
+                width:20px;
+                height:21px;
+                text-indent: -999px;
+                overflow: hidden;
+                @include icons-sprite(add);
+            }
+        }
+
     }
 }

@@ -1,0 +1,42 @@
+.news-listing-small{
+	
+	ul{
+		@include reset-box;
+		list-style-type: none;
+
+		li{
+			@include block-left;
+			margin:0;
+			padding:20px 0;
+			border-bottom:1px solid $color6;
+
+			time{
+				@include em-font(12);
+				@include em-line-height(12);
+				color:$color5;
+				width:100%;
+				@include block-left;
+				margin:0 0 5px 0;
+
+			}
+
+			a{
+				color:$color3;
+				text-decoration: none;
+				outline:none;
+				@include em-font(16);
+				@include em-line-height(16);
+
+			}
+
+		}
+
+		li.last{
+			border:none;
+		}
+
+		li.first{
+			padding:0 0 20px 0;
+		}
+	}
+}

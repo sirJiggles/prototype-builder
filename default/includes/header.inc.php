@@ -11,7 +11,7 @@
         <!-- META -->
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1, minimum-scale=1" />
     	<meta name="description" content="" />
     	<meta name="author" content="" />
         <meta name="keywords" content="" />
@@ -30,7 +30,7 @@
         <link rel="stylesheet" href="assets/css/screen.css" media="screen" type="text/css" />
     	<link rel="stylesheet" href="assets/css/print.css" media="print" type="text/css"/>
         
-        <!--[if lte IE 7]>
+        <!--[if lte IE 8]>
             <link rel="stylesheet" href="assets/css/fixed-width.css" media="screen" type="text/css"/>
         <![endif]-->
               

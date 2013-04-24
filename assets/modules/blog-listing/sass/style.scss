@@ -1,0 +1,180 @@
+.blog-listing{
+
+	background-color:white;
+    @include box-shadow(#d6dee0 0px 0px 9px);
+    @include block-left;
+    width:100%;
+    padding:0 15px;
+
+	ul{
+		@include reset-box;
+		list-style-type: none;
+		@include block-left;
+
+		li{
+			@include block-left;
+			width:100%;
+			@include reset-box;
+
+			article{
+
+				@include block-left;
+				position:relative;
+				background-color:white;
+				padding:25px 0 15px 0;
+				border-bottom:1px solid $color5;
+				width:100%;
+
+				.social{
+					background:url('../modules/blog-listing/img/social.png') 0 0 no-repeat;
+					position:absolute;
+					top:20px;
+					right:0px;
+					width:248px;
+					height:20px;
+				}
+
+
+
+				time{
+					position:absolute;
+					top:15px;
+					left:-15px;
+					background-color: #BFD0D4;
+					text-transform: uppercase;
+					color:white;
+					@include em-font(20);
+					@include em-line-height(16);
+					padding:2px 10px;
+				}
+				header{
+					width:100%;
+					@include block-left;
+					padding-top:40px;
+
+					h2{
+						width:100%;
+						@include block-left;
+						@include em-font(22);
+						font-weight: 400;
+						margin:0;
+
+						a{
+							color:$color2;
+							text-decoration: none;
+
+						}
+					}
+				}
+
+				a.comments{
+					color:$color2;
+					@include em-font(14);
+					font-style: italic;
+					@include em-line-height(14);
+					float:right;
+					display:block;
+					width:30%;
+					text-align: right;
+					text-decoration: none;
+					height:30px;
+
+				}
+
+
+				ul.tags{
+
+					width:70%;
+					@include block-left;
+					margin:0;
+					height:30px;
+
+					li{
+					 	width:auto;
+					 	@include em-font(13);
+				 		@include em-line-height(13);
+					 	color:$color2;
+					 	margin:0 5px 0 0;
+
+					 	a{
+					 		color:$color2;
+					 		text-decoration:none;
+					 		outline:none;
+					 		font-weight: 700;
+
+					 	}
+					 }
+
+				}
+
+				p{
+					display:block;
+					@include em-font(16);
+					@include em-line-height(16);
+					color:$color3;
+					font-weight:300;
+					margin:0 0 15px 0;
+				}
+
+			}
+
+			&.last{
+				article{
+					border:none;
+				}
+			}
+
+			&.first{
+				article{
+					margin-top:15px;
+				}
+			}
+
+			img{
+				float:left;
+				margin:0 20px 10px 0;
+			}
+
+		}
+	}
+}
+
+// MEDIA QUARS
+
+
+/* LESS THAN TABLET */
+@media only screen and (max-width: $mobile){
+	.blog-listing{
+		ul{
+			li{
+				article{
+					.social{
+						position:relative;
+						top:42px;
+						margin-bottom:5px;
+						left:0;
+					}
+
+					a.comments{
+						position:relative;
+						float:left;
+						width:100%;
+						margin-bottom:5px;
+						text-align:left;
+					}
+
+					ul.tags{
+						width:100%;
+						display:block;
+						float:left;
+					}
+				}
+				
+
+				p{
+					width:100%;
+				}
+			}
+		}
+	}
+}

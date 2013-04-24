@@ -1,13 +1,12 @@
 @import "compass/css3";
 @import "compass/reset";
-
+@import "icons/*.png";
 @import "susy";
 
 @import "includes/_settings";
 @import "includes/_mixins";
 @import 'includes/_typography';
 @import 'includes/_forms';
-@import 'includes/_tables';
 @import 'includes/_header';
 @import 'includes/_footer';
 @import 'includes/_style';
@@ -17,8 +16,15 @@
 @import '../modules/jquery-ui/sass/style';
 @import '../modules/news-article/sass/style';
 @import '../modules/accordion/sass/style';
-@import '../modules/coverflow-gallery/sass/style';
 @import '../modules/audio/sass/style';
+@import '../modules/gallery-simple/sass/style';
+@import '../modules/news-listing-small/sass/style';
+@import '../modules/blog-listing/sass/style';
+@import '../modules/pagination-first-last/sass/style';
+@import '../modules/pagination/sass/style';
+@import '../modules/blog-details/sass/style';
+@import '../modules/contact-simple/sass/style';
+@import '../modules/comment-form-wp/sass/style';
 
 // Various navs
 @import '../navigation/standard/sass/style';

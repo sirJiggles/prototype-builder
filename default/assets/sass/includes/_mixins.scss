@@ -1,4 +1,3 @@
-@import "_settings";
 
 @mixin em-font($px:12){
     font-size:(1 / $base-font) * $px + em;
@@ -74,7 +73,7 @@
     padding:25px;
 }
 
-@mixin border-box($url){
+@mixin border-box($url:''){
     -webkit-box-sizing:border-box;
     -moz-box-sizing:border-box;
     box-sizing:border-box;

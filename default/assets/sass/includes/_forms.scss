@@ -1,5 +1,3 @@
-@import "_settings";
-@import "_mixins";
 
 /* CSS validation overrides */
 :required {}
@@ -74,6 +72,9 @@ form {
         font-weight:400;
         padding:20px;
         margin:10px 0 0 0;
+        background-color: $color3;
+        float:left;
+        color:white;
     }
 
     input[type='submit']:hover,
@@ -97,4 +98,26 @@ meter {
 textarea{
     width:100%;
     height:50px;
+}
+
+@media only screen and (max-width: $desktop){
+    form{
+
+        label{
+            width:100%;
+            padding: 0 0 2% 0;
+        }
+
+        input,
+        select{
+            width: 92%;
+            padding:4%;
+            margin: 0 0 2% 0;
+        }
+
+        input[type='checkbox']{
+            padding:0;
+        }
+
+    }
 }
