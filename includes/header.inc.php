@@ -36,6 +36,9 @@
         <!--[if lte IE 8]>
             <link rel="stylesheet" href="assets/css/fixed-width.css" media="screen" type="text/css"/>
         <![endif]-->
+
+        <!-- Google Map -->
+        <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAII0d8q8BIaCWjpFb2-SxinfRwP9lwz4I&sensor=false"></script>
         
         <script type="text/javascript" src="assets/js/vendor/jquery-1.8.2.min.js"></script>
         <script type="text/javascript" src="assets/js/vendor/hammer.min.js"></script>

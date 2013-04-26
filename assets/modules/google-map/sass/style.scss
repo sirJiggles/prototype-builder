@@ -1,0 +1,52 @@
+.google-map{
+
+	position:relative;
+	padding-bottom:$gutter-width;
+
+	h3{
+		color:white;
+		@include em-font(18);
+		@include em-line-height(18);
+		font-weight:700;
+		padding:15px 10px;
+		position:absolute;
+		top:10px;
+		left:0;
+		width:auto;
+		background-color: black;
+		z-index:99;
+	}
+
+	#map-container{
+		width:100%;
+		height:600px;
+	}
+}
+
+// MEDIA QUARS
+
+@media only screen and (max-width: $tablet){
+	.google-map{
+		#map-container{
+			height:350px;
+		}
+	}
+
+}
+
+@media only screen and (max-width: $mobile){
+	.google-map{
+		#map-container{
+			height:200px;
+		}
+
+		h3{
+			position:relative;
+			top:0;
+			padding:7px;
+			width:100%;
+			margin-bottom:5px;
+		}
+	}
+
+}

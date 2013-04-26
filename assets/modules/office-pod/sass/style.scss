@@ -1,0 +1,58 @@
+.office-pod{
+	width:100%;
+	@include block-left;
+	padding-bottom:$gutter-width;
+
+	h3{
+		background-color: black;
+		width:100%;
+		@include block-left;
+		@include em-font(18);
+		@include em-line-height(18);
+		padding:10px 15px;
+		font-weight:400;
+		margin:0;
+		color:white;
+	}
+
+	.vcard{
+
+		width:100%;
+		@include block-left;
+		background-color:#F3F3F3;
+		padding:0 15px 15px 15px;
+
+		h4{
+			@include em-font(13);
+			@include em-line-height(13);
+			font-weight: 700;
+			margin:10px 0 0 0;
+		}
+
+		p,a{
+			@include em-font(12);
+			@include em-line-height(12);
+		}
+
+		a{
+			text-decoration: none;
+			outline:none;
+			width:100%;
+			@include block-left;
+		}
+
+		a.email{
+			color:black;
+			font-weight: 700;
+		}
+
+		p{
+			color:$color3;
+			margin:0 0 0 0;
+		}
+
+
+
+	}
+
+}
