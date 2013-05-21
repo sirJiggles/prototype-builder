@@ -1,0 +1,287 @@
+// SHOP PRODUCT INFO MODULE
+
+.no-js{
+
+	.shop-product-info{
+		.color-control-fallback{
+			display:block;
+		}
+		.color-controls{
+			display:none;
+		}
+	}
+
+	.product-info-tabs{
+
+		li{
+			width:100%;
+			margin:0 0 10px 0;
+			border:none;
+
+			&.active{
+
+				border:none;
+
+				&.left,
+				&.right{
+					border:none;
+				}
+				
+			}
+
+			h2{
+				text-align: left;
+			}
+
+			p{
+				display:block;
+			}
+		}
+	}
+
+	p.tab-content{
+		display:none;
+	}
+
+}
+
+
+.shop-product-info{
+
+	padding:20px;
+	@include block-left;
+	width:100%;
+
+	ul{
+		@include reset-box;
+		@include block-left;
+		list-style-type:none;
+
+		li{
+			@include reset-box;
+		}
+	}
+
+	// Header with title and price
+	header{
+		h1{
+			@include custom-font;
+			@include em-font(20);
+			@include em-line-height(16);
+			color:black;
+			font-style: italic;
+			font-weight:400;
+		}
+
+		p{
+			@include sans-font;
+			@include em-font(18);
+			@include em-line-height(18);
+			color:$red;
+			font-weight: 600;
+			padding:0 0 25px 0;
+			margin:0;
+			@include block-left;
+			width:100%;
+		}
+	}
+
+	// form for selecting the color and size of the product
+	form{
+		@include reset-box;
+		@include block-left;
+		width:100%;
+		padding:0 0 10px 0;
+
+		label{
+			@include sans-font;
+			font-weight: 700;
+			@include em-font(14);
+			@include em-line-height(14);
+			color:$darkestGrey;
+			width:60px;
+			@include block-left;
+			clear:left;
+			margin:0 0 10px 0;
+		}
+
+		input,select{
+			@include block-left;
+		}
+		select{
+			width:auto;
+		}
+		
+
+		// non js fallback color picker
+		.color-control-fallback{
+			display:none;
+		}
+
+		.color-controls{
+			
+			float:none;
+			width:auto;
+
+			li{
+				float:left;
+				margin:0 5px 0 0;
+
+				a{
+					width:18px;
+					height:18px;
+					@include border-radius(18px);
+					@include block-left;
+					outline:none;
+					text-decoration: none;
+					text-indent:-9999px;
+					overflow: hidden;
+
+					&.red{
+						background-color: red;
+					}
+
+					&.blue{
+						background-color:blue;
+					}
+				}
+			}
+
+		}
+		a.size-guide{
+			@include sans-font;
+			@include em-font(13);
+			@include em-line-height(13);
+			@include block-left;
+			margin:0 0 0 10px;
+			text-decoration: none;
+
+			&:hover{
+				text-decoration: underline;
+			}
+		}
+	}
+
+	// buy button
+	a.btn{
+		width:100%;
+	}
+
+	// social icons
+	.social{
+
+		padding:25px 0 60px 0;
+
+		li{
+
+			@include block-left;
+			margin:0 11px 0 0;
+
+			a{
+				text-decoration: none;
+				outline: none;
+				text-indent: -999px;
+				overflow: hidden;
+				width:26px;
+				height:22px;
+				@include block-left;
+
+				&.pintrest{
+					@include icons-sprite(pintrest-article);
+				}
+
+				&.facebook{
+					@include icons-sprite(facebook-article);
+				}
+
+				&.twitter{
+					@include icons-sprite(twitter-article);
+				}
+			}
+		}
+	}
+
+
+	// Tabs for viewing more details
+	p.tab-content{
+		@include block-left;
+		width:100%;
+		text-align:left;
+		@include sans-font;
+		@include em-font(14);
+		@include em-line-height(14);
+		color:#656565;
+		padding:10px 0 0 0;
+		margin:0;
+	}
+
+	.product-info-tabs{
+
+		position:relative;
+		@include block-left;
+		width:100%;
+
+		li{
+			@include block-left;
+			border-bottom:1px solid $borderGrey;
+			padding:10px 0px;
+			text-align: center;
+			width:50%;
+			
+
+			&.active{
+				border-bottom:none;
+				border-top: 1px solid $borderGrey;
+
+				&.left{
+					border-right:1px solid $borderGrey;
+				}
+
+				&.right{
+					border-left:1px solid $borderGrey;
+				}
+			}
+
+			h2{
+				margin:0;
+				@include em-font(14);
+				@include em-line-height(14);
+
+				a{
+					font-size:1.0em;
+					line-height: 1.0em;
+					@include sans-font;
+					color:$darkestGrey;
+					text-decoration: none;
+					outline: none;
+				}
+			}
+
+			p{
+				display:none;
+				float:left;
+				width:100%;
+				text-align:left;
+				@include sans-font;
+				@include em-font(14);
+				@include em-line-height(14);
+				color:#656565;
+				padding:10px 0 0 0;
+				margin:0;
+			}
+
+
+		}
+
+	}
+
+}
+
+
+@media only screen and (max-width:600px){
+	.shop-product-info{
+		.social{
+			padding-bottom:20px;
+		}
+	}
+}

@@ -1,0 +1,126 @@
+// SHOP FILTERS MODULE
+
+.shop-filters{
+
+	@include block-left;
+	width:100%;
+
+	form{
+
+		@include block-left;
+		width:100%;
+		
+
+		fieldset{
+
+			width:100%;
+			margin-bottom:20px;
+
+			legend{
+
+				color:$color3;
+				position:relative;
+				font-style:italic;
+				@include custom-font;
+				@include em-font(16);
+				@include em-line-height(16);
+				border-bottom:1px solid $color2;
+				padding:0 0 15px 0;
+				font-weight: 400;
+				cursor: pointer;
+
+				span{
+					background:url('/assets/modules/shop-filters/img/grey-arrow-up.png');
+					position:absolute;
+					width:9px;
+					height:9px;
+					right:0;
+					top:10px;
+
+				}
+			}
+
+
+			label{
+				float:left;
+				width:auto;
+				*margin-top:4px;
+				*width:80%;
+
+				&.colour{
+					@include border-radius(10px);
+					width:10px;
+					height:10px;
+					margin:5px 0 0 0;
+					text-indent: -999px;
+					overflow: hidden;
+					padding:0;
+					*margin:9px 75% 0 0;
+
+					&.red{
+						border:red solid 10px;
+					}
+					&.blue{
+						border:blue solid 10px;
+					}
+					&.green{
+						border:green solid 10px;
+					}
+					&.pink{
+						border:pink solid 10px;
+					}
+
+				}
+			}
+
+			input{
+				float:left;
+				margin:6px 10px 0 0;
+				clear:left;
+
+				&.colour-input{
+					margin:9px 10px 0 0;
+				}
+
+			}
+
+			.filters-wrapper{
+				@include block-left;
+				height:100%;
+				width:100%;
+				overflow: hidden;
+			}
+
+			&.closed{
+				legend{
+
+					span{
+						background:url('/assets/modules/shop-filters/img/grey-arrow-down.png');
+					}
+				}
+
+			}
+		}
+	}
+}
+
+@media only screen and (max-width:$mobile){
+	.shop-filters{
+		form{
+			fieldset{
+				margin:0 0 10px 0;
+
+				&.closed{
+					margin:0px;
+				}
+
+				legend{
+					padding:0 0 10px 0;
+				}
+				
+			}
+		}
+	}
+}
+
+

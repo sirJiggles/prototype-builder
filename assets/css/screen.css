@@ -1478,6 +1478,52 @@ html[xmlns] .slides { display: block; }
 .office-pod .vcard a.email { color: black; font-weight: 700; }
 .office-pod .vcard p { color: #888888; margin: 0 0 0 0; }
 
+.shop-filters { display: block; float: left; width: 100%; }
+.shop-filters form { display: block; float: left; width: 100%; }
+.shop-filters form fieldset { width: 100%; margin-bottom: 20px; }
+.shop-filters form fieldset legend { color: #888888; position: relative; font-style: italic; font-family: 'Noto Sans', sans-serif; font-size: 1em; line-height: 1.5em; border-bottom: 1px solid #555555; padding: 0 0 15px 0; font-weight: 400; cursor: pointer; }
+.shop-filters form fieldset legend span { background: url("/assets/modules/shop-filters/img/grey-arrow-up.png"); position: absolute; width: 9px; height: 9px; right: 0; top: 10px; }
+.shop-filters form fieldset label { float: left; width: auto; *margin-top: 4px; *width: 80%; }
+.shop-filters form fieldset label.colour { -webkit-border-radius: 10px; -moz-border-radius: 10px; -ms-border-radius: 10px; -o-border-radius: 10px; border-radius: 10px; width: 10px; height: 10px; margin: 5px 0 0 0; text-indent: -999px; overflow: hidden; padding: 0; *margin: 9px 75% 0 0; }
+.shop-filters form fieldset label.colour.red { border: red solid 10px; }
+.shop-filters form fieldset label.colour.blue { border: blue solid 10px; }
+.shop-filters form fieldset label.colour.green { border: green solid 10px; }
+.shop-filters form fieldset label.colour.pink { border: pink solid 10px; }
+.shop-filters form fieldset input { float: left; margin: 6px 10px 0 0; clear: left; }
+.shop-filters form fieldset input.colour-input { margin: 9px 10px 0 0; }
+.shop-filters form fieldset .filters-wrapper { display: block; float: left; height: 100%; width: 100%; overflow: hidden; }
+.shop-filters form fieldset.closed legend span { background: url("/assets/modules/shop-filters/img/grey-arrow-down.png"); }
+
+@media only screen and (max-width: 480px) { .shop-filters form fieldset { margin: 0 0 10px 0; }
+  .shop-filters form fieldset.closed { margin: 0px; }
+  .shop-filters form fieldset legend { padding: 0 0 10px 0; } }
+.shop-listing ul { list-style-type: none; padding: 0; margin: 0; display: block; float: left; width: auto; }
+.shop-listing ul li { display: block; float: left; padding: 0; margin: 0; }
+.shop-listing .shop-list { padding-bottom: 40px; width: 100%; }
+.shop-listing .shop-list li { width: 33%; }
+.shop-listing .shop-list li a { outline: none; text-decoration: none; display: block; float: left; width: 100%; height: 100%; }
+.shop-listing .shop-list li a article { width: 228px; padding: 20px; height: 340px; display: block; float: left; }
+.shop-listing .shop-list li a article figure img { margin: 0 auto; display: block; }
+.shop-listing .shop-list li a article figure figcaption { font-size: 0.875em; line-height: 1.3125em; color: #222222; font-weight: 600; }
+.shop-listing .shop-list li a article p { color: #dddddd; font-size: 1.125em; line-height: 1.6875em; margin: 0; font-weight: 600; }
+.shop-listing .price-filter { display: block; float: right; font-size: 0.875em; line-height: 1.3125em; padding-bottom: 20px; }
+.shop-listing .price-filter p { display: block; float: left; margin: 0 10px 0 0; }
+.shop-listing .price-filter ul li { margin: 0 10px 0 0; padding: 0 10px 0 0; border-right: 1px solid #dddddd; }
+.shop-listing .price-filter ul li.last { border: none; margin: 0; }
+.shop-listing .price-filter ul li a { text-decoration: none; }
+.shop-listing .shop-listing-pagiantion { display: block; float: right; }
+.shop-listing .shop-listing-pagiantion ul li { line-height: 1.3125em; font-size: 0.875em; }
+.shop-listing .shop-listing-pagiantion ul li a { text-decoration: none; outline: none; display: block; float: left; }
+.shop-listing .shop-listing-pagiantion ul li a.first, .shop-listing .shop-listing-pagiantion ul li a.last { width: 9px; height: 9px; outline: none; text-indent: -999px; overflow: hidden; margin-top: 4px; }
+.shop-listing .shop-listing-pagiantion ul li a.first { background: url("/assets/modules/shop-listing/img/grey-arrow-left.png"); margin-right: 10px; }
+.shop-listing .shop-listing-pagiantion ul li a.last { background: url("/assets/modules/shop-listing/img/grey-arrow-right.png"); margin-left: 10px; }
+.shop-listing .shop-listing-pagiantion a.view-all { line-height: 1.3125em; font-size: 0.875em; margin-left: 50px; text-decoration: none; outline: none; }
+
+@media only screen and (max-width: 960px) { .shop-listing .shop-list li { width: 50%; }
+  .shop-listing .shop-list li a article { width: 100%; } }
+@media only screen and (max-width: 700px) { .shop-listing .shop-list li { width: 100%; } }
+@media only screen and (max-width: 480px) { .shop-listing .shop-listing-pagiantion { float: left; width: 100%; }
+  .shop-listing .shop-listing-pagiantion a.view-all { float: right; margin: 0px; } }
 #main-nav-standard { min-height: 60px; z-index: 9999999; }
 #main-nav-standard ul { padding: 0; margin: 0; display: block; float: left; width: 100%; margin: 10px 0 10px 0; background-color: #dddddd; }
 #main-nav-standard ul li { display: block; float: left; margin: 0; border: none; width: auto; }
