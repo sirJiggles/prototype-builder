@@ -97,12 +97,12 @@ html[xmlns] .slides {display: block;}
 
 				&.flex-prev{
 					top:20px;
-					@include icons-sprite(large-arrow-up);
+					background:url('/assets/modules/mixed-thumbs-gallery/img/large-arrow-up.png');
 				}
 
 				&.flex-next{
 					bottom:-20px;
-					@include icons-sprite(large-arrow-down);
+					background:url('/assets/modules/mixed-thumbs-gallery/img/large-arrow-down.png');
 				}
 			}
 		}
@@ -143,12 +143,12 @@ html[xmlns] .slides {display: block;}
 
 				&.flex-prev{
 					left:0px;
-					@include icons-sprite(large-arrow-left);
+					background:url('/assets/modules/mixed-thumbs-gallery/img/large-arrow-left.png');
 				}
 
 				&.flex-next{
 					right:0px;
-					@include icons-sprite(large-arrow-right);
+					background:url('/assets/modules/mixed-thumbs-gallery/img/large-arrow-right.png');
 				}
 			}
 		}
