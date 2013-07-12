@@ -1,14 +1,16 @@
 # Require any additional compass plugins here.
 require 'susy'
+require 'animation'
+require 'rgbapng'
 
 # Set this to the root of your project when deployed:
-http_path = "/"
-css_dir = "assets/css"
-sass_dir = "assets/sass"
-add_import_path "assets/modules"
-add_import_path "assets/navigation"
-images_dir = "assets/img"
-javascripts_dir = "assets/js"
+http_path = '/'
+css_dir = 'assets/css'
+sass_dir = 'assets/sass'
+add_import_path 'assets/modules'
+add_import_path 'assets/navigation'
+images_dir = 'assets/img'
+javascripts_dir = 'assets/js'
 
 # You can select your preferred output style here (can be overridden via the command line):
 output_style = :compact
@@ -20,6 +22,9 @@ output_style = :compact
 line_comments = false
 
 disable_warnings = true
+
+output_style = (environment == :production) ? :compressed : :expanded
+asset_cache_buster :none
 
 # If you prefer the indented syntax, you might want to regenerate this
 # project again passing --syntax sass, or you can uncomment this:

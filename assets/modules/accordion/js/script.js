@@ -1,16 +1,18 @@
-if ($('.accordion').length > 0){
-    
-    $('.accordion article').slideToggle();
+//$(window).ready(function(){
+	if ($('.accordion').length > 0){
+	    
+	    $('.accordion article').slideToggle();
 
-    $('.accordion-link').click(function(e){
-        
-        e.preventDefault();
+	    $('.accordion-link').click(function(e){
+	        
+	        e.preventDefault();
 
-        if (!$(this).next().hasClass('open')){
+	        if (!$(this).next().hasClass('open')){
 
-            $('.accordion article.open').slideToggle().removeClass('open');
-            $(this).next().slideToggle().addClass('open');
-        }
+	            $('.accordion article.open').slideToggle().removeClass('open');
+	            $(this).next().slideToggle().addClass('open');
+	        }
 
-    });
-}
+	    });
+	}
+//}

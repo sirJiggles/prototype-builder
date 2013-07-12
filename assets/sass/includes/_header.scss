@@ -20,6 +20,7 @@
 	@include block-left;
     font-weight: 400;
     width:auto;
+    font-style:normal;
 }
 
 #nav-header{
@@ -65,18 +66,18 @@
             }
 
             &.edit-template{
-                @include icons-sprite(edit);
+                @include sprite(edit);
                 margin-right:10px;
                 &:hover{
-                    @include icons-sprite(edit-active);
+                    @include sprite(edit-active);
                 }
             }
 
             &.delete-template{
                 margin-left:10px;
-                @include icons-sprite(delete);
+                @include sprite(delete);
                 &:hover{
-                    @include icons-sprite(delete-active);
+                    @include sprite(delete-active);
                 }
             }
     	}
@@ -99,7 +100,7 @@
                 height:21px;
                 text-indent: -999px;
                 overflow: hidden;
-                @include icons-sprite(add);
+                @include sprite(add);
             }
         }
 

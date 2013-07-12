@@ -8,6 +8,14 @@
             <script src="assets/js/vendor/htmlshiv.min.js"></script>
         <![endif]-->
 
+        <script type="text/javascript">
+            var html = document.getElementsByTagName("html")[0];
+            if(html.className == "no-js") {
+                html.className = html.className.replace("no-js", "js");
+            } 
+            var siteAssetsPath = '/wp-content/themes/pinghe/assets';
+        </script>
+
         <!-- META -->
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">

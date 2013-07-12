@@ -11,13 +11,14 @@ $base-font-size: $bodyFontSize;
 $total-columns: 12;
 $column-width: 60px;
 $gutter-width: 20px;
+$gutter-padding: 0px;
 $grid-padding: 10px;
 
-$footer-height: 10;
+
+$footer-height: 20;
 
 $border-box-sizing: true;
 
-// color vars
 $color1: #222;
 $color2: #555;
 $color3: #888;

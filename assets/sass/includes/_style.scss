@@ -71,7 +71,7 @@ body{
         position:absolute;
         width:188px;
         height:85px;
-        @include icons-sprite(built-for);
+        @include sprite(built-for);
         bottom:120px;
         left:20px;
         overflow: hidden;
@@ -122,15 +122,15 @@ body{
                     width:30px;
 
                     &.lock-template{
-                        @include icons-sprite(lock);
+                        @include sprite(lock);
                     }
 
                     &.download-project{
-                        @include icons-sprite(download);
+                        @include sprite(download);
                     }
 
                     &.clear-store{
-                        @include icons-sprite(delete-project);
+                        @include sprite(delete-project);
                     }
                 }
 
@@ -181,10 +181,10 @@ body{
         a.control{
 
             &.end-toggle{
-                @include icons-sprite(back);
+                @include sprite(back);
 
                 &:hover{
-                    @include icons-sprite(back-hover);
+                    @include sprite(back-hover);
                 }
             }
         }
@@ -213,35 +213,35 @@ body{
 
         &.end-toggle{
             right:30px;
-            @include icons-sprite(end);
+            @include sprite(end);
 
             &:hover{
-                @include icons-sprite(end-hover);
+                @include sprite(end-hover);
             }
         } 
 
         &.settings{
             left:30px;
-            @include icons-sprite(settings);
+            @include sprite(settings);
 
             &:hover{
-                @include icons-sprite(settings-hover);
+                @include sprite(settings-hover);
             }
         }
 
         &.remove{
             right:5px;
-            @include icons-sprite(close);
+            @include sprite(close);
             &:hover{
-                @include icons-sprite(close-hover);
+                @include sprite(close-hover);
             }
         }
 
         &.dragger{
             left:5px;
-            @include icons-sprite(drag);
+            @include sprite(drag);
             &:hover{
-                @include icons-sprite(drag-hover);
+                @include sprite(drag-hover);
             }
         }
     }
@@ -330,7 +330,7 @@ body{
         width:22px;
         text-indent: -999px;
         overflow: hidden;
-        @include icons-sprite(close-hover);
+        @include sprite(close-hover);
 
     }
 
