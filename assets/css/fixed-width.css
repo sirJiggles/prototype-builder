@@ -1,6 +1,1 @@
-/* ======== FIXED WIDTH CHANGES ======== */
-#site-wrapper,
-#site-footer {
-  min-width: 1024px;
-  overflow: visible;
-}
+#site-wrapper,#site-footer{min-width:1024px;overflow:visible}

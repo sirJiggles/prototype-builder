@@ -7,32 +7,23 @@ what you create.
 To be hoenst most of it is self explanitory but after you have downloaded the package you will need
 to know the following.
 
+## AUTOMATED TASKS WITH GRUNT
 
-## CSS FILES
+This system uses Grunt, Compass and Juicer (a js compression Gem) to compress / watch the fron end assets to use the system you need to have the following things installed:
 
-To generate the CSS files for the start navigate to the new project and type command 'compass watch' the first time this is run it will
-genarte the CSS files. This will need to be run when working on sass stylesheets. There are four CSS files that will be included
-after compiling. screen for all the site styles, print for print (this includes typography and any other custom styles) and lastly fixed
-width which is included for browsers that do not suport media queries. The purpose of this is to fix the width of site containers like
-site-wrapper to 1024 or something simular.
+* Ruby
+    * compass
+    * susy
+    * rgbapng
+* Node
+	* grunt
+	* Varuous node modules (installed with npm install command when in root fir of project)
 
-* assets/sass/fixed-width.scss
-* assets/sass/print.scss
-* assets/sass/screen.scss
+Once you have all these things installed on your machine navigate to the root of your new project and run "npm install" this will install the node modules needed (node_modules has been added to git ignore). Then simply run the grunt command in terminal (again in project root dir).
 
-## JS FILES
+The grunt command will watch for chnages in sass files and re-compile them if changed. It will also watch for js chnanges and re-compile the javascript as it changes. The settings for how these are compiled are in the Gruntfile.js at the root of the project.
 
-The kit is settup to use juicer, yo get the JS you will need to run the command to combine and minify
-all javascript. You will need the juicer gem installed obviously, this command is run from the the folder
-with the project in.
-
-juicer merge -s assets/js/script.js --force
-
-To get js lint error reporting remove the -s arg.
-The --force tells juicer to overrite the old script.min.js file
-
-To see what is going on open up the js file and take note with the @depends declerations
-
+When the JS is compiled for example it will not be minified on dev and neither will the css. to chnage from dev to build change the setting at the bottom of the Gruntfile ['dev'] to ['build'].
 
 
 ## GENERAL USE
