@@ -22,4 +22,4 @@
 			$('.filters-wrapper').slideToggle();
 		}
 	}	
-//}
+//});

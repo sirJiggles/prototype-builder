@@ -2,7 +2,7 @@
 <html lang="en" class="no-js">
     <head>
 
-    	<title>PROTOTYPE</title>
+    	<title>YOUR PROJECT</title>
             
         <!--[if lt IE 9]>
             <script src="assets/js/vendor/htmlshiv.min.js"></script>
@@ -13,7 +13,7 @@
             if(html.className == "no-js") {
                 html.className = html.className.replace("no-js", "js");
             } 
-            var siteAssetsPath = '/wp-content/themes/pinghe/assets';
+            var siteAssetsPath = '/';
         </script>
 
         <!-- META -->

@@ -52,11 +52,11 @@ module.exports = function(grunt) {
 		watch: {
 			compass: {
 				files: sasslocations,
-				tasks: ['compass']
+				tasks: ['compass:dev']
 			},
 			shell:{
 				files: jsLocations,
-				tasks: ['shell']
+				tasks: ['shell:dev']
 			}
 		}
 
