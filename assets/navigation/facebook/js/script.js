@@ -1,4 +1,19 @@
 /* facebook mobile navigation */ 
+
+// functions for the navigation
+var toggleNav = {
+    init:function(){
+
+    },
+    swipe:function(){
+
+        $('body').toggleClass('nav-open');
+
+    }
+
+}
+
+
 $(window).ready(function(){
 
     $('.nav-controls a').click(function(e){
@@ -14,15 +29,3 @@ $(window).ready(function(){
 
 });
 
-// functions for the navigation
-var toggleNav = {
-    init:function(){
-
-    },
-    swipe:function(){
-
-        $('body').toggleClass('nav-open');
-
-    }
-
-}
