@@ -112,6 +112,49 @@ var convertTableToList = function(table){
 
     $(table).replaceWith(listString);
 
+};
+
+var swipeEvent = {
+    applyToElement: function(element, options) {
+        // catch
+        if(!options){return;}
+        if($(element).length == 0){return;}
+
+        // set some vars and some defaults (overidable in options)
+        var speed = 400,
+        difference = $(window).width() / 3,
+        debug = false,
+        startX = null,
+        startTouchTime = null,
+        touchCompletionTime = null;
+
+        $(element).bind('touchstart', function(e){
+            e = getTouchEvent(e);
+            startTouchTime = new Date();
+            startX = e.pageX;
+        });
+
+        $(element).bind('touchend', function(e){
+            e = getTouchEvent(e);
+            touchCompletionTime = new Date() - startTouchTime;
+
+            if(debug){
+                console.log('completion time: '+touchCompletionTime);
+                console.log('startX: '+startX);
+                console.log('endX: '+e.pageX);
+                console.log('difference: '+Math.abs(startX - e.pageX));
+                console.log('speed setting: '+speed);
+            };
+
+            // if fast enough for swipe
+            if(touchCompletionTime < speed){
+                // if the distance moved is enough to warent swipe
+                if(Math.abs(startX - e.pageX) > difference){
+                    options.callback();
+                }
+            }
+        });
+    }
 }
 
 /* Supports function for js fallback on css3 animations */
