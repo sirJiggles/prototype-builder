@@ -77,7 +77,7 @@ foreach($json->templates as $templateName => $templateData){
 		$end = ($json->templates->$templateName->grid->$gridId->end) ? ' end' : '';
 		$modules = ( count($json->templates->$templateName->grid->$gridId->modules) > 0 ) ? $json->templates->$templateName->grid->$gridId->modules : false;
 
-		$fileString .= '<div class="col span-1 '.$size.$end.'">'."\n";
+		$fileString .= '<div class="'.$size.$end.'">'."\n";
 
 		// check for text in the grid box
 		if($json->templates->$templateName->grid->$gridId->text != ''){
