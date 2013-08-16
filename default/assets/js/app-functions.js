@@ -157,6 +157,16 @@ var swipeEvent = {
     }
 }
 
+// Get touch event helper function
+var getTouchEvent = function(e){
+    if (e.originalEvent.touches && e.originalEvent.touches.length) {
+        e = e.originalEvent.touches[0];
+    } else if(e.originalEvent.changedTouches && e.originalEvent.changedTouches.length) {
+        e = e.originalEvent.changedTouches[0];
+    }   
+    return e;
+}
+
 /* Supports function for js fallback on css3 animations */
 var supports = (function(prop) {  
   
