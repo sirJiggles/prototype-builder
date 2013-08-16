@@ -3,6 +3,10 @@
 	position:relative;
 	padding-bottom:$gutter-width;
 
+	*{
+		@include no-border-box();
+	}
+
 	h3{
 		color:white;
 		@include em-font(18);
