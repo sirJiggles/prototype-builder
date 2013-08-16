@@ -13,21 +13,6 @@ function resizeWindowCallback(){
             }
         });
     }
-
-    if($('.packages').length > 0){
-        if( supports('transform')) {
-            if( ! appVars.desktop ){
-                
-                deals.tearDown();
-            }else{
-                deals.setUp();
-            }
-        }
-    }
-
-    if(!appVars.largeScreen && $('.dog-start').is(':visible')){
-        $('.dog-start').fadeOut();
-    }
 }
 
 // create external links function
