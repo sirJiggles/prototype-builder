@@ -1,50 +1,69 @@
 
 // Facebook mobile navigation
+$navWidth: 250px;
+$speed: 0.5s;
+
+body{
+    @include transition-property(left);
+    @include transition-duration($speed);
+    left:0px;
+    width:100%;
+    position:relative;
+
+    &:after{
+        position:absolute;
+        height:150%;
+        width:20px;
+        left:-20px;
+        content:' ';
+        top:-9px;
+        @include box-shadow(inset -8px 0px 10px -4px black);
+    }
+}
 
 #main-nav-facebook{
 
     min-height:60px;
     z-index:9999999;
 
-    ul{
-        @include reset-box;
+    #facebook-nav{
+
         width:100%;
-        left:0%;
+        left:0px;
         position:relative;
         height:100%;
-        background-color:$color5;
-        z-index:9999999;
-        margin:10px 0 10px 0;
-        @include block-left;
+        @include transition-property(left);
+        @include transition-duration($speed);
 
-        @include transition-property(all);
-        @include transition-duration(0.5s);
-
-        li{
+        ul{
+            @include reset-box;
+            background-color:$color5;
             @include block-left;
-            margin:0;
-            border:none;
-            width:auto;
-
-            a{
-                text-decoration: none;
-                color:$color1;
-                @include em-font(16);
-                @include em-line-height(16);
-                background-color:$color5;
-                padding:20px;
-                text-align: center;
+            li{
                 @include block-left;
-                overflow:hidden;
+                margin:0;
+                border:none;
+                width:auto;
+
+                a{
+                    text-decoration: none;
+                    color:$color1;
+                    @include em-font(16);
+                    @include em-line-height(16);
+                    padding:20px;
+                    text-align: center;
+                    @include block-left;
+                    overflow:hidden;
+                }
+
+                a:hover{
+                    background-color:$color4;
+                }
             }
 
-            a:hover{
-                background-color:$color4;
+            li.last{
+                border:none;
             }
-        }
-
-        li.last{
-            border:none;
         }
     }
 
@@ -54,9 +73,11 @@
         padding:10px 0;
         width:100%;
         background-color:$color5;
-        left:0;
+        left:0px;
         position:fixed;
         z-index:9999999;
+        @include transition-property(left);
+        @include transition-duration($speed);
 
         a{
             text-decoration: none;
@@ -67,14 +88,14 @@
             border:1px solid black;
             @include block-left;
             text-indent: 9999px;
-            margin-left:20px;
+            margin-left:10px;
         }
     }
 
-    ul.active{
-        left:0%;
-    }
+}
 
+body.nav-open{
+    left:0px;
 }
 
 // Change the nav at various break points
@@ -82,23 +103,45 @@
 // TABLET DOWN
 @media only screen and (max-width: $desktop){
 
+    // styles for when the nav is open
+    body.nav-open{
+
+        overflow:hidden;
+        left:$navWidth;
+        position:fixed;
+
+
+        #main-nav-facebook{
+            #facebook-nav{
+                left:0px;
+            }
+            .nav-controls{
+                left:$navWidth;
+            }
+        }
+    }
+
 
     #main-nav-facebook{
 
         margin-bottom:10px;
         background-color: $color5;
 
-        ul{
+        #facebook-nav{
             position:fixed;
-            left:-100%;
-            margin:60px 0 -60px 0;
+            left:-$navWidth;
+            width:$navWidth;
 
-            li{
-                border-bottom:1px solid white;
-                width:100%;
+            ul{
+                list-style-type: none;
 
-                a{
+                li{
+                    border-bottom:1px solid white;
                     width:100%;
+
+                    a{
+                        width:100%;
+                    }
                 }
             }
         }

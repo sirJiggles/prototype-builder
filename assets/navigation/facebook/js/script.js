@@ -1,18 +1,28 @@
 /* facebook mobile navigation */ 
-$('.nav-controls a').click(function(e){
+$(window).ready(function(){
 
-    $('#main-nav-facebook ul').toggleClass('active');
+    $('.nav-controls a').click(function(e){
+        e.preventDefault();
+        toggleNav.swipe();
+    });
 
-    if( $('#main-nav-facebook ul').hasClass('active') ){
-        hammer = new Hammer(document.getElementById("facebook-nav"));
+    // add a swipe event to the body for the nav
+    swipeEvent.applyToElement('body', {callback:toggleNav.swipe});
 
-        hammer.onswipe = function(event){
-            if(event.direction == 'left'){
-                $('.nav-controls a').click();
-            }
-        }
-    }else{
-        hammer.destroy();
-    }
+    // add iscroll
+    var scroller = new IScroll('#facebook-nav');
 
 });
+
+// functions for the navigation
+var toggleNav = {
+    init:function(){
+
+    },
+    swipe:function(){
+
+        $('body').toggleClass('nav-open');
+
+    }
+
+}
